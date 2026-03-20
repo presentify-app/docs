@@ -1,0 +1,22 @@
+{
+  "title": "Admin-Handbuch",
+  "pages": [
+    "index",
+    "general",
+    "members",
+    "roles",
+    "locations",
+    "desks",
+    "floor-plans",
+    "parking",
+    "qr-codes",
+    "desk-assignments",
+    "amenities",
+    "policies",
+    "privacy",
+    "office-policy",
+    "zone-rules",
+    "announcements",
+    "billing"
+  ]
+}

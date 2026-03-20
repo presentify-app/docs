@@ -1,32 +1,81 @@
 ---
-title: Getting Started
-description: Set up your Presentify workspace in minutes.
+title: Quick Start
+description: Get your Presentify workspace up and running in under 5 minutes.
 ---
 
-## Create Your Workspace
+This guide walks you through setting up Presentify from your first sign-in to inviting your team. If you're a new administrator, start here.
 
-1. Go to [presentify.org](https://presentify.org) and sign up
-2. Choose your authentication method (Microsoft or Magic Link)
-3. Create your first workspace
+## Step 1: Create your account
 
-## Invite Your Team
+Go to [presentify.org](https://presentify.org) and sign up. You have two options:
 
-Once your workspace is set up, invite team members:
+- **Sign in with Microsoft** — Uses your Microsoft 365 account. Recommended if your organization uses Microsoft 365, as it enables calendar sync and Entra ID integration later.
+- **Sign in by email** — Enter your email address and receive a sign-in code. No Microsoft account required.
 
-1. Navigate to **Settings** → **Team**
-2. Click **Invite Members**
-3. Enter email addresses or share the invite link
+After signing in, you'll be prompted to create your first workspace.
 
-## Set Up Locations
+## Step 2: Create your workspace
 
-Define your office locations to enable desk booking:
+Enter a workspace name (e.g., your company name). Presentify will suggest a name based on your email domain or Microsoft profile.
 
-1. Go to **Settings** → **Locations**
-2. Add your office locations with address and details
-3. Optionally upload a floor plan
+You'll also set:
 
-## Next Steps
+- **Default language** — English or German. Affects emails and notifications sent to members.
+- **Default timezone** — Used for all scheduling and booking displays.
 
-- [Configure desk booking](/docs/guides/desk-booking)
-- [Set up presence tracking](/docs/guides/presence)
-- [Customize settings](/docs/guides/settings)
+> After creation, you'll be guided through the [Setup Wizard](/docs/setup) to configure your workspace step by step.
+
+## Step 3: Add your office locations
+
+In the Setup Wizard, add your office locations:
+
+1. Enter a location name (e.g., "Berlin Office")
+2. Optionally add the city
+3. Add as many locations as you need
+
+Each location can later have buildings, floors, and desks assigned to it.
+
+## Step 4: Set up desks
+
+For each location, you can auto-generate a desk layout:
+
+1. Enter a building name (default: "Main Building")
+2. Define floor names (one per line, e.g., "Ground Floor", "1st Floor")
+3. Set how many desks per floor (default: 10, max 100)
+
+Presentify will create the building, floors, and desks automatically. You can customize them in detail later under [Admin > Desks](/docs/admin/desks).
+
+## Step 5: Invite your team
+
+Add team members by email or share an invite link:
+
+- **Email invites** — Enter email addresses one by one. Each person receives a sign-in link.
+- **Invite link** — Copy a shareable link and send it via Slack, Teams, or email. Anyone with the link can join your workspace.
+
+Invited members start with the **Member** role. You can [change roles](/docs/roles) at any time.
+
+## Step 6: Configure privacy
+
+Choose how much information is visible to colleagues:
+
+- **Full** — Everyone sees everyone's name, status, desk, and location.
+- **Restricted** — Team members see full details, others see limited info.
+- **Minimal** — Only anonymous aggregates are shown.
+
+You can also enable or disable **guest booking** and the **weekly digest email**.
+
+## What's next?
+
+Your workspace is ready. Here's what to do next:
+
+<Cards>
+  <Card title="Employee Guide" href="/docs/employee">
+    Share with your team — covers presence planning, desk booking, and more.
+  </Card>
+  <Card title="Admin Guide" href="/docs/admin">
+    Fine-tune your workspace settings, policies, and integrations.
+  </Card>
+  <Card title="Plans & Pricing" href="/docs/plans">
+    Explore what's included in Free Starter, Pro, and Enterprise.
+  </Card>
+</Cards>

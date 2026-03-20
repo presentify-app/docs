@@ -1,0 +1,4 @@
+{
+  "title": "Setup Wizard",
+  "pages": ["index", "workspace", "locations", "desks", "teams", "invite", "privacy"]
+}

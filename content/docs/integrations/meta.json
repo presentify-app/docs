@@ -1,0 +1,4 @@
+{
+  "title": "Integrations",
+  "pages": ["index", "entra-id", "calendar-sync", "teams", "webhooks", "api-keys"]
+}

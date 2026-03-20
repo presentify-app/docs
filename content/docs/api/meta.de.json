@@ -1,0 +1,4 @@
+{
+  "title": "API-Referenz",
+  "pages": ["index", "authentication", "endpoints", "webhooks", "rate-limits", "errors"]
+}

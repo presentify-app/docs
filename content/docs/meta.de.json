@@ -3,7 +3,16 @@
   "pages": [
     "index",
     "getting-started",
+    "roles",
+    "plans",
     "---Anleitungen---",
-    "...guides"
+    "...employee",
+    "...manager",
+    "...admin",
+    "...setup",
+    "...integrations",
+    "...notifications",
+    "---Entwickler---",
+    "...api"
   ]
 }

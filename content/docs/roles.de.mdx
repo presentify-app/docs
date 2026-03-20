@@ -1,0 +1,89 @@
+---
+title: Rollen & Berechtigungen
+description: Verstehe die fünf Rollen in Presentify und was jede Rolle kann.
+---
+
+Jedes Workspace-Mitglied hat eine von fünf Rollen. Rollen bestimmen, was ein Mitglied im Workspace sehen und tun kann.
+
+## Rollenübersicht
+
+| Rolle | Beschreibung |
+|-------|-------------|
+| **Owner** | Volle Kontrolle über den Workspace. Nur ein Owner pro Workspace. |
+| **Admin** | Gleicher Zugriff wie Owner, kann aber die Owner-Rolle nicht ändern. |
+| **Office Admin** | Verwaltet Buchungen und QR-Codes nur für zugewiesene Standorte. |
+| **Manager** | Kann Analytics einsehen und Schreibtische für direkte Mitarbeiter buchen. |
+| **Member** | Standardbenutzer. Kann Anwesenheit planen, Schreibtische buchen und eigenes Profil verwalten. |
+
+## Berechtigungsmatrix
+
+| Aktion | Member | Manager | Office Admin | Admin | Owner |
+|--------|--------|---------|--------------|-------|-------|
+| Eigene Anwesenheit planen | Ja | Ja | Ja | Ja | Ja |
+| Schreibtisch für sich buchen | Ja | Ja | Ja | Ja | Ja |
+| Für andere buchen | Nein | Direkte Mitarbeiter | Mitglieder an zugewiesenen Standorten | Alle | Alle |
+| Analytics einsehen (Pro) | Nein | Ja | Ja | Ja | Ja |
+| Standort-Buchungen verwalten | Nein | Nein | Zugewiesene Standorte | Alle | Alle |
+| QR-Codes generieren | Nein | Nein | Zugewiesene Standorte | Alle | Alle |
+| Workspace-Einstellungen verwalten | Nein | Nein | Nein | Ja | Ja |
+| Mitglieder einladen & entfernen | Nein | Nein | Nein | Ja | Ja |
+| Rollen ändern | Nein | Nein | Nein | Ja (nicht Owner) | Ja |
+| Standorte & Schreibtische verwalten | Nein | Nein | Nein | Ja | Ja |
+| Richtlinien konfigurieren | Nein | Nein | Nein | Ja | Ja |
+| Billing verwalten | Nein | Nein | Nein | Ja | Ja |
+| Ownership übertragen | Nein | Nein | Nein | Nein | Ja |
+
+## Rollendetails
+
+### Owner
+
+Jeder Workspace hat genau einen Owner. Der Owner hat vollen Zugriff auf alles, einschließlich der Möglichkeit, die Ownership zu übertragen, den Workspace zu löschen und das Billing zu verwalten.
+
+Die Owner-Rolle kann nicht von Admins geändert werden — nur der aktuelle Owner kann die Ownership übertragen.
+
+### Admin
+
+Admins haben den gleichen Zugriff wie der Owner, mit einer Ausnahme: sie können den Owner nicht ändern oder entfernen. Admins können alle Workspace-Einstellungen verwalten, Mitglieder einladen, Standorte, Schreibtische, Parkplätze, Richtlinien und Billing konfigurieren.
+
+Verwende diese Rolle für IT-Administratoren oder HR-Verantwortliche, die vollen Konfigurationszugriff benötigen.
+
+### Office Admin
+
+Office Admins sind auf bestimmte Standorte beschränkt. Ein Admin weist einem Office Admin einen oder mehrere Standorte zu. Danach kann der Office Admin:
+
+- Buchungen an seinen zugewiesenen Standorten einsehen und stornieren
+- QR-Codes für Schreibtische und Parkplätze an seinen Standorten generieren und drucken
+
+Office Admins **können nicht** auf Workspace-Einstellungen zugreifen, Mitglieder verwalten oder Richtlinien konfigurieren. Sie haben keinen Zugriff auf Standorte, die ihnen nicht zugewiesen sind.
+
+### Manager
+
+Manager können Analytics einsehen (erfordert Pro-Plan) und Schreibtische oder Parkplätze im Namen ihrer direkten Mitarbeiter buchen. Der Manager eines Mitglieds wird in den Mitgliedereinstellungen konfiguriert.
+
+Manager können nicht auf Workspace-Einstellungen zugreifen oder Standorte verwalten. Sie sehen die gleiche Seitenleiste wie reguläre Mitglieder, haben aber Zugang zum Analytics-Dashboard und Delegationsfunktionen.
+
+### Member
+
+Member sind Standardbenutzer. Sie können:
+
+- Eigene Anwesenheit planen (Büro, Remote, Abwesend)
+- Schreibtische und Parkplätze für sich selbst buchen
+- Teamkalender und Wer-ist-da einsehen
+- Eigenes Profil, Präferenzen und Benachrichtigungseinstellungen verwalten
+- Kalender-Feeds abonnieren (iCal)
+
+Member können nicht im Namen anderer buchen oder auf Admin-Funktionen zugreifen.
+
+## Rollen ändern
+
+Admins und Owner können die Rolle eines Mitglieds jederzeit ändern:
+
+1. Gehe zu **Einstellungen** > **Mitglieder**
+2. Klicke auf das Aktionsmenü neben einem Mitglied
+3. Wähle die neue Rolle
+
+Beim Wechsel eines Mitglieds zum Office Admin wirst du aufgefordert, Standorte zuzuweisen.
+
+## Du bist unsicher, welche Rolle du hast?
+
+Deine Rolle wird im Workspace-Selector und auf deiner Profilseite angezeigt. Wenn du erweiterten Zugriff benötigst, wende dich an deinen Workspace-Admin oder Owner.

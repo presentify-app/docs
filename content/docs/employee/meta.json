@@ -1,0 +1,20 @@
+{
+  "title": "Employee Guide",
+  "pages": [
+    "index",
+    "sign-in",
+    "dashboard",
+    "presence",
+    "recurring-patterns",
+    "desk-booking",
+    "floor-plan",
+    "parking",
+    "who-is-in",
+    "team",
+    "check-in",
+    "profile",
+    "calendar-subscription",
+    "favorites",
+    "sharing"
+  ]
+}

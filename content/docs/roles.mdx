@@ -1,0 +1,89 @@
+---
+title: Roles & Permissions
+description: Understand the five roles in Presentify and what each one can do.
+---
+
+Every workspace member has one of five roles. Roles determine what a member can see and do within the workspace.
+
+## Role overview
+
+| Role | Description |
+|------|-------------|
+| **Owner** | Full control over the workspace. Only one Owner per workspace. |
+| **Admin** | Same access as Owner, except cannot change the Owner role. |
+| **Office Admin** | Manages bookings and QR codes for assigned locations only. |
+| **Manager** | Can view analytics and book desks on behalf of direct reports. |
+| **Member** | Standard user. Can plan presence, book desks, and manage their own profile. |
+
+## Permission matrix
+
+| Action | Member | Manager | Office Admin | Admin | Owner |
+|--------|--------|---------|--------------|-------|-------|
+| Plan own presence | Yes | Yes | Yes | Yes | Yes |
+| Book a desk for yourself | Yes | Yes | Yes | Yes | Yes |
+| Book for others | No | Direct reports | Members at assigned locations | Everyone | Everyone |
+| View analytics (Pro) | No | Yes | Yes | Yes | Yes |
+| Manage location bookings | No | No | Assigned locations | All | All |
+| Generate QR codes | No | No | Assigned locations | All | All |
+| Manage workspace settings | No | No | No | Yes | Yes |
+| Invite & remove members | No | No | No | Yes | Yes |
+| Change member roles | No | No | No | Yes (not Owner) | Yes |
+| Manage locations & desks | No | No | No | Yes | Yes |
+| Configure policies | No | No | No | Yes | Yes |
+| Manage billing | No | No | No | Yes | Yes |
+| Transfer ownership | No | No | No | No | Yes |
+
+## Role details
+
+### Owner
+
+Each workspace has exactly one Owner. The Owner has full access to everything, including the ability to transfer ownership to another member, delete the workspace, and manage billing.
+
+The Owner role cannot be changed by Admins — only the current Owner can transfer ownership.
+
+### Admin
+
+Admins have the same access as the Owner, with one exception: they cannot change or remove the Owner. Admins can manage all workspace settings, invite members, configure locations, desks, parking, policies, and billing.
+
+Use this role for IT administrators or HR leads who need full configuration access.
+
+### Office Admin
+
+Office Admins are scoped to specific locations. An Admin assigns one or more locations to an Office Admin. After that, the Office Admin can:
+
+- View and cancel bookings at their assigned locations
+- Generate and print QR codes for desks and parking at their locations
+
+Office Admins **cannot** access workspace settings, manage members, or configure policies. They have no access to locations they are not assigned to.
+
+### Manager
+
+Managers can view analytics (requires Pro plan) and book desks or parking on behalf of their direct reports. A member's manager is configured in the member settings.
+
+Managers cannot access workspace settings or manage locations. They see the same sidebar as regular members but have access to the analytics dashboard and delegation features.
+
+### Member
+
+Members are standard users. They can:
+
+- Plan their own presence (Office, Remote, Away)
+- Book desks and parking for themselves
+- View team calendars and Who's In
+- Manage their own profile, preferences, and notification settings
+- Subscribe to calendar feeds (iCal)
+
+Members cannot book on behalf of others or access admin features.
+
+## Changing roles
+
+Admins and Owners can change a member's role at any time:
+
+1. Go to **Settings** > **Members**
+2. Click the action menu next to a member
+3. Select the new role
+
+When changing a member to Office Admin, you'll be prompted to assign locations.
+
+## Not sure which role you have?
+
+Your role is shown in the workspace selector and on your profile page. If you need elevated access, ask your workspace Admin or Owner.
