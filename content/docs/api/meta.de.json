@@ -2,17 +2,13 @@
   "title": "API-Referenz",
   "pages": [
     "index",
-    "---Mitglieder---",
     "member.list",
     "member.getById",
-    "---Standorte---",
     "location.list",
     "location.getById",
-    "---Anwesenheit---",
     "presence.list",
     "presence.upsert",
     "presence.delete",
-    "---Buchungen---",
     "booking.list",
     "booking.getById",
     "booking.cancel"
