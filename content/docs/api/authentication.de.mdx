@@ -1,0 +1,49 @@
+---
+title: Authentifizierung
+description: Wie du dich mit der Presentify REST API über API-Schlüssel authentifizierst.
+---
+
+Alle API-Anfragen müssen einen gültigen API-Schlüssel im `X-API-KEY`-Header enthalten.
+
+## Anfrage-Header
+
+```
+X-API-KEY: pk_dein_api_schluessel
+```
+
+## API-Schlüssel erstellen
+
+Siehe [API-Schlüssel](/docs/integrations/api-keys) für detaillierte Anweisungen. Kurzfassung:
+
+1. Gehe zu **Einstellungen** > **API-Schlüssel**
+2. Klicke auf **API-Schlüssel erstellen**
+3. Kopiere den Schlüssel (wird nur einmal angezeigt)
+
+## Workspace-Scoping
+
+Jeder API-Schlüssel ist an einen bestimmten Workspace gebunden. Alle Abfragen filtern automatisch Daten auf diesen Workspace — es gibt keine Möglichkeit, auf Daten anderer Workspaces zuzugreifen.
+
+## Ausführen-als-Mitglied
+
+Jeder API-Schlüssel operiert im Kontext eines bestimmten Mitglieds (dem "Ausführen-als"-Mitglied). Dieses Mitglied muss:
+
+- **Aktiv** im Workspace sein (nicht eingeladen oder inaktiv)
+- Teil des Workspace sein, der mit dem Schlüssel verknüpft ist
+
+Das Ausführen-als-Mitglied bestimmt den Kontext für Schreiboperationen (z.B. wer einen Anwesenheitseintrag über die API erstellt hat).
+
+## Voraussetzungen
+
+- **Enterprise-Plan** — Die API ist hinter dem `api_access`-Feature geschützt
+- **Gültiger API-Schlüssel** — Muss in der Datenbank existieren und nicht widerrufen sein
+- **Aktives Ausführen-als-Mitglied** — Das mit dem Schlüssel verknüpfte Mitglied muss aktiv sein
+
+Wenn eine dieser Bedingungen nicht erfüllt ist, gibt die API einen `401 UNAUTHORIZED`- oder `403 FORBIDDEN`-Fehler zurück.
+
+## Sicherheits-Best-Practices
+
+- Speichere API-Schlüssel in Umgebungsvariablen, niemals hardcoden
+- Verwende HTTPS für alle API-Anfragen (HTTP wird nicht unterstützt)
+- Rotiere Schlüssel regelmäßig
+- Widerrufe Schlüssel sofort bei Kompromittierung
+- Nutze einen dedizierten Service-Account als Ausführen-als-Mitglied

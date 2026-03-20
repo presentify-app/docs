@@ -1,0 +1,60 @@
+---
+title: Errors
+description: API error codes, HTTP status codes, and error response format.
+---
+
+The API uses standard HTTP status codes and tRPC error codes to indicate the result of a request.
+
+## Error response format
+
+```json
+{
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "The requested resource was not found."
+  }
+}
+```
+
+## HTTP status codes
+
+| Status | Code | Description |
+|--------|------|-------------|
+| **200** | OK | Request succeeded |
+| **400** | `BAD_REQUEST` | Invalid input — check your request parameters |
+| **401** | `UNAUTHORIZED` | Missing, invalid, or expired API key |
+| **403** | `FORBIDDEN` | API key valid but access denied (wrong plan, inactive member, etc.) |
+| **404** | `NOT_FOUND` | Resource not found |
+| **409** | `CONFLICT` | Conflict — e.g., duplicate entry |
+| **429** | `TOO_MANY_REQUESTS` | Rate limit exceeded |
+| **500** | `INTERNAL_SERVER_ERROR` | Server error — contact support if persistent |
+
+## Common error scenarios
+
+### Authentication errors (401)
+
+- API key not provided in `X-API-KEY` header
+- API key doesn't exist (revoked or never created)
+- Run-as member is inactive or not found
+
+### Authorization errors (403)
+
+- Workspace does not have Enterprise plan (`api_access` feature required)
+- Attempting to access data outside the API key's workspace
+
+### Validation errors (400)
+
+- Missing required fields (`startDate`, `endDate`, `id`, etc.)
+- Invalid date format (expected `YYYY-MM-DD`)
+- Invalid enum value (e.g., unknown status)
+- Member ID doesn't belong to the workspace
+
+### Not found errors (404)
+
+- Member, location, booking, or presence entry not found
+- ID is valid but the resource doesn't exist in this workspace
+
+### Rate limit errors (429)
+
+- More than 150 requests per 60 seconds from your IP
+- Wait and retry with exponential backoff

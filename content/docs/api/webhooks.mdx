@@ -1,0 +1,73 @@
+---
+title: Webhooks (API)
+description: Webhook event reference for the Presentify API — events, payloads, and verification.
+---
+
+For webhook setup, management, and configuration, see the [Webhooks Integration Guide](/docs/integrations/webhooks).
+
+This page provides the technical reference for webhook payloads and verification.
+
+## Payload structure
+
+```json
+{
+  "id": "delivery-uuid",
+  "type": "desk_booking.created",
+  "occurred_at": "2026-03-20T14:30:00.000Z",
+  "data": { ... }
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique delivery ID |
+| `type` | string | Event type |
+| `occurred_at` | ISO 8601 | When the event occurred |
+| `data` | object | Event-specific payload |
+
+## Signature verification
+
+Every webhook request includes an `X-Presentify-Signature` header containing an HMAC-SHA256 hex digest of the raw request body, signed with your webhook secret.
+
+**Node.js:**
+
+```javascript
+const crypto = require("crypto");
+
+function verifyWebhook(rawBody, signature, secret) {
+  const expected = crypto
+    .createHmac("sha256", secret)
+    .update(rawBody, "utf8")
+    .digest("hex");
+  return crypto.timingSafeEqual(
+    Buffer.from(expected),
+    Buffer.from(signature)
+  );
+}
+```
+
+**Python:**
+
+```python
+import hmac, hashlib
+
+def verify_webhook(raw_body: bytes, signature: str, secret: str) -> bool:
+    expected = hmac.new(
+        secret.encode(), raw_body, hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(expected, signature)
+```
+
+Always verify the signature before processing the webhook payload.
+
+## Event types
+
+See [Webhooks Integration Guide](/docs/integrations/webhooks) for the complete list of 12 event types and their descriptions.
+
+## Retry schedule
+
+Failed deliveries (non-2xx or timeout after 10s) are retried up to 5 times:
+
+1 min → 5 min → 30 min → 2 hours → 12 hours
+
+See [Webhooks Integration Guide](/docs/integrations/webhooks) for full retry details.

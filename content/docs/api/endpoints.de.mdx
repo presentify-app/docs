@@ -1,0 +1,198 @@
+---
+title: Endpunkte
+description: Vollständige Referenz aller Presentify REST API v1 Endpunkte.
+---
+
+Alle Endpunkte nutzen das tRPC-HTTP-Protokoll. GET-Anfragen übergeben Eingaben als JSON-kodierten `input`-Query-Parameter. POST-Anfragen senden Eingaben im Request-Body.
+
+## Mitglieder
+
+### `member.list` — Mitglieder auflisten
+
+```bash
+GET /api/v1/member.list?input={"status":"active"}
+```
+
+**Eingabe (optional):**
+
+| Parameter | Typ | Beschreibung |
+|-----------|-----|-------------|
+| `email` | string | Nach exakter E-Mail filtern |
+| `customId` | string | Nach externer Custom-ID filtern |
+| `status` | string | `"active"`, `"inactive"` oder `"invited"` |
+
+**Antwort:** Array von Mitglied-Objekten mit `id`, `name`, `firstName`, `lastName`, `email`, `customId`, `role`, `status`, `language`, `timezone`, `departmentId`, `teamId`, `createdAt`.
+
+### `member.getById` — Mitglied nach ID abrufen
+
+```bash
+GET /api/v1/member.getById?input={"id":"member-uuid"}
+```
+
+**Eingabe:**
+
+| Parameter | Typ | Erforderlich | Beschreibung |
+|-----------|-----|-------------|-------------|
+| `id` | string | Ja | Mitglied-UUID |
+
+**Antwort:** Einzelnes Mitglied-Objekt mit vollen Details einschließlich `employmentStartDate`, `employmentEndDate`, `defaultLocationId`. Gibt `null` zurück wenn nicht gefunden.
+
+---
+
+## Standorte
+
+### `location.list` — Standorte auflisten
+
+```bash
+GET /api/v1/location.list?input={"active":true}
+```
+
+**Eingabe (optional):**
+
+| Parameter | Typ | Beschreibung |
+|-----------|-----|-------------|
+| `active` | boolean | Nach Aktiv-Status filtern |
+
+**Antwort:** Array von Standort-Objekten mit `id`, `name`, `address`, `city`, `country`, `countryCode`, `latitude`, `longitude`, `timezone`, `capacity`, `isActive`, `openingTime`, `closingTime`, `openingDays`, `createdAt`.
+
+### `location.getById` — Standort nach ID abrufen
+
+```bash
+GET /api/v1/location.getById?input={"id":"location-uuid"}
+```
+
+**Eingabe:**
+
+| Parameter | Typ | Erforderlich | Beschreibung |
+|-----------|-----|-------------|-------------|
+| `id` | string | Ja | Standort-UUID |
+
+**Antwort:** Einzelnes Standort-Objekt mit vollen Details. Gibt `null` zurück wenn nicht gefunden.
+
+---
+
+## Anwesenheit
+
+### `presence.list` — Anwesenheitseinträge auflisten
+
+```bash
+GET /api/v1/presence.list?input={"startDate":"2026-03-01","endDate":"2026-03-31"}
+```
+
+**Eingabe:**
+
+| Parameter | Typ | Erforderlich | Beschreibung |
+|-----------|-----|-------------|-------------|
+| `startDate` | string | Ja | Startdatum (YYYY-MM-DD) |
+| `endDate` | string | Ja | Enddatum (YYYY-MM-DD) |
+| `memberIds` | string[] | Nein | Nach bestimmten Mitglied-UUIDs filtern |
+
+**Antwort:** Array von Anwesenheitseinträgen mit `id`, `date`, `status`, `startAt`, `endAt`, `isHalfDay`, `halfDayPart`, `memberId`, `locationId`, `createdAt`.
+
+**Status-Werte:** `in_office`, `remote`, `on_the_road`, `customer_site`, `training_event`, `onsite_without_desk`, `half_day_office`, `half_day_remote`, `away`, `unknown`
+
+### `presence.upsert` — Anwesenheit erstellen oder aktualisieren
+
+```bash
+POST /api/v1/presence.upsert
+Content-Type: application/json
+
+{
+  "memberId": "member-uuid",
+  "date": "2026-03-25",
+  "status": "in_office",
+  "locationId": "location-uuid"
+}
+```
+
+**Eingabe:**
+
+| Parameter | Typ | Erforderlich | Beschreibung |
+|-----------|-----|-------------|-------------|
+| `memberId` | string | Ja | Mitglied-UUID |
+| `date` | string | Ja | Datum (YYYY-MM-DD) |
+| `status` | string | Ja | Anwesenheitsstatus |
+| `locationId` | string | Nein | Bürostandort-UUID |
+| `isHalfDay` | boolean | Nein | Halbtag-Flag (Standard: false) |
+| `halfDayPart` | string | Nein | `"morning"` oder `"afternoon"` |
+
+**Antwort:** `{ "id": "entry-uuid" }` — Die erstellte oder aktualisierte Eintrags-ID.
+
+Wenn ein Eintrag für dasselbe Mitglied und Datum bereits existiert, wird er aktualisiert. Andernfalls wird ein neuer Eintrag erstellt.
+
+### `presence.delete` — Anwesenheitseintrag löschen
+
+```bash
+POST /api/v1/presence.delete
+Content-Type: application/json
+
+{ "id": "entry-uuid" }
+```
+
+**Eingabe:**
+
+| Parameter | Typ | Erforderlich | Beschreibung |
+|-----------|-----|-------------|-------------|
+| `id` | string | Ja | Anwesenheitseintrag-UUID |
+
+**Antwort:** `{ "success": true }`
+
+---
+
+## Buchungen
+
+### `booking.list` — Buchungen auflisten
+
+```bash
+GET /api/v1/booking.list?input={"startDate":"2026-03-01","endDate":"2026-03-31","resourceType":"desk"}
+```
+
+**Eingabe:**
+
+| Parameter | Typ | Erforderlich | Beschreibung |
+|-----------|-----|-------------|-------------|
+| `startDate` | string | Ja | Startdatum (YYYY-MM-DD) |
+| `endDate` | string | Ja | Enddatum (YYYY-MM-DD) |
+| `memberId` | string | Nein | Nach Mitglied-UUID filtern |
+| `resourceType` | string | Nein | `"desk"` oder `"parking_spot"` |
+| `resourceId` | string | Nein | Nach bestimmter Desk/Spot-UUID filtern |
+| `status` | string | Nein | `"confirmed"`, `"checked_in"`, `"completed"`, `"cancelled"`, `"no_show"`, `"auto_released"` |
+
+**Antwort:** Array von Buchungs-Objekten mit `id`, `resourceType`, `resourceId`, `memberId`, `date`, `startAt`, `endAt`, `isFullDay`, `status`, `checkedInAt`, `checkedOutAt`, `checkInMethod`, `bookedByMemberId`, `bookedForMemberId`, `isGuestBooking`, `guestName`, `guestEmail`, `guestCompany`, `isPrivate`, `notes`, `createdAt`.
+
+### `booking.getById` — Buchung nach ID abrufen
+
+```bash
+GET /api/v1/booking.getById?input={"id":"booking-uuid"}
+```
+
+**Eingabe:**
+
+| Parameter | Typ | Erforderlich | Beschreibung |
+|-----------|-----|-------------|-------------|
+| `id` | string | Ja | Buchungs-UUID |
+
+**Antwort:** Einzelnes Buchungs-Objekt mit vollen Details einschließlich `cancelledAt`, `cancelReason`. Gibt `null` zurück wenn nicht gefunden.
+
+### `booking.cancel` — Buchung stornieren
+
+```bash
+POST /api/v1/booking.cancel
+Content-Type: application/json
+
+{
+  "id": "booking-uuid",
+  "reason": "Nicht mehr benötigt"
+}
+```
+
+**Eingabe:**
+
+| Parameter | Typ | Erforderlich | Beschreibung |
+|-----------|-----|-------------|-------------|
+| `id` | string | Ja | Buchungs-UUID |
+| `reason` | string | Nein | Stornierungsgrund (Standard: "Cancelled via API") |
+
+**Antwort:** `{ "success": true }`
+
+Nur Buchungen mit Status `confirmed`, `checked_in` oder `completed` können storniert werden.

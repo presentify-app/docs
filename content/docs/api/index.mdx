@@ -1,0 +1,68 @@
+---
+title: API Reference
+description: Presentify REST API v1 for programmatic access to members, locations, presence, and bookings.
+---
+
+The Presentify REST API v1 provides programmatic access to your workspace data. Use it to build custom integrations, automate workflows, and export data.
+
+> The REST API requires an **Enterprise** plan and an [API key](/docs/integrations/api-keys).
+
+## Base URL
+
+```
+https://app.presentify.org/api/v1
+```
+
+## Quick start
+
+1. [Create an API key](/docs/integrations/api-keys) in **Settings** > **API Keys**
+2. Include the key in the `X-API-KEY` header on every request
+3. Call endpoints using the tRPC HTTP protocol
+
+```bash
+curl -H "X-API-KEY: pk_your_key_here" \
+  "https://app.presentify.org/api/v1/member.list?input={}"
+```
+
+## Available routers
+
+| Router | Description |
+|--------|-------------|
+| [`member`](/docs/api/endpoints#members) | List and get workspace members |
+| [`location`](/docs/api/endpoints#locations) | List and get office locations |
+| [`presence`](/docs/api/endpoints#presence) | List, create, update, and delete presence entries |
+| [`booking`](/docs/api/endpoints#bookings) | List, get, and cancel bookings |
+
+## Sections
+
+<Cards>
+  <Card title="Authentication" href="/docs/api/authentication">
+    API key setup, headers, and workspace scoping.
+  </Card>
+  <Card title="Endpoints" href="/docs/api/endpoints">
+    Complete reference for all API endpoints with examples.
+  </Card>
+  <Card title="Webhooks" href="/docs/api/webhooks">
+    Real-time event notifications via HTTP callbacks.
+  </Card>
+  <Card title="Rate Limits" href="/docs/api/rate-limits">
+    Request limits and throttling behavior.
+  </Card>
+  <Card title="Errors" href="/docs/api/errors">
+    Error codes and response format.
+  </Card>
+</Cards>
+
+## Response format
+
+All responses use the tRPC JSON-RPC format:
+
+```json
+{
+  "result": {
+    "data": [ ... ]
+  }
+}
+```
+
+Dates use ISO 8601 format (`2026-03-20T14:30:00Z`). Date-only fields use `YYYY-MM-DD`.

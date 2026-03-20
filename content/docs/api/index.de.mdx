@@ -1,0 +1,68 @@
+---
+title: API-Referenz
+description: Presentify REST API v1 für programmatischen Zugriff auf Mitglieder, Standorte, Anwesenheit und Buchungen.
+---
+
+Die Presentify REST API v1 bietet programmatischen Zugriff auf deine Workspace-Daten. Nutze sie, um eigene Integrationen zu bauen, Workflows zu automatisieren und Daten zu exportieren.
+
+> Die REST API erfordert einen **Enterprise**-Plan und einen [API-Schlüssel](/docs/integrations/api-keys).
+
+## Basis-URL
+
+```
+https://app.presentify.org/api/v1
+```
+
+## Schnellstart
+
+1. [Erstelle einen API-Schlüssel](/docs/integrations/api-keys) unter **Einstellungen** > **API-Schlüssel**
+2. Füge den Schlüssel im `X-API-KEY`-Header bei jeder Anfrage ein
+3. Rufe Endpunkte über das tRPC-HTTP-Protokoll auf
+
+```bash
+curl -H "X-API-KEY: pk_dein_schluessel" \
+  "https://app.presentify.org/api/v1/member.list?input={}"
+```
+
+## Verfügbare Router
+
+| Router | Beschreibung |
+|--------|-------------|
+| [`member`](/docs/api/endpoints#members) | Workspace-Mitglieder auflisten und abrufen |
+| [`location`](/docs/api/endpoints#locations) | Bürostandorte auflisten und abrufen |
+| [`presence`](/docs/api/endpoints#presence) | Anwesenheitseinträge auflisten, erstellen, aktualisieren und löschen |
+| [`booking`](/docs/api/endpoints#bookings) | Buchungen auflisten, abrufen und stornieren |
+
+## Bereiche
+
+<Cards>
+  <Card title="Authentifizierung" href="/docs/api/authentication">
+    API-Schlüssel-Setup, Header und Workspace-Scoping.
+  </Card>
+  <Card title="Endpunkte" href="/docs/api/endpoints">
+    Vollständige Referenz aller API-Endpunkte mit Beispielen.
+  </Card>
+  <Card title="Webhooks" href="/docs/api/webhooks">
+    Echtzeit-Event-Benachrichtigungen über HTTP-Callbacks.
+  </Card>
+  <Card title="Rate Limits" href="/docs/api/rate-limits">
+    Anfragelimits und Drosselungsverhalten.
+  </Card>
+  <Card title="Fehler" href="/docs/api/errors">
+    Fehlercodes und Antwortformat.
+  </Card>
+</Cards>
+
+## Antwortformat
+
+Alle Antworten nutzen das tRPC JSON-RPC Format:
+
+```json
+{
+  "result": {
+    "data": [ ... ]
+  }
+}
+```
+
+Daten verwenden ISO 8601 Format (`2026-03-20T14:30:00Z`). Nur-Datum-Felder nutzen `YYYY-MM-DD`.

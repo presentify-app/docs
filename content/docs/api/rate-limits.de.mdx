@@ -1,0 +1,47 @@
+---
+title: Rate Limits
+description: API-Anfragelimits und Drosselungsverhalten.
+---
+
+Die Presentify REST API erzwingt Rate Limits, um faire Nutzung und Systemstabilität sicherzustellen.
+
+## Limits
+
+| Bereich | Limit | Fenster |
+|---------|-------|---------|
+| **Pro IP-Adresse** | 150 Anfragen | 60 Sekunden |
+
+Rate Limiting wird **vor** der Authentifizierung angewendet. Auch ungültige API-Schlüssel zählen zum Limit.
+
+## Wie es funktioniert
+
+- Nutzt einen **Fixed-Window**-Zähler auf Redis-Basis
+- IP-Adresse erkannt aus `X-Forwarded-For`-Header (via Azure Front Door), dann `X-Real-IP`, dann Verbindungs-IP
+- Zähler setzt sich alle 60 Sekunden zurück
+
+## Wenn das Limit erreicht wird
+
+Wenn du 150 Anfragen in einem 60-Sekunden-Fenster überschreitest, gibt die API zurück:
+
+```json
+{
+  "error": {
+    "code": "TOO_MANY_REQUESTS",
+    "message": "Rate limit exceeded. Please try again later."
+  }
+}
+```
+
+**HTTP-Status:** `429 Too Many Requests`
+
+## Best Practices
+
+- **Antworten cachen** — Ergebnisse lokal speichern statt erneut abzufragen
+- **Webhooks nutzen** — Für Echtzeit-Updates [Webhooks](/docs/integrations/webhooks) statt Polling verwenden
+- **Anfragen bündeln** — Datumsbereiche statt einzelne Tage abfragen
+- **429-Antworten respektieren** — Exponentielles Backoff bei Rate Limiting implementieren
+- **Nutzung überwachen** — Anfragezähler verfolgen, um innerhalb der Limits zu bleiben
+
+## Redis-Nichtverfügbarkeit
+
+Wenn die Redis-Instanz des Rate Limiters nicht verfügbar ist, nutzt die API standardmäßig **Fail-Closed**-Verhalten — Anfragen werden abgelehnt, bis Redis wieder verfügbar ist. Dies verhindert unkontrollierte Last bei Infrastrukturproblemen.
