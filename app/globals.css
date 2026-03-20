@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/shadcn.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* Presentify Brand Colors */
+:root {
+  --fd-primary: 245 245 100%;
+  --primary: oklch(0.546 0.245 275.75);
+  --primary-foreground: oklch(0.985 0.002 247.84);
+  --accent: oklch(0.446 0.2 275.75);
+}
+
+.dark {
+  --primary: oklch(0.646 0.245 275.75);
+  --primary-foreground: oklch(0.985 0.002 247.84);
+  --accent: oklch(0.546 0.2 275.75);
+}
