@@ -1,0 +1,53 @@
+---
+title: Sign In
+description: How to sign in to Presentify using Microsoft or email.
+---
+
+Presentify supports two sign-in methods. Your workspace admin may restrict which methods are available.
+
+## Sign in with Microsoft
+
+1. Go to [presentify.org](https://presentify.org) and click **Sign in with Microsoft**
+2. Authenticate with your Microsoft 365 account
+3. Presentify reads your profile (name, email, company) from Microsoft Graph
+4. You're signed in automatically
+
+If your organization uses Microsoft Teams, Presentify can also perform silent SSO — you'll be signed in without entering credentials.
+
+## Sign in by email (Magic Link)
+
+1. Go to [presentify.org](https://presentify.org) and enter your email address
+2. Click **Send Code**
+3. Check your inbox for an email from Presentify containing a sign-in code
+4. Enter the code on the verification page — or click the link in the email
+
+The code is valid for **15 minutes**. You can request a new code after 60 seconds.
+
+> If you don't see the email, check your spam folder. The sender is Presentify via Azure Communication Services.
+
+## Select a workspace
+
+After signing in, Presentify determines where to send you:
+
+- **One workspace** — You're taken directly to the dashboard.
+- **Multiple workspaces** — You'll see a workspace selector. Click a workspace to enter it.
+- **No workspace** — You'll be prompted to create your first workspace or join an existing one via invite link.
+
+You can switch between workspaces at any time using the workspace selector in the sidebar.
+
+## Join a workspace via invite
+
+If you received an invite link from a colleague:
+
+1. Click the invite link
+2. Sign in with Microsoft or email
+3. You'll be added to the workspace automatically
+
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| No email received | Check spam folder. Ensure your admin allows Magic Link sign-in. |
+| Code expired | Request a new code. Codes expire after 15 minutes. |
+| "Account conflict" error | Your Microsoft account is linked to a different user. Contact your admin. |
+| Can't find your workspace | Ask your workspace admin to send you an invite link. |

@@ -1,0 +1,55 @@
+---
+title: Calendar Subscription
+description: Sync your Presentify presence and bookings to Outlook, Google, or Apple Calendar.
+---
+
+Calendar subscription lets you view your Presentify schedule in your favorite calendar app. Your presence entries and desk/parking bookings are synced automatically via an iCal feed.
+
+## Setting up a subscription
+
+1. Go to your **Profile** page
+2. Scroll to the **Calendar Subscription** section
+3. Click **Generate Token** to create your calendar URL
+4. Copy the `webcal://` URL
+
+## Adding to your calendar
+
+### Outlook
+
+1. In Outlook, go to **Calendar** > **Add calendar** > **Subscribe from web**
+2. Paste the `webcal://` URL
+3. Give it a name (e.g., "Presentify")
+4. Click **Import**
+
+### Google Calendar
+
+1. In Google Calendar, click **+** next to "Other calendars" > **From URL**
+2. Paste the URL
+3. Click **Add calendar**
+
+### Apple Calendar
+
+1. In Calendar, go to **File** > **New Calendar Subscription**
+2. Paste the URL
+3. Click **Subscribe**
+
+## What's synced
+
+The calendar feed includes:
+
+- Your presence entries (In Office, Remote, Away, etc.)
+- Your desk bookings with desk name and location
+- Your parking bookings
+
+Events are read-only — changes must be made in Presentify.
+
+## Revoking the subscription
+
+If you want to stop sharing your calendar or regenerate the URL:
+
+1. Go to your **Profile** page
+2. Click **Revoke** next to your calendar subscription
+3. The old URL stops working immediately
+4. Generate a new token if you want to re-subscribe
+
+Revoking is useful if you shared the URL with someone who should no longer have access.

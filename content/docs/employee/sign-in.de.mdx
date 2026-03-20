@@ -1,0 +1,53 @@
+---
+title: Anmelden
+description: So meldest du dich bei Presentify mit Microsoft oder E-Mail an.
+---
+
+Presentify unterstützt zwei Anmeldemethoden. Dein Workspace-Admin kann einschränken, welche Methoden verfügbar sind.
+
+## Mit Microsoft anmelden
+
+1. Gehe zu [presentify.org](https://presentify.org) und klicke auf **Mit Microsoft anmelden**
+2. Authentifiziere dich mit deinem Microsoft 365 Account
+3. Presentify liest dein Profil (Name, E-Mail, Firma) aus Microsoft Graph
+4. Du bist automatisch angemeldet
+
+Wenn deine Organisation Microsoft Teams nutzt, kann Presentify auch stilles SSO durchführen — du wirst ohne Eingabe von Anmeldedaten angemeldet.
+
+## Per E-Mail anmelden (Magic Link)
+
+1. Gehe zu [presentify.org](https://presentify.org) und gib deine E-Mail-Adresse ein
+2. Klicke auf **Code senden**
+3. Prüfe deinen Posteingang auf eine E-Mail von Presentify mit einem Anmeldecode
+4. Gib den Code auf der Verifizierungsseite ein — oder klicke auf den Link in der E-Mail
+
+Der Code ist **15 Minuten** gültig. Du kannst nach 60 Sekunden einen neuen Code anfordern.
+
+> Wenn du die E-Mail nicht siehst, prüfe deinen Spam-Ordner. Der Absender ist Presentify über Azure Communication Services.
+
+## Workspace auswählen
+
+Nach der Anmeldung bestimmt Presentify, wohin du weitergeleitet wirst:
+
+- **Ein Workspace** — Du wirst direkt zum Dashboard weitergeleitet.
+- **Mehrere Workspaces** — Du siehst eine Workspace-Auswahl. Klicke auf einen Workspace, um ihn zu betreten.
+- **Kein Workspace** — Du wirst aufgefordert, deinen ersten Workspace zu erstellen oder einem bestehenden per Einladungslink beizutreten.
+
+Du kannst jederzeit über die Workspace-Auswahl in der Seitenleiste zwischen Workspaces wechseln.
+
+## Einem Workspace per Einladung beitreten
+
+Wenn du einen Einladungslink von einem Kollegen erhalten hast:
+
+1. Klicke auf den Einladungslink
+2. Melde dich mit Microsoft oder E-Mail an
+3. Du wirst dem Workspace automatisch hinzugefügt
+
+## Fehlerbehebung
+
+| Problem | Lösung |
+|---------|--------|
+| Keine E-Mail erhalten | Prüfe den Spam-Ordner. Stelle sicher, dass dein Admin Magic-Link-Anmeldung erlaubt. |
+| Code abgelaufen | Fordere einen neuen Code an. Codes laufen nach 15 Minuten ab. |
+| "Account-Konflikt"-Fehler | Dein Microsoft-Account ist mit einem anderen Benutzer verknüpft. Kontaktiere deinen Admin. |
+| Workspace nicht gefunden | Bitte deinen Workspace-Admin, dir einen Einladungslink zu senden. |
