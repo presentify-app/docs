@@ -27,6 +27,28 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           <RootProvider
+            i18n={{
+              locale,
+              locales: [
+                { name: 'English', locale: 'en' },
+                { name: 'Deutsch', locale: 'de' },
+              ],
+              translations:
+                locale === 'de'
+                  ? {
+                      search: 'Dokumentation durchsuchen...',
+                      searchNoResult: 'Keine Ergebnisse gefunden',
+                      toc: 'Auf dieser Seite',
+                      tocNoHeadings: 'Keine Abschnitte',
+                      lastUpdate: 'Zuletzt aktualisiert',
+                      chooseLanguage: 'Sprache wählen',
+                      nextPage: 'Nächste Seite',
+                      previousPage: 'Vorherige Seite',
+                      chooseTheme: 'Farbschema wählen',
+                      editOnGithub: 'Auf GitHub bearbeiten',
+                    }
+                  : undefined,
+            }}
             theme={{
               defaultTheme: 'system',
               attribute: 'class',

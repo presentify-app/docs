@@ -21,20 +21,10 @@ export default async function Layout({
       links={[
         { text: 'Website', url: 'https://presentify.org', external: true },
         {
-          text: locale === 'de' ? 'Preise' : 'Pricing',
-          url: locale === 'de'
-            ? 'https://presentify.org/de/preise'
-            : 'https://presentify.org/pricing',
-          external: true,
-        },
-        {
+          type: 'button' as const,
           text: 'Login',
           url: 'https://presentify.org/login',
           external: true,
-        },
-        {
-          text: locale === 'de' ? '🇬🇧 English' : '🇩🇪 Deutsch',
-          url: locale === 'de' ? '/docs' : '/de/docs',
         },
       ]}
     >

@@ -1,20 +1,22 @@
 @import 'tailwindcss';
-@import 'fumadocs-ui/css/shadcn.css';
+@import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
-/* Presentify Brand Colors — matching the web app */
+/* Presentify Brand — amber/gold primary from the web app */
 :root {
+  --color-fd-primary: oklch(0.852 0.199 91.936);
+  --color-fd-primary-foreground: oklch(0.421 0.095 57.708);
+  --color-fd-ring: oklch(0.852 0.199 91.936);
   --primary: oklch(0.852 0.199 91.936);
   --primary-foreground: oklch(0.421 0.095 57.708);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
   --ring: oklch(0.852 0.199 91.936);
 }
 
 .dark {
+  --color-fd-primary: oklch(0.795 0.184 86.047);
+  --color-fd-primary-foreground: oklch(0.421 0.095 57.708);
+  --color-fd-ring: oklch(0.553 0.135 66.442);
   --primary: oklch(0.795 0.184 86.047);
   --primary-foreground: oklch(0.421 0.095 57.708);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
   --ring: oklch(0.553 0.135 66.442);
 }
