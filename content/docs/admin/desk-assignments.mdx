@@ -1,0 +1,47 @@
+---
+title: Desk Assignments
+description: Permanently or temporarily assign individual desks to specific members.
+---
+
+Desk assignments let you reserve a specific desk for a member. Only **individual** desk types can be assigned. This is useful for employees who need a dedicated workspace.
+
+> Desk assignments require a **Pro** plan and the **policies** feature.
+
+## Creating an assignment
+
+1. Go to **Settings** > **Policies** > **Desk Assignments** (or the desk assignment manager)
+2. Select a location and floor
+3. Individual desks on the floor are listed with their current assignment status
+4. Click **Assign Desk** on an unassigned desk
+5. Select a member from the searchable list
+6. Configure:
+   - **Permanent** — Toggle on for a permanent assignment (no end date)
+   - **Release on OOO** — Toggle on to auto-release the desk when the member marks themselves as Away
+7. Click **Save**
+
+## Permanent vs. temporary assignments
+
+| Type | Description |
+|------|-------------|
+| **Permanent** | The desk is assigned indefinitely until manually removed |
+| **Temporary** | The desk is assigned for a specific date range (valid from / valid until) |
+
+Only one member can be assigned to a desk at any given time. Overlapping assignments on the same desk are prevented.
+
+## OOO release
+
+When **Release on OOO** is enabled on an assignment:
+
+- If the assigned member sets their presence status to **Away**, the desk is automatically released to the pool
+- Other members can book the desk during the absence
+- When the assigned member returns, their assignment is still active — the desk remains theirs
+
+This also requires the location-level policy **Assigned Desk OOO Release** to be enabled (default: on).
+
+## Removing an assignment
+
+Click the delete button next to an assigned desk to remove the assignment. The desk becomes available for pool booking again.
+
+## Who can be assigned?
+
+Any active workspace member can be assigned to an individual desk. The desk must be of type **Individual** — Pool and Hot Desk types cannot be assigned.

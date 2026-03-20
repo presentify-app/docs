@@ -1,0 +1,58 @@
+---
+title: QR Codes
+description: Generate and print QR codes for desk and parking check-in.
+---
+
+QR codes enable members to check in at their booked desk or parking spot by scanning a physical code. Access the QR code manager via **Settings** > **QR Codes**.
+
+> QR codes require a **Pro** plan with check-in enabled in your [booking policies](/docs/admin/policies).
+
+## How it works
+
+Each desk and parking spot gets a unique QR code that encodes a check-in URL:
+
+- **Desk QR**: `https://presentify.org/api/checkin/desk/{deskId}`
+- **Parking QR**: `https://presentify.org/api/checkin/parking/{spotId}`
+
+When a member scans the code with their phone camera, Presentify finds their booking for today and checks them in automatically.
+
+## Generating QR codes
+
+1. Go to **Settings** > **QR Codes**
+2. Switch between the **Desks** and **Parking** tabs
+3. QR codes are generated for all resources automatically
+
+QR codes are generated client-side for performance — no server load.
+
+## Filtering
+
+Use filters to find specific QR codes:
+
+- **Search** — Type a desk or spot name to filter
+- **Location** — Filter by office location
+- **Type** — Filter by desk type (Pool, Individual, Hot Desk) or parking type (Car, Bike, etc.)
+
+## Printing QR codes
+
+### Print all
+
+Click **Print All** to open the system print dialog with all filtered QR codes laid out for printing. Each QR code includes the resource name and location for easy identification.
+
+### Download individual
+
+Click the download button on a specific QR code to save it as a PNG image. Use this for custom printing or labeling.
+
+## Placing QR codes
+
+Print the QR codes and place them at the physical desk or parking spot. Members scan the code with their phone when they arrive to complete their check-in.
+
+Best practices:
+- Place desk QR codes on the desk surface or monitor stand
+- Place parking QR codes on the parking barrier or pillar near the spot
+- Use a protective sleeve or laminate for durability
+- Ensure the QR code is scannable from a comfortable distance
+
+## Who can access QR codes
+
+- **Admin / Owner** — Can generate QR codes for all locations
+- **Office Admin** — Can generate QR codes only for their assigned locations

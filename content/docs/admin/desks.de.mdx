@@ -1,0 +1,78 @@
+---
+title: Schreibtischverwaltung
+description: Erstelle und verwalte Schreibtische — Typen, Ausstattung, Zonen, Massenimport und Raumplan-Platzierung.
+---
+
+Schreibtische werden innerhalb der Standort-Hierarchie verwaltet. Navigiere zu **Einstellungen** > **Standorte**, wähle einen Standort, dann gehe in ein Gebäude und eine Etage, um Schreibtische zu verwalten.
+
+## Einen Schreibtisch erstellen
+
+1. Navigiere zur Etage, auf der du Schreibtische hinzufügen möchtest
+2. Klicke auf **Schreibtisch hinzufügen**
+3. Fülle die Details aus:
+
+| Feld | Erforderlich | Beschreibung |
+|------|-------------|-------------|
+| **Name** | Ja | Schreibtischkennung (z.B. "D-201", max 255 Zeichen) |
+| **Typ** | Ja | Individuell, Pool oder Hot Desk |
+| **Status** | Ja | Buchbar, Drop-in oder Nicht verfügbar |
+| **Zone** | Nein | Einer Zone auf der Etage zuweisen |
+| **Beschreibung** | Nein | Zusätzliche Notizen zum Schreibtisch |
+
+4. Klicke auf **Speichern**
+
+## Schreibtischtypen
+
+| Typ | Beschreibung | Plan |
+|-----|-------------|------|
+| **Pool** | Geteilter Schreibtisch — jeder kann buchen, Windhundprinzip | Free + Pro |
+| **Hot Desk** | Hot-Desking-Pool-Schreibtisch (Standard bei Massenimport) | Free + Pro |
+| **Individuell** | Einer bestimmten Person zugewiesen über [Schreibtischzuweisungen](/docs/admin/desk-assignments) | Pro |
+
+## Schreibtischstatus
+
+| Status | Beschreibung |
+|--------|-------------|
+| **Buchbar** | Verfügbar für Buchungen |
+| **Drop-in** | Verfügbar für sofortige Nutzung ohne Vorbuchung |
+| **Nicht verfügbar** | Gesperrt und nicht buchbar. Erfordert einen Sperrgrund und optionales Entsperrdatum. |
+
+Beim Setzen auf "Nicht verfügbar" musst du einen **Sperrgrund** angeben (z.B. "In Wartung") und kannst optional ein **Gesperrt bis**-Datum setzen. Der Schreibtisch kehrt automatisch zum vorherigen Status zurück, wenn das Datum abläuft. Sperr-Metadaten werden automatisch gelöscht, wenn auf Buchbar oder Drop-in gewechselt wird.
+
+## Ausstattungsmerkmale
+
+Jeder Schreibtisch hat eingebaute Ausstattungs-Flags, nach denen Mitglieder filtern können:
+
+| Ausstattung | Beschreibung |
+|-------------|-------------|
+| **Monitor** | Externer Monitor vorhanden |
+| **Docking Station** | Laptop-Dockingstation |
+| **Dual Screen** | Zwei Monitore |
+| **Telefon** | Tischtelefon |
+| **Stehschreibtisch** | Höhenverstellbarer Schreibtisch |
+| **Ergonomisch** | Ergonomische Einrichtung |
+| **Barrierefrei** | Rollstuhlgerecht |
+| **Ruhezone** | In einem stillen Arbeitsbereich |
+| **Fensterplatz** | In Fensternähe |
+
+Schalte jedes Flag pro Schreibtisch ein oder aus. Für eigene Ausstattungsmerkmale siehe [Amenities Manager](/docs/admin/amenities).
+
+## Massenimport
+
+Importiere mehrere Schreibtische auf einmal per CSV:
+
+1. Klicke auf **Schreibtische importieren** in der Etagen-Ansicht
+2. Lade eine CSV-Datei mit Spalten hoch: Name, Beschreibung, Typ, Status, Zonenname
+3. Bis zu 500 Schreibtische pro Import
+4. Zonennamen werden groß-/kleinschreibungsunabhängig mit bestehenden Zonen auf der Etage abgeglichen
+
+## Massenaktualisierung
+
+Wähle mehrere Schreibtische und aktualisiere Eigenschaften im Batch:
+
+- **Ausstattung aktualisieren** — Setze Ausstattungs-Flags für alle ausgewählten Schreibtische auf einmal
+- **Eigenschaften aktualisieren** — Ändere Typ, Status oder Zone für alle ausgewählten Schreibtische
+
+## Schreibtische löschen
+
+Klicke auf den Löschen-Button eines Schreibtischs, um ihn dauerhaft zu entfernen. Aktive Buchungen für den Schreibtisch werden storniert.

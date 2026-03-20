@@ -1,0 +1,89 @@
+---
+title: Parkplatzverwaltung
+description: Richte Parkplätze ein und verwalte sie — Typen, Sektionen, einfacher vs erweiterter Modus.
+---
+
+Die Parkplatzverwaltung ermöglicht die Konfiguration von Parkplätzen für deine Bürostandorte. Parkplätze erfordern einen **Pro**-Plan und müssen pro Standort aktiviert werden.
+
+## Parkplatzmodi
+
+Jeder Standort hat einen Parkplatzmodus, konfiguriert unter **Einstellungen** > **Standorte**:
+
+### Einfacher Modus
+
+Die einfachste Einrichtung. Lege eine Parkplatzkapazität fest und Presentify verwaltet den Pool automatisch:
+
+1. Bearbeite einen Standort und setze **Parkplatzmodus** auf "Einfach"
+2. Gib die **Parkplatzkapazität** ein (Anzahl der Plätze)
+3. Speichern — Presentify erstellt Plätze mit den Namen P-001, P-002 etc.
+
+Mitglieder buchen Parkplätze als Checkbox-Zusatz bei der Schreibtischbuchung. Das System weist den nächsten verfügbaren Platz automatisch zu. Wenn du die Kapazität änderst, werden Plätze entsprechend hinzugefügt oder entfernt.
+
+### Erweiterter Modus
+
+Volle Kontrolle über individuelle Parkplätze:
+
+1. Setze **Parkplatzmodus** auf "Erweitert" am Standort
+2. Erstelle Parkplätze manuell oder per Massenimport
+
+Mitglieder wählen bestimmte Plätze in einer eigenen Parkplatzbuchungsansicht mit Filtern nach Typ und Ausstattung.
+
+## Parkplätze erstellen (erweiterter Modus)
+
+1. Gehe zu **Einstellungen** > **Standorte** > Standort wählen > **Parkplätze**
+2. Klicke auf **Parkplatz hinzufügen**
+3. Konfiguriere:
+
+| Feld | Erforderlich | Beschreibung |
+|------|-------------|-------------|
+| **Name** | Ja | Platzkennung (z.B. "A-12", max 255 Zeichen) |
+| **Typ** | Ja | Auto, Fahrrad, Motorrad, E-Ladestation, Besucher, VIP, Tandem oder Behindert |
+| **Ebene** | Nein | Parkebene (z.B. "B1", "Ebene 2") |
+| **Sektion** | Nein | Parksektion (z.B. "Zone A", "Nordflügel") |
+
+4. Klicke auf **Speichern**
+
+Bei Auswahl von **E-Ladestation** als Typ wird die E-Lade-Ausstattung automatisch aktiviert. Bei **Behindert** wird die Barrierefrei-Ausstattung automatisch aktiviert.
+
+## Parkplatztypen
+
+| Typ | Beschreibung |
+|-----|-------------|
+| **Auto** | Standard-Autoparkplatz |
+| **Fahrrad** | Fahrradstellplatz |
+| **Motorrad** | Motorradstellplatz |
+| **E-Ladestation** | Elektrofahrzeug-Ladeplatz |
+| **Besucher** | Für Besucher reserviert |
+| **VIP** | Reservierter/Premium-Platz |
+| **Tandem** | Geteilter Tandemparkplatz |
+| **Behindert** | Barrierefreier Parkplatz |
+
+## Ausstattungsmerkmale
+
+Eingebaute Ausstattung für Parkplätze:
+
+- **Barrierefrei** — Rollstuhlgerechter Parkplatz
+- **E-Ladestation** — Elektrofahrzeug-Lademöglichkeit
+
+Für eigene Ausstattungsmerkmale siehe [Amenities Manager](/docs/admin/amenities).
+
+## Auto-Nummerierung
+
+Generiere mehrere Plätze auf einmal mit fortlaufenden Namen:
+
+1. Klicke auf **Auto-Nummerierung** in der Parkplatzverwaltung
+2. Setze ein **Präfix** (z.B. "P1-"), **Startnummer**, **Anzahl** und **Auffüllung** (z.B. 3 Stellen → P1-001)
+3. Setze optional Typ, Ebene und Sektion für alle generierten Plätze
+4. Klicke auf **Generieren**
+
+## Massenimport
+
+Importiere Parkplätze per CSV:
+
+1. Klicke auf **Parkplätze importieren**
+2. Lade eine CSV mit Spalten hoch: Name, Beschreibung, Typ, Ebene, Sektion
+3. Bis zu 500 Plätze pro Import
+
+## Platzstatus
+
+Wie bei Schreibtischen: **Buchbar**, **Drop-in** oder **Nicht verfügbar** (mit Sperrgrund und optionalem Entsperrdatum).

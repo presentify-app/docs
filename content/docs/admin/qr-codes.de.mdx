@@ -1,0 +1,58 @@
+---
+title: QR-Codes
+description: Generiere und drucke QR-Codes für Schreibtisch- und Parkplatz-Check-in.
+---
+
+QR-Codes ermöglichen Mitgliedern, an ihrem gebuchten Schreibtisch oder Parkplatz einzuchecken, indem sie einen physischen Code scannen. Greife auf den QR-Code-Manager zu über **Einstellungen** > **QR-Codes**.
+
+> QR-Codes erfordern einen **Pro**-Plan mit aktiviertem Check-in in deinen [Buchungsrichtlinien](/docs/admin/policies).
+
+## Wie es funktioniert
+
+Jeder Schreibtisch und Parkplatz bekommt einen einzigartigen QR-Code, der eine Check-in-URL kodiert:
+
+- **Schreibtisch-QR**: `https://presentify.org/api/checkin/desk/{deskId}`
+- **Parkplatz-QR**: `https://presentify.org/api/checkin/parking/{spotId}`
+
+Wenn ein Mitglied den Code mit der Handykamera scannt, findet Presentify seine Buchung für heute und checkt automatisch ein.
+
+## QR-Codes generieren
+
+1. Gehe zu **Einstellungen** > **QR-Codes**
+2. Wechsle zwischen den Tabs **Schreibtische** und **Parkplätze**
+3. QR-Codes werden für alle Ressourcen automatisch generiert
+
+QR-Codes werden client-seitig generiert für Performance — keine Serverlast.
+
+## Filtern
+
+Nutze Filter, um bestimmte QR-Codes zu finden:
+
+- **Suche** — Gib einen Schreibtisch- oder Platznamen ein zum Filtern
+- **Standort** — Nach Bürostandort filtern
+- **Typ** — Nach Schreibtischtyp (Pool, Individuell, Hot Desk) oder Parkplatztyp (Auto, Fahrrad etc.) filtern
+
+## QR-Codes drucken
+
+### Alle drucken
+
+Klicke auf **Alle drucken**, um den System-Druckdialog mit allen gefilterten QR-Codes zum Drucken zu öffnen. Jeder QR-Code enthält den Ressourcennamen und Standort zur einfachen Identifikation.
+
+### Einzeln herunterladen
+
+Klicke auf den Download-Button eines bestimmten QR-Codes, um ihn als PNG-Bild zu speichern. Nutze dies für individuelle Druck- oder Beschriftungszwecke.
+
+## QR-Codes platzieren
+
+Drucke die QR-Codes und platziere sie am physischen Schreibtisch oder Parkplatz. Mitglieder scannen den Code mit ihrem Handy, wenn sie ankommen, um ihren Check-in abzuschließen.
+
+Best Practices:
+- Platziere Schreibtisch-QR-Codes auf der Tischoberfläche oder dem Monitorständer
+- Platziere Parkplatz-QR-Codes an der Parkschranke oder Säule in der Nähe des Platzes
+- Verwende eine Schutzhülle oder Laminierung für Haltbarkeit
+- Stelle sicher, dass der QR-Code aus angemessener Entfernung scannbar ist
+
+## Wer kann QR-Codes zugreifen
+
+- **Admin / Owner** — Kann QR-Codes für alle Standorte generieren
+- **Office Admin** — Kann QR-Codes nur für zugewiesene Standorte generieren

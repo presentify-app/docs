@@ -1,0 +1,78 @@
+---
+title: Desk Management
+description: Create and manage desks — types, equipment, zones, bulk import, and floor plan placement.
+---
+
+Desks are managed within the location hierarchy. Navigate to **Settings** > **Locations**, select a location, then drill down to a building and floor to manage desks.
+
+## Creating a desk
+
+1. Navigate to the floor where you want to add desks
+2. Click **Add Desk**
+3. Fill in the details:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| **Name** | Yes | Desk identifier (e.g., "D-201", max 255 characters) |
+| **Type** | Yes | Individual, Pool, or Hot Desk |
+| **State** | Yes | Reservable, Drop-in, or Unavailable |
+| **Zone** | No | Assign to a zone on the floor |
+| **Description** | No | Additional notes about the desk |
+
+4. Click **Save**
+
+## Desk types
+
+| Type | Description | Plan |
+|------|-------------|------|
+| **Pool** | Shared desk — anyone can book, first-come-first-served | Free + Pro |
+| **Hot Desk** | Hot-desking pool desk (default for bulk import) | Free + Pro |
+| **Individual** | Assigned to a specific member via [Desk Assignments](/docs/admin/desk-assignments) | Pro |
+
+## Desk states
+
+| State | Description |
+|-------|-------------|
+| **Reservable** | Available for booking |
+| **Drop-in** | Available for walk-up use without pre-booking |
+| **Unavailable** | Locked and not bookable. Requires a lock reason and optional unlock date. |
+
+When setting a desk to "Unavailable," you must provide a **Lock Reason** (e.g., "Under maintenance") and can optionally set a **Locked Until** date. The desk automatically returns to its previous state when the date passes. Lock metadata is cleared automatically when changing back to Reservable or Drop-in.
+
+## Equipment tags
+
+Each desk has built-in equipment flags that members can filter by:
+
+| Equipment | Description |
+|-----------|-------------|
+| **Monitor** | External monitor available |
+| **Docking Station** | Laptop docking station |
+| **Dual Screen** | Two monitors |
+| **Phone** | Desk phone |
+| **Standing Desk** | Height-adjustable desk |
+| **Ergonomic** | Ergonomic setup |
+| **Accessible** | Wheelchair accessible |
+| **Quiet Zone** | In a quiet work area |
+| **Window Seat** | Near a window |
+
+Toggle each flag on or off per desk. For custom equipment tags, see [Amenities Manager](/docs/admin/amenities).
+
+## Bulk import
+
+Import multiple desks at once via CSV:
+
+1. Click **Import Desks** on the floor view
+2. Upload a CSV file with columns: name, description, type, state, zone name
+3. Up to 500 desks per import
+4. Zone names are matched case-insensitively to existing zones on the floor
+
+## Bulk update
+
+Select multiple desks and update properties in batch:
+
+- **Bulk Update Equipment** — Set equipment flags for all selected desks at once
+- **Bulk Update Properties** — Change type, state, or zone for all selected desks
+
+## Deleting desks
+
+Click the delete button on a desk to remove it permanently. Active bookings for the desk are cancelled.

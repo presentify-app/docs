@@ -1,0 +1,89 @@
+---
+title: Parking Management
+description: Set up and manage parking spots — types, sections, basic vs advanced mode.
+---
+
+Parking management lets you configure parking spots for your office locations. Parking requires a **Pro** plan and must be enabled per location.
+
+## Parking modes
+
+Each location has a parking mode configured in **Settings** > **Locations**:
+
+### Basic mode
+
+The simplest setup. Set a parking capacity number and Presentify auto-manages the pool:
+
+1. Edit a location and set **Parking Mode** to "Basic"
+2. Enter the **Parking Capacity** (number of spots)
+3. Save — Presentify creates spots named P-001, P-002, etc.
+
+Members book parking as a checkbox add-on when booking a desk. The system assigns the next available spot automatically. When you change the capacity, spots are added or removed to match.
+
+### Advanced mode
+
+Full control over individual parking spots:
+
+1. Set **Parking Mode** to "Advanced" on the location
+2. Create parking spots manually or via bulk import
+
+Members select specific spots in a dedicated parking booking view with filters for type and amenities.
+
+## Creating parking spots (advanced mode)
+
+1. Go to **Settings** > **Locations** > select location > **Parking**
+2. Click **Add Parking Spot**
+3. Configure:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| **Name** | Yes | Spot identifier (e.g., "A-12", max 255 characters) |
+| **Type** | Yes | Car, Bike, Motorcycle, EV Charging, Visitor, VIP, Tandem, or Disabled |
+| **Level** | No | Parking level/floor (e.g., "B1", "Level 2") |
+| **Section** | No | Parking section (e.g., "Zone A", "North Wing") |
+
+4. Click **Save**
+
+When you select **EV Charging** as type, the EV charging amenity is auto-enabled. When you select **Disabled**, the accessible amenity is auto-enabled.
+
+## Parking spot types
+
+| Type | Description |
+|------|-------------|
+| **Car** | Standard car parking |
+| **Bike** | Bicycle parking |
+| **Motorcycle** | Motorcycle parking |
+| **EV Charging** | Electric vehicle charging spot |
+| **Visitor** | Reserved for visitors |
+| **VIP** | Reserved/premium spot |
+| **Tandem** | Shared tandem parking |
+| **Disabled** | Accessible/handicap parking |
+
+## Amenities
+
+Built-in amenities for parking spots:
+
+- **Accessible** — Wheelchair-accessible parking
+- **EV Charging** — Electric vehicle charging capability
+
+For custom amenities, see [Amenities Manager](/docs/admin/amenities).
+
+## Auto-numbering
+
+Generate multiple spots at once with sequential names:
+
+1. Click **Auto-Number** on the parking management view
+2. Set a **prefix** (e.g., "P1-"), **start number**, **count**, and **padding** (e.g., 3 digits → P1-001)
+3. Optionally set type, level, and section for all generated spots
+4. Click **Generate**
+
+## Bulk import
+
+Import parking spots via CSV:
+
+1. Click **Import Parking Spots**
+2. Upload a CSV with columns: name, description, type, level, section
+3. Up to 500 spots per import
+
+## Spot states
+
+Same as desks: **Reservable**, **Drop-in**, or **Unavailable** (with lock reason and optional unlock date).
