@@ -13,45 +13,36 @@ The Presentify REST API v1 provides programmatic access to your workspace data. 
 https://app.presentify.org/api/v1
 ```
 
-## Quick start
+## Authentication
 
-1. [Create an API key](/docs/integrations/api-keys) in **Settings** > **API Keys**
-2. Include the key in the `X-API-KEY` header on every request
-3. Call endpoints using the tRPC HTTP protocol
+Include your API key in the `X-API-KEY` header on every request:
 
 ```bash
 curl -H "X-API-KEY: pk_your_key_here" \
   "https://app.presentify.org/api/v1/member.list?input={}"
 ```
 
-## Available routers
+See [API Keys](/docs/integrations/api-keys) for setup instructions.
 
-| Router | Description |
-|--------|-------------|
-| [`member`](/docs/api/endpoints#members) | List and get workspace members |
-| [`location`](/docs/api/endpoints#locations) | List and get office locations |
-| [`presence`](/docs/api/endpoints#presence) | List, create, update, and delete presence entries |
-| [`booking`](/docs/api/endpoints#bookings) | List, get, and cancel bookings |
+## Available endpoints
 
-## Sections
+| Group | Endpoints | Description |
+|-------|-----------|-------------|
+| **Members** | `member.list`, `member.getById` | List and get workspace members |
+| **Locations** | `location.list`, `location.getById` | List and get office locations |
+| **Presence** | `presence.list`, `presence.upsert`, `presence.delete` | Manage presence entries |
+| **Bookings** | `booking.list`, `booking.getById`, `booking.cancel` | Manage desk and parking bookings |
 
-<Cards>
-  <Card title="Authentication" href="/docs/api/authentication">
-    API key setup, headers, and workspace scoping.
-  </Card>
-  <Card title="Endpoints" href="/docs/api/endpoints">
-    Complete reference for all API endpoints with examples.
-  </Card>
-  <Card title="Webhooks" href="/docs/api/webhooks">
-    Real-time event notifications via HTTP callbacks.
-  </Card>
-  <Card title="Rate Limits" href="/docs/api/rate-limits">
-    Request limits and throttling behavior.
-  </Card>
-  <Card title="Errors" href="/docs/api/errors">
-    Error codes and response format.
-  </Card>
-</Cards>
+Browse the endpoint reference in the sidebar for detailed parameter schemas, response formats, and examples.
+
+## Rate limits
+
+- **150 requests** per 60 seconds per IP address
+- Returns `429 Too Many Requests` when exceeded
+
+## Webhooks
+
+For real-time event notifications, see [Webhooks](/docs/integrations/webhooks) (Enterprise).
 
 ## Response format
 

@@ -1,8 +1,8 @@
 import { source } from '@/lib/source';
 import { DocsPage, DocsBody } from 'fumadocs-ui/page';
-import { Card, Cards } from 'fumadocs-ui/components/card';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
+import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 
 type PageProps = {
@@ -21,7 +21,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <DocsPage toc={page.data.toc}>
       <DocsBody>
-        <MDXContent components={{ Card, Cards }} />
+        <MDXContent components={getMDXComponents()} />
       </DocsBody>
     </DocsPage>
   );

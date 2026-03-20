@@ -13,45 +13,36 @@ Die Presentify REST API v1 bietet programmatischen Zugriff auf deine Workspace-D
 https://app.presentify.org/api/v1
 ```
 
-## Schnellstart
+## Authentifizierung
 
-1. [Erstelle einen API-Schlüssel](/docs/integrations/api-keys) unter **Einstellungen** > **API-Schlüssel**
-2. Füge den Schlüssel im `X-API-KEY`-Header bei jeder Anfrage ein
-3. Rufe Endpunkte über das tRPC-HTTP-Protokoll auf
+Füge deinen API-Schlüssel im `X-API-KEY`-Header bei jeder Anfrage ein:
 
 ```bash
 curl -H "X-API-KEY: pk_dein_schluessel" \
   "https://app.presentify.org/api/v1/member.list?input={}"
 ```
 
-## Verfügbare Router
+Siehe [API-Schlüssel](/docs/integrations/api-keys) für die Einrichtung.
 
-| Router | Beschreibung |
-|--------|-------------|
-| [`member`](/docs/api/endpoints#members) | Workspace-Mitglieder auflisten und abrufen |
-| [`location`](/docs/api/endpoints#locations) | Bürostandorte auflisten und abrufen |
-| [`presence`](/docs/api/endpoints#presence) | Anwesenheitseinträge auflisten, erstellen, aktualisieren und löschen |
-| [`booking`](/docs/api/endpoints#bookings) | Buchungen auflisten, abrufen und stornieren |
+## Verfügbare Endpunkte
 
-## Bereiche
+| Gruppe | Endpunkte | Beschreibung |
+|--------|-----------|-------------|
+| **Mitglieder** | `member.list`, `member.getById` | Workspace-Mitglieder auflisten und abrufen |
+| **Standorte** | `location.list`, `location.getById` | Bürostandorte auflisten und abrufen |
+| **Anwesenheit** | `presence.list`, `presence.upsert`, `presence.delete` | Anwesenheitseinträge verwalten |
+| **Buchungen** | `booking.list`, `booking.getById`, `booking.cancel` | Schreibtisch- und Parkplatzbuchungen verwalten |
 
-<Cards>
-  <Card title="Authentifizierung" href="/docs/api/authentication">
-    API-Schlüssel-Setup, Header und Workspace-Scoping.
-  </Card>
-  <Card title="Endpunkte" href="/docs/api/endpoints">
-    Vollständige Referenz aller API-Endpunkte mit Beispielen.
-  </Card>
-  <Card title="Webhooks" href="/docs/api/webhooks">
-    Echtzeit-Event-Benachrichtigungen über HTTP-Callbacks.
-  </Card>
-  <Card title="Rate Limits" href="/docs/api/rate-limits">
-    Anfragelimits und Drosselungsverhalten.
-  </Card>
-  <Card title="Fehler" href="/docs/api/errors">
-    Fehlercodes und Antwortformat.
-  </Card>
-</Cards>
+Die detaillierte Endpunkt-Referenz mit Parameter-Schemas, Antwortformaten und Beispielen findest du in der Sidebar.
+
+## Rate Limits
+
+- **150 Anfragen** pro 60 Sekunden pro IP-Adresse
+- Gibt `429 Too Many Requests` zurück bei Überschreitung
+
+## Webhooks
+
+Für Echtzeit-Event-Benachrichtigungen siehe [Webhooks](/docs/integrations/webhooks) (Enterprise).
 
 ## Antwortformat
 

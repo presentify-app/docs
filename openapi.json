@@ -1,0 +1,726 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Presentify API",
+    "description": "RESTful API for managing presence, desk bookings, parking, and members in your Presentify workspace. Requires an Enterprise plan and an API key.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@presentify.org"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://app.presentify.org/api/v1",
+      "description": "Production"
+    }
+  ],
+  "security": [
+    {
+      "ApiKey": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Members",
+      "description": "Manage workspace members"
+    },
+    {
+      "name": "Locations",
+      "description": "Manage workspace locations"
+    },
+    {
+      "name": "Presence",
+      "description": "Track and manage member presence"
+    },
+    {
+      "name": "Bookings",
+      "description": "Manage desk and parking bookings"
+    }
+  ],
+  "paths": {
+    "/member.list": {
+      "get": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "List members",
+        "description": "Get all members in the workspace. Optionally filter by email, customId, or status.",
+        "operationId": "member.list",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded input: { email?, customId?, status? }",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of members",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized — invalid or missing API key"
+          },
+          "403": {
+            "description": "Forbidden — Enterprise plan required"
+          }
+        }
+      }
+    },
+    "/member.getById": {
+      "get": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Get member by ID",
+        "operationId": "member.getById",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": true,
+            "description": "JSON: { \"id\": \"member_id\" }",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Member not found"
+          }
+        }
+      }
+    },
+    "/location.list": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "List locations",
+        "operationId": "location.list",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": false,
+            "description": "JSON: { active?: boolean }",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of locations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/location.getById": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Get location by ID",
+        "operationId": "location.getById",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": true,
+            "description": "JSON: { \"id\": \"location_id\" }",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Location details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presence.list": {
+      "get": {
+        "tags": [
+          "Presence"
+        ],
+        "summary": "List presence entries",
+        "description": "Get presence entries for a date range. Optionally filter by member IDs.",
+        "operationId": "presence.list",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": true,
+            "description": "JSON: { \"startDate\": \"YYYY-MM-DD\", \"endDate\": \"YYYY-MM-DD\", \"memberIds\"?: [\"id1\"] }",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of presence entries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresenceListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presence.upsert": {
+      "post": {
+        "tags": [
+          "Presence"
+        ],
+        "summary": "Create or update presence",
+        "operationId": "presence.upsert",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "memberId",
+                  "date",
+                  "status"
+                ],
+                "properties": {
+                  "memberId": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-03-20"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "in_office",
+                      "remote",
+                      "on_the_road",
+                      "customer_site",
+                      "training_event",
+                      "onsite_without_desk",
+                      "half_day_office",
+                      "half_day_remote",
+                      "away",
+                      "unknown"
+                    ]
+                  },
+                  "locationId": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "isHalfDay": {
+                    "type": "boolean"
+                  },
+                  "halfDayPart": {
+                    "type": "string",
+                    "enum": [
+                      "morning",
+                      "afternoon"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Presence created/updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presence.delete": {
+      "post": {
+        "tags": [
+          "Presence"
+        ],
+        "summary": "Delete presence entry",
+        "operationId": "presence.delete",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/booking.list": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "List bookings",
+        "description": "Get bookings for a date range. Filter by member, resource type, resource ID, or status.",
+        "operationId": "booking.list",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": true,
+            "description": "JSON: { \"startDate\": \"YYYY-MM-DD\", \"endDate\": \"YYYY-MM-DD\", ... }",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of bookings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/booking.getById": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Get booking by ID",
+        "operationId": "booking.getById",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": true,
+            "description": "JSON: { \"id\": \"booking_id\" }",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/booking.cancel": {
+      "post": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Cancel a booking",
+        "operationId": "booking.cancel",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cancelled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "apiKey",
+        "name": "X-API-KEY",
+        "in": "header",
+        "description": "API key from Settings > API Keys. Requires Enterprise plan."
+      }
+    },
+    "schemas": {
+      "Member": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string"
+          },
+          "customId": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Owner",
+              "Admin",
+              "Office_Admin",
+              "Manager",
+              "Member"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive",
+              "invited"
+            ]
+          },
+          "language": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "departmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "teamId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "MemberListResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "timezone": {
+            "type": "string",
+            "nullable": true
+          },
+          "capacity": {
+            "type": "integer",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "openingTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "closingTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "LocationListResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      },
+      "PresenceEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string"
+          },
+          "memberId": {
+            "type": "string"
+          },
+          "locationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHalfDay": {
+            "type": "boolean"
+          },
+          "halfDayPart": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PresenceListResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PresenceEntry"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Booking": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string",
+            "enum": [
+              "desk",
+              "parking_spot"
+            ]
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "memberId": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "isFullDay": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "checked_in",
+              "completed",
+              "cancelled",
+              "no_show",
+              "auto_released"
+            ]
+          },
+          "checkedInAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isGuestBooking": {
+            "type": "boolean"
+          },
+          "guestName": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "BookingListResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

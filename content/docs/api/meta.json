@@ -1,4 +1,20 @@
 {
   "title": "API Reference",
-  "pages": ["index", "authentication", "endpoints", "webhooks", "rate-limits", "errors"]
+  "pages": [
+    "index",
+    "---Members---",
+    "member.list",
+    "member.getById",
+    "---Locations---",
+    "location.list",
+    "location.getById",
+    "---Presence---",
+    "presence.list",
+    "presence.upsert",
+    "presence.delete",
+    "---Bookings---",
+    "booking.list",
+    "booking.getById",
+    "booking.cancel"
+  ]
 }
