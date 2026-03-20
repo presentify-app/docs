@@ -1,0 +1,90 @@
+---
+title: Locations
+description: Set up office locations with buildings, floors, opening hours, and parking configuration.
+---
+
+Locations represent your physical offices. Each location can have buildings, floors, zones, and desks organized in a hierarchy. Access location settings via **Settings** > **Locations**.
+
+## Creating a location
+
+1. Click **Add Location**
+2. Fill in the details:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| **Name** | Yes | Location name (e.g., "Berlin Office") |
+| **City** | No | City for display purposes |
+| **Address** | No | Full address |
+| **Opening Time** | No | Daily opening time (e.g., 09:00) |
+| **Closing Time** | No | Daily closing time (e.g., 17:00) |
+| **Opening Days** | No | Days the office is open (checkboxes, Mon–Sun) |
+| **Parking Mode** | No | "Basic" (auto-assign) or "Advanced" (manual selection) |
+| **Parking Capacity** | No | Number of parking spots (basic mode only) |
+
+3. Click **Save**
+
+## Location hierarchy
+
+Each location can contain a multi-level hierarchy:
+
+```
+Location (e.g., Berlin Office)
+└── Building (e.g., Main Building)
+    └── Floor (e.g., 2nd Floor)
+        └── Zone (e.g., Quiet Zone)
+            └── Desk (e.g., D-201)
+```
+
+### Buildings
+
+Click a location to drill down into buildings. Add buildings with a name, optional address, and capacity. You can create multiple buildings per location.
+
+### Floors
+
+Inside a building, add floors with a name and level number. The level determines the sort order.
+
+### Zones
+
+Floors can be divided into zones. Zone types include:
+- **Neighborhood** — Named area for teams (e.g., "Engineering Corner")
+- **Quiet Zone** — Silent work area
+- **Collaboration** — Open collaborative space
+- **Focus** — Deep work area
+- **Social** — Social/break area
+- **Meeting** — Meeting room zone
+
+Zones help members filter desks by work style. Zone access can also be restricted to specific teams (see [Zone Rules](/docs/admin/zone-rules)).
+
+## Opening hours and days
+
+Configure when the office is open:
+
+- **Opening/Closing Time** — Bookings are only allowed during these hours
+- **Opening Days** — Select which days of the week the office operates
+
+Days and times outside the configured window are blocked for booking.
+
+## Parking configuration
+
+Each location has a parking mode:
+
+- **Basic** — System auto-manages a pool of parking spots. Set the capacity and Presentify creates spots named P-001, P-002, etc. Members book parking as a checkbox add-on when booking a desk.
+- **Advanced** — You manually create and manage individual parking spots with types, sections, and amenities. Members select specific spots in a dedicated parking booking view.
+
+See [Parking Management](/docs/admin/parking) for detailed setup.
+
+## Reordering locations
+
+Drag and drop locations in the list to change their display order. The first location becomes the default selection for members.
+
+## Deleting a location
+
+Deleting a location removes all associated buildings, floors, zones, desks, and parking spots. Active bookings at the location are cancelled. This action cannot be undone.
+
+## Plan limits
+
+| Plan | Locations | Floors | Desks |
+|------|-----------|--------|-------|
+| Free Starter | 1 | 3 | 25 |
+| Pro | Unlimited | Unlimited | Unlimited |
+| Enterprise | Unlimited | Unlimited | Unlimited |

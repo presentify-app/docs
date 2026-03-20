@@ -1,0 +1,59 @@
+---
+title: Admin-Handbuch
+description: Konfiguriere deinen Presentify Workspace — Einstellungen, Mitglieder, Standorte, Richtlinien und Billing.
+---
+
+Dieses Handbuch deckt alles ab, was Workspace-Admins und Owner zur Konfiguration und Verwaltung von Presentify brauchen. Wenn du einen neuen Workspace einrichtest, starte mit dem [Einrichtungsassistenten](/docs/setup).
+
+## Einstellungen-Übersicht
+
+Greife auf die Workspace-Einstellungen über **Einstellungen** in der Seitenleiste zu. Die Einstellungsseite hat mehrere Tabs, organisiert in Gruppen:
+
+**Workspace:**
+- [Allgemein](/docs/admin/general) — Workspace-Name, Sprache, Zeitzone, Auth-Methoden
+- [Mitglieder](/docs/admin/members) — Mitglieder einladen, Rollen zuweisen, Teams verwalten
+- [Standorte](/docs/admin/locations) — Bürostandorte, Gebäude, Etagen
+- Feiertage — Feiertagskalender
+
+**Buchung:**
+- [Richtlinien](/docs/admin/policies) — Buchungsregeln, Check-in, Vorabuchungslimits
+- [Ressourcen](/docs/admin/desks) — Schreibtische, Parkplätze, Ausstattung
+- [QR-Codes](/docs/admin/qr-codes) — Check-in QR-Codes generieren
+
+**Datenschutz:**
+- [Datenschutz](/docs/admin/privacy) — Sichtbarkeitsstufen, Gastbuchung, Datenaufbewahrung
+
+**Billing:**
+- [Billing](/docs/admin/billing) — Pläne, Abonnement, Nutzung
+
+**Entwickler:**
+- [API-Schlüssel](/docs/integrations/api-keys) — REST API Authentifizierung (Enterprise)
+- [Webhooks](/docs/integrations/webhooks) — Event-Benachrichtigungen (Enterprise)
+
+## Schnellzugriff
+
+<Cards>
+  <Card title="Allgemeine Einstellungen" href="/docs/admin/general">
+    Workspace-Name, Sprache, Zeitzone und Authentifizierungsmethoden.
+  </Card>
+  <Card title="Mitglieder" href="/docs/admin/members">
+    Mitglieder einladen, Rollen zuweisen und Teams konfigurieren.
+  </Card>
+  <Card title="Standorte" href="/docs/admin/locations">
+    Bürostandorte mit Gebäuden, Etagen und Kapazität einrichten.
+  </Card>
+  <Card title="Billing" href="/docs/admin/billing">
+    Abonnement verwalten, Pläne vergleichen und Nutzung verfolgen.
+  </Card>
+</Cards>
+
+## Wer hat Zugriff?
+
+Nur **Owner** und **Admin** Rollen können alle Einstellungs-Tabs sehen. Andere Rollen sehen eine eingeschränkte Ansicht:
+
+| Rolle | Sichtbare Tabs |
+|-------|---------------|
+| Owner / Admin | Alle Tabs |
+| Office Admin / Manager / Member | Mitglieder (nur Lesen), Billing (nur Lesen) |
+
+Siehe [Rollen & Berechtigungen](/docs/roles) für die vollständige Berechtigungsmatrix.

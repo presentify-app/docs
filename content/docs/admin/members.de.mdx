@@ -1,0 +1,103 @@
+---
+title: Mitglieder
+description: Mitglieder einladen, Rollen zuweisen, Teams verwalten und Mitgliedereinstellungen konfigurieren.
+---
+
+Der Mitglieder-Tab ist der Ort, an dem du verwaltest, wer Zugriff auf deinen Workspace hat und was sie tun können. Greife darauf zu über **Einstellungen** > **Mitglieder**.
+
+## Mitgliederliste
+
+Alle aktiven und eingeladenen Mitglieder werden in einer Tabelle angezeigt mit:
+
+- **Name** (oder E-Mail, wenn kein Name gesetzt)
+- **E-Mail**
+- **Rollen**-Badge (Owner, Admin, Office Admin, Manager, Member)
+- **Status**-Badge (Aktiv oder Eingeladen)
+- **Aktionen**-Menü
+
+## Mitglieder einladen
+
+### Per E-Mail
+
+1. Klicke auf **Mitglied einladen**
+2. Gib die E-Mail-Adresse ein
+3. Klicke auf **Einladen**
+
+Die Person erhält einen Anmeldelink. Wenn sie noch kein Presentify-Konto hat, wird eines automatisch erstellt. Das Mitglied startet mit der Rolle **Member** und dem Status "Eingeladen", bis es sich zum ersten Mal anmeldet.
+
+### Per Einladungslink
+
+Im [Einrichtungsassistenten](/docs/setup/invite) oder während des Onboardings kannst du einen teilbaren Einladungslink generieren. Jeder mit dem Link kann deinem Workspace beitreten.
+
+### Plan-Limits
+
+Der Free Starter Plan erlaubt bis zu **25 Mitglieder**. Pro und Enterprise haben kein Mitgliederlimit. Wenn du das Limit deines Plans erreicht hast, musst du [upgraden](/docs/admin/billing), bevor du weitere Mitglieder einladen kannst.
+
+## Rollen ändern
+
+1. Klicke auf das Aktionsmenü neben einem Mitglied
+2. Wähle die neue Rolle
+
+Rollen-Einschränkungen:
+- Nur der **Owner** kann die Owner-Rolle zuweisen oder entfernen
+- **Admins** können jede Rolle außer Owner zuweisen
+- Du kannst deine eigene Rolle nicht ändern
+- Der letzte Owner kann nicht herabgestuft werden
+
+Beim Wechsel eines Mitglieds zum **Office Admin** wirst du aufgefordert, Standorte zuzuweisen. Siehe [Rollen & Berechtigungen](/docs/roles) für Details zu jeder Rolle.
+
+## Office Admin Standorte zuweisen
+
+Wenn ein Mitglied die Office Admin Rolle hat:
+
+1. Klicke auf das Aktionsmenü > **Standorte verwalten**
+2. Aktiviere die Standorte, die dieser Office Admin verwalten soll
+3. Klicke auf **Speichern**
+
+Der Office Admin kann nur Buchungen an seinen zugewiesenen Standorten einsehen und stornieren.
+
+## Manager zuweisen
+
+1. Klicke auf das Aktionsmenü > **Manager zuweisen**
+2. Suche und wähle einen Manager aus der Mitgliederliste
+3. Klicke auf **Speichern**
+
+Die Manager-Beziehung wird verwendet für:
+- Delegation: Manager können Schreibtische/Parkplätze im Namen ihrer direkten Mitarbeiter buchen
+- Team-Sichtbarkeit im Teamkalender
+
+Zirkuläre Manager-Ketten werden verhindert — du kannst A nicht als Manager von B setzen, wenn B bereits Manager von A ist (direkt oder indirekt).
+
+## Mitgliedereinstellungen bearbeiten
+
+Admins können die persönlichen Einstellungen eines Mitglieds bearbeiten:
+
+1. Klicke auf das Aktionsmenü > **Einstellungen bearbeiten**
+2. Ändere beliebige:
+   - Sprache und Zeitzone
+   - Datums- und Zeitformat
+   - Teamzuordnung
+   - Standardstandort
+   - Wöchentlicher Digest Präferenz
+   - Datenschutzeinstellungen (In Wer-ist-da anzeigen, Schreibtisch auf Karte etc.)
+3. Klicke auf **Speichern**
+
+## Mitglieder-Standardwerte
+
+Konfiguriere Standardeinstellungen für neu eingeladene Mitglieder:
+
+- Standardsprache und Zeitzone
+- Standard-Team
+- Standardstandort
+- Wöchentlicher Digest aktiviert/deaktiviert
+
+Diese Standardwerte werden angewendet, wenn ein neues Mitglied eingeladen wird. Bestehende Mitglieder sind nicht betroffen.
+
+## Mitglieder entfernen
+
+1. Klicke auf das Aktionsmenü > **Entfernen**
+2. Bestätige im Dialog
+
+Entfernte Mitglieder werden auf "inaktiv" gesetzt (Soft Delete). Ihre historischen Daten (Buchungen, Anwesenheitseinträge) bleiben erhalten. Das Mitglied kann später erneut eingeladen werden.
+
+Du kannst dich selbst oder den letzten Owner nicht entfernen.

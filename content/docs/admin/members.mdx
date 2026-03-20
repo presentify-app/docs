@@ -1,0 +1,103 @@
+---
+title: Members
+description: Invite members, assign roles, manage teams, and configure member settings.
+---
+
+The Members tab is where you manage who has access to your workspace and what they can do. Access it via **Settings** > **Members**.
+
+## Member list
+
+All active and invited members are shown in a table with:
+
+- **Name** (or email if name not set)
+- **Email**
+- **Role** badge (Owner, Admin, Office Admin, Manager, Member)
+- **Status** badge (Active or Invited)
+- **Actions** menu
+
+## Inviting members
+
+### By email
+
+1. Click **Invite Member**
+2. Enter the email address
+3. Click **Invite**
+
+The person receives a sign-in link. If they don't have a Presentify account yet, one is created automatically. The member starts with the **Member** role and "Invited" status until they sign in for the first time.
+
+### By invite link
+
+In the [Setup Wizard](/docs/setup/invite) or during onboarding, you can generate a shareable invite link. Anyone with the link can join your workspace.
+
+### Plan limits
+
+The Free Starter plan allows up to **25 members**. Pro and Enterprise have no member limit. If you've reached your plan's limit, you'll need to [upgrade](/docs/admin/billing) before inviting more members.
+
+## Changing roles
+
+1. Click the actions menu next to a member
+2. Select the new role
+
+Role restrictions:
+- Only the **Owner** can assign or remove the Owner role
+- **Admins** can assign any role except Owner
+- You cannot change your own role
+- The last Owner cannot be demoted
+
+When changing a member to **Office Admin**, you'll be prompted to assign locations. See [Roles & Permissions](/docs/roles) for what each role can do.
+
+## Assigning Office Admin locations
+
+When a member has the Office Admin role:
+
+1. Click the actions menu > **Manage Locations**
+2. Check the locations this Office Admin should manage
+3. Click **Save**
+
+The Office Admin can only view and cancel bookings at their assigned locations.
+
+## Assigning a manager
+
+1. Click the actions menu > **Assign Manager**
+2. Search for and select a manager from the member list
+3. Click **Save**
+
+The manager relationship is used for:
+- Delegation: Managers can book desks/parking on behalf of their direct reports
+- Team visibility in the team calendar
+
+Circular manager chains are prevented — you cannot set A as B's manager if B is already A's manager (directly or indirectly).
+
+## Editing member settings
+
+Admins can edit a member's personal settings:
+
+1. Click the actions menu > **Edit Settings**
+2. Modify any of:
+   - Language and timezone
+   - Date and time format
+   - Team assignment
+   - Default location
+   - Weekly digest preference
+   - Privacy settings (Show in Who's In, Show Desk on Map, etc.)
+3. Click **Save**
+
+## Member defaults
+
+Configure default settings applied to newly invited members:
+
+- Default language and timezone
+- Default team
+- Default location
+- Weekly digest enabled/disabled
+
+These defaults are applied when a new member is invited. Existing members are not affected.
+
+## Removing members
+
+1. Click the actions menu > **Remove**
+2. Confirm in the dialog
+
+Removed members are set to "inactive" (soft delete). Their historical data (bookings, presence entries) is preserved. The member can be re-invited later.
+
+You cannot remove yourself or the last Owner.

@@ -1,0 +1,90 @@
+---
+title: Standorte
+description: Richte Bürostandorte mit Gebäuden, Etagen, Öffnungszeiten und Parkplatzkonfiguration ein.
+---
+
+Standorte repräsentieren deine physischen Büros. Jeder Standort kann Gebäude, Etagen, Zonen und Schreibtische in einer Hierarchie enthalten. Greife auf Standort-Einstellungen zu über **Einstellungen** > **Standorte**.
+
+## Einen Standort erstellen
+
+1. Klicke auf **Standort hinzufügen**
+2. Fülle die Details aus:
+
+| Feld | Erforderlich | Beschreibung |
+|------|-------------|-------------|
+| **Name** | Ja | Standortname (z.B. "Büro Berlin") |
+| **Stadt** | Nein | Stadt für Anzeigezwecke |
+| **Adresse** | Nein | Vollständige Adresse |
+| **Öffnungszeit** | Nein | Tägliche Öffnungszeit (z.B. 09:00) |
+| **Schließzeit** | Nein | Tägliche Schließzeit (z.B. 17:00) |
+| **Öffnungstage** | Nein | Tage, an denen das Büro geöffnet ist (Checkboxen, Mo–So) |
+| **Parkplatzmodus** | Nein | "Einfach" (automatische Zuweisung) oder "Erweitert" (manuelle Auswahl) |
+| **Parkplatzkapazität** | Nein | Anzahl der Parkplätze (nur einfacher Modus) |
+
+3. Klicke auf **Speichern**
+
+## Standort-Hierarchie
+
+Jeder Standort kann eine mehrstufige Hierarchie enthalten:
+
+```
+Standort (z.B. Büro Berlin)
+└── Gebäude (z.B. Hauptgebäude)
+    └── Etage (z.B. 2. OG)
+        └── Zone (z.B. Ruhezone)
+            └── Schreibtisch (z.B. D-201)
+```
+
+### Gebäude
+
+Klicke auf einen Standort, um in die Gebäude einzutauchen. Füge Gebäude mit Name, optionaler Adresse und Kapazität hinzu. Du kannst mehrere Gebäude pro Standort erstellen.
+
+### Etagen
+
+Innerhalb eines Gebäudes füge Etagen mit Name und Etagennummer hinzu. Die Etagennummer bestimmt die Sortierreihenfolge.
+
+### Zonen
+
+Etagen können in Zonen unterteilt werden. Zonentypen umfassen:
+- **Nachbarschaft** — Benannter Bereich für Teams (z.B. "Engineering Corner")
+- **Ruhezone** — Stiller Arbeitsbereich
+- **Zusammenarbeit** — Offener kollaborativer Raum
+- **Fokus** — Bereich für konzentriertes Arbeiten
+- **Sozial** — Sozial-/Pausenbereich
+- **Meeting** — Meetingraum-Zone
+
+Zonen helfen Mitgliedern, Schreibtische nach Arbeitsstil zu filtern. Zonenzugang kann auch auf bestimmte Teams beschränkt werden (siehe [Zonenregeln](/docs/admin/zone-rules)).
+
+## Öffnungszeiten und -tage
+
+Konfiguriere, wann das Büro geöffnet ist:
+
+- **Öffnungs-/Schließzeit** — Buchungen sind nur während dieser Zeiten erlaubt
+- **Öffnungstage** — Wähle, an welchen Wochentagen das Büro betrieben wird
+
+Tage und Zeiten außerhalb des konfigurierten Fensters sind für Buchungen gesperrt.
+
+## Parkplatzkonfiguration
+
+Jeder Standort hat einen Parkplatzmodus:
+
+- **Einfach** — System verwaltet automatisch einen Pool von Parkplätzen. Lege die Kapazität fest und Presentify erstellt Plätze mit den Namen P-001, P-002 etc. Mitglieder buchen Parkplätze als Checkbox-Zusatz bei der Schreibtischbuchung.
+- **Erweitert** — Du erstellst und verwaltest individuelle Parkplätze mit Typen, Sektionen und Ausstattungsmerkmalen manuell. Mitglieder wählen bestimmte Plätze in einer eigenen Parkplatzbuchungsansicht.
+
+Siehe [Parkplatzverwaltung](/docs/admin/parking) für detailliertes Setup.
+
+## Standorte umsortieren
+
+Ziehe Standorte in der Liste per Drag and Drop, um ihre Anzeigereihenfolge zu ändern. Der erste Standort wird zur Standardauswahl für Mitglieder.
+
+## Einen Standort löschen
+
+Das Löschen eines Standorts entfernt alle zugehörigen Gebäude, Etagen, Zonen, Schreibtische und Parkplätze. Aktive Buchungen am Standort werden storniert. Diese Aktion kann nicht rückgängig gemacht werden.
+
+## Plan-Limits
+
+| Plan | Standorte | Etagen | Schreibtische |
+|------|-----------|--------|---------------|
+| Free Starter | 1 | 3 | 25 |
+| Pro | Unbegrenzt | Unbegrenzt | Unbegrenzt |
+| Enterprise | Unbegrenzt | Unbegrenzt | Unbegrenzt |
