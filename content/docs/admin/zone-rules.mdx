@@ -1,0 +1,70 @@
+---
+title: Zone Rules
+description: Control who can book in specific zones — open, restricted, or assigned access.
+---
+
+Zone rules let you restrict booking access in specific zones to certain teams or departments. This is useful for reserved areas, quiet zones, or team-specific neighborhoods.
+
+> Zone rules require a **Pro** plan.
+
+## Access types
+
+Each zone can have one of three access types:
+
+| Type | Description |
+|------|-------------|
+| **Open** | Anyone in the workspace can book desks in this zone (default) |
+| **Restricted** | Only members of specified teams or departments can book |
+| **Assigned** | Only members with a desk assignment in this zone can book |
+
+## Creating a zone rule
+
+1. Go to **Settings** > **Policies** > **Zone Rules** (or the Zone Rules Manager)
+2. Select a location, floor, and zone
+3. Click **Add Rule**
+4. Configure:
+   - **Access Type** — Open, Restricted, or Assigned
+   - **Team** (for Restricted) — Select a team
+   - **Department** (for Restricted) — Or select a department
+   - **Priority Group** — Enable to give this group extended advance booking (uses Priority Advance Days from [policies](/docs/admin/policies))
+   - **Hide for Unauthorized** — Hide the zone from members who don't have access
+5. Click **Save**
+
+You can add up to **50 rules** per zone. For restricted zones, each rule specifies one team or department that has access.
+
+## Priority groups
+
+When the **Priority Group** flag is enabled on a zone rule:
+
+- Members of the specified team/department can book desks in this zone using the **Priority Advance Booking Days** window (default: 30 days instead of 14)
+- Other members (if the zone is open) use the regular advance booking window
+
+This is useful for giving teams priority access to their home zone while still allowing others to book if space is available.
+
+## Hiding zones
+
+When **Hide for Unauthorized** is enabled:
+
+- Members who don't match any access rule won't see the zone in the desk booking view
+- The zone and its desks are completely hidden from unauthorized members
+- Authorized members see the zone normally
+
+## Managing rules
+
+Zone rules use an atomic replace pattern — when you save rules for a zone, all existing rules are replaced. To modify:
+
+1. Open the zone in the Zone Rules Manager
+2. View current rules with their access type, team, and flags
+3. Add, edit, or remove rules
+4. Click **Save** to apply all changes at once
+
+## Example
+
+A typical configuration for a team zone:
+
+1. Create a zone "Engineering Area" on Floor 2
+2. Add a **Restricted** rule for the "Engineering" team
+3. Enable **Priority Group** so engineers can book 30 days ahead
+4. Enable **Hide for Unauthorized** so only engineers see the zone
+
+Other teams can't see or book desks in the Engineering Area.

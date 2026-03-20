@@ -1,0 +1,70 @@
+---
+title: Zonenregeln
+description: Steuere, wer in bestimmten Zonen buchen kann — offener, eingeschränkter oder zugewiesener Zugang.
+---
+
+Zonenregeln ermöglichen es, den Buchungszugang in bestimmten Zonen auf bestimmte Teams oder Abteilungen zu beschränken. Nützlich für reservierte Bereiche, Ruhezonen oder Team-Nachbarschaften.
+
+> Zonenregeln erfordern einen **Pro**-Plan.
+
+## Zugriffstypen
+
+Jede Zone kann einen von drei Zugriffstypen haben:
+
+| Typ | Beschreibung |
+|-----|-------------|
+| **Offen** | Jeder im Workspace kann Schreibtische in dieser Zone buchen (Standard) |
+| **Eingeschränkt** | Nur Mitglieder bestimmter Teams oder Abteilungen können buchen |
+| **Zugewiesen** | Nur Mitglieder mit einer Schreibtischzuweisung in dieser Zone können buchen |
+
+## Eine Zonenregel erstellen
+
+1. Gehe zu **Einstellungen** > **Richtlinien** > **Zonenregeln** (oder den Zonenregeln-Manager)
+2. Wähle einen Standort, eine Etage und eine Zone
+3. Klicke auf **Regel hinzufügen**
+4. Konfiguriere:
+   - **Zugriffstyp** — Offen, Eingeschränkt oder Zugewiesen
+   - **Team** (für Eingeschränkt) — Wähle ein Team
+   - **Abteilung** (für Eingeschränkt) — Oder wähle eine Abteilung
+   - **Prioritätsgruppe** — Aktiviere, um dieser Gruppe erweiterte Vorabuchung zu geben (nutzt Prioritäts-Vorabuchungstage aus den [Richtlinien](/docs/admin/policies))
+   - **Für Unbefugte ausblenden** — Zone für Mitglieder ohne Zugang ausblenden
+5. Klicke auf **Speichern**
+
+Du kannst bis zu **50 Regeln** pro Zone hinzufügen. Für eingeschränkte Zonen legt jede Regel ein Team oder eine Abteilung fest, die Zugang hat.
+
+## Prioritätsgruppen
+
+Wenn das **Prioritätsgruppen**-Flag bei einer Zonenregel aktiviert ist:
+
+- Mitglieder des angegebenen Teams/der Abteilung können Schreibtische in dieser Zone mit dem **Prioritäts-Vorabuchungsfenster** buchen (Standard: 30 statt 14 Tage)
+- Andere Mitglieder (wenn die Zone offen ist) nutzen das reguläre Vorabuchungsfenster
+
+Nützlich, um Teams Prioritätszugang zu ihrer Heimzone zu geben, während andere buchen können, wenn Platz verfügbar ist.
+
+## Zonen ausblenden
+
+Wenn **Für Unbefugte ausblenden** aktiviert ist:
+
+- Mitglieder, die keiner Zugriffsregel entsprechen, sehen die Zone in der Schreibtischbuchungsansicht nicht
+- Die Zone und ihre Schreibtische sind für unbefugte Mitglieder vollständig ausgeblendet
+- Befugte Mitglieder sehen die Zone normal
+
+## Regeln verwalten
+
+Zonenregeln nutzen atomares Ersetzen — wenn du Regeln für eine Zone speicherst, werden alle bestehenden Regeln ersetzt. Zum Ändern:
+
+1. Öffne die Zone im Zonenregeln-Manager
+2. Sieh die aktuellen Regeln mit Zugriffstyp, Team und Flags
+3. Füge Regeln hinzu, bearbeite oder entferne sie
+4. Klicke auf **Speichern**, um alle Änderungen auf einmal anzuwenden
+
+## Beispiel
+
+Eine typische Konfiguration für eine Teamzone:
+
+1. Erstelle eine Zone "Engineering Area" auf Etage 2
+2. Füge eine **Eingeschränkt**-Regel für das Team "Engineering" hinzu
+3. Aktiviere **Prioritätsgruppe**, damit Engineers 30 Tage im Voraus buchen können
+4. Aktiviere **Für Unbefugte ausblenden**, damit nur Engineers die Zone sehen
+
+Andere Teams können Schreibtische in der Engineering Area weder sehen noch buchen.

@@ -1,0 +1,80 @@
+---
+title: Booking Policies
+description: Configure check-in, advance booking, no-show, and booking limits per location.
+---
+
+Booking policies control how members book desks and parking. You can set a workspace-wide default policy and override it per location. Access them via **Settings** > **Policies**.
+
+> Booking policies require a **Pro** plan.
+
+## Policy hierarchy
+
+- **Workspace default** — Applies to all locations that don't have their own policy
+- **Location override** — A custom policy for a specific location, overriding the workspace default
+
+To revert a location to the workspace default, delete its custom policy.
+
+## Policy settings
+
+### Check-in
+
+| Setting | Default | Range | Description |
+|---------|---------|-------|-------------|
+| **Check-in Required** | Yes | — | Whether members must check in after booking |
+| **Check-in Mode** | Manual | None, Manual, QR Required | How members check in |
+| **Check-in Window** | 30 min | 5–120 min | Minutes before the booking date when check-in becomes available |
+
+### No-show & auto-release
+
+| Setting | Default | Range | Description |
+|---------|---------|-------|-------------|
+| **Auto-release on No-show** | Yes | — | Automatically release bookings when members don't check in |
+| **No-show Warning Threshold** | 3 days | 1–10 | Days of no-shows before the booking is auto-released |
+
+### Booking limits
+
+| Setting | Default | Range | Description |
+|---------|---------|-------|-------------|
+| **Max Desk Bookings per Day** | 1 | 1–10 | Maximum desk bookings a member can make per day |
+| **Max Parking Bookings per Day** | 1 | 1–10 | Maximum parking bookings per day |
+| **Max Guest Bookings per Day** | 3 | 0–20 | Maximum guest bookings per day (0 = disabled) |
+
+### Advance booking window
+
+| Setting | Default | Range | Description |
+|---------|---------|-------|-------------|
+| **Default Advance Days** | 14 | 1–90 | How far in advance regular members can book |
+| **Priority Advance Days** | 30 | 1–365 | How far in advance priority members can book |
+
+Priority members are those in zones with the **Priority Group** flag enabled (see [Zone Rules](/docs/admin/zone-rules)).
+
+### Booking duration
+
+| Setting | Default | Range | Description |
+|---------|---------|-------|-------------|
+| **Min Duration** | None | 15–480 min | Minimum booking duration (optional) |
+| **Max Duration** | None | 15–480 min | Maximum booking duration (optional) |
+
+### Additional settings
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| **Assigned Desk OOO Release** | Yes | Auto-release assigned desks when the member is marked Away |
+| **Recurring Bookings Allowed** | No | Allow members to create repeating bookings |
+
+## Managing policies
+
+### Workspace default
+
+1. Go to **Settings** > **Policies**
+2. Edit the **Workspace Default** card
+3. Change settings and click **Save**
+
+### Location override
+
+1. In the Policies tab, find the location in the list
+2. Click **Edit** to create or modify a custom policy
+3. Adjust settings for that location
+4. Click **Save**
+
+To revert a location to the workspace default, click **Delete Policy** on the location's custom policy.

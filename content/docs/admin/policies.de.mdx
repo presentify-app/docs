@@ -1,0 +1,80 @@
+---
+title: Buchungsrichtlinien
+description: Konfiguriere Check-in, Vorabuchung, No-Show und Buchungslimits pro Standort.
+---
+
+Buchungsrichtlinien steuern, wie Mitglieder Schreibtische und Parkplätze buchen. Du kannst eine workspace-weite Standardrichtlinie setzen und sie pro Standort überschreiben. Greife darauf zu über **Einstellungen** > **Richtlinien**.
+
+> Buchungsrichtlinien erfordern einen **Pro**-Plan.
+
+## Richtlinien-Hierarchie
+
+- **Workspace-Standard** — Gilt für alle Standorte ohne eigene Richtlinie
+- **Standort-Überschreibung** — Eine individuelle Richtlinie für einen bestimmten Standort
+
+Um einen Standort auf den Workspace-Standard zurückzusetzen, lösche seine individuelle Richtlinie.
+
+## Richtlinien-Einstellungen
+
+### Check-in
+
+| Einstellung | Standard | Bereich | Beschreibung |
+|-------------|---------|---------|-------------|
+| **Check-in erforderlich** | Ja | — | Ob Mitglieder nach der Buchung einchecken müssen |
+| **Check-in-Modus** | Manuell | Keiner, Manuell, QR erforderlich | Wie Mitglieder einchecken |
+| **Check-in-Fenster** | 30 Min | 5–120 Min | Minuten vor dem Buchungsdatum, ab wann Check-in verfügbar ist |
+
+### No-Show & automatische Freigabe
+
+| Einstellung | Standard | Bereich | Beschreibung |
+|-------------|---------|---------|-------------|
+| **Auto-Freigabe bei No-Show** | Ja | — | Buchungen automatisch freigeben, wenn Mitglieder nicht einchecken |
+| **No-Show-Warnschwelle** | 3 Tage | 1–10 | Tage ohne Check-in, bevor die Buchung auto-freigegeben wird |
+
+### Buchungslimits
+
+| Einstellung | Standard | Bereich | Beschreibung |
+|-------------|---------|---------|-------------|
+| **Max Schreibtischbuchungen pro Tag** | 1 | 1–10 | Maximale Schreibtischbuchungen pro Mitglied pro Tag |
+| **Max Parkplatzbuchungen pro Tag** | 1 | 1–10 | Maximale Parkplatzbuchungen pro Tag |
+| **Max Gastbuchungen pro Tag** | 3 | 0–20 | Maximale Gastbuchungen pro Tag (0 = deaktiviert) |
+
+### Vorabuchungsfenster
+
+| Einstellung | Standard | Bereich | Beschreibung |
+|-------------|---------|---------|-------------|
+| **Standard Vorabuchungstage** | 14 | 1–90 | Wie weit im Voraus reguläre Mitglieder buchen können |
+| **Prioritäts-Vorabuchungstage** | 30 | 1–365 | Wie weit im Voraus Prioritätsmitglieder buchen können |
+
+Prioritätsmitglieder sind jene in Zonen mit aktiviertem **Prioritätsgruppen**-Flag (siehe [Zonenregeln](/docs/admin/zone-rules)).
+
+### Buchungsdauer
+
+| Einstellung | Standard | Bereich | Beschreibung |
+|-------------|---------|---------|-------------|
+| **Mindestdauer** | Keine | 15–480 Min | Minimale Buchungsdauer (optional) |
+| **Maximaldauer** | Keine | 15–480 Min | Maximale Buchungsdauer (optional) |
+
+### Weitere Einstellungen
+
+| Einstellung | Standard | Beschreibung |
+|-------------|---------|-------------|
+| **Zugewiesene Desks bei Abwesenheit freigeben** | Ja | Zugewiesene Schreibtische automatisch freigeben, wenn das Mitglied als Abwesend markiert ist |
+| **Wiederkehrende Buchungen erlaubt** | Nein | Mitgliedern erlauben, sich wiederholende Buchungen zu erstellen |
+
+## Richtlinien verwalten
+
+### Workspace-Standard
+
+1. Gehe zu **Einstellungen** > **Richtlinien**
+2. Bearbeite die **Workspace-Standard**-Karte
+3. Ändere Einstellungen und klicke auf **Speichern**
+
+### Standort-Überschreibung
+
+1. Finde im Richtlinien-Tab den Standort in der Liste
+2. Klicke auf **Bearbeiten**, um eine individuelle Richtlinie zu erstellen oder zu ändern
+3. Passe die Einstellungen für diesen Standort an
+4. Klicke auf **Speichern**
+
+Um einen Standort auf den Workspace-Standard zurückzusetzen, klicke auf **Richtlinie löschen** bei der individuellen Standort-Richtlinie.
