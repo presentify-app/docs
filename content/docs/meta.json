@@ -6,13 +6,14 @@
     "roles",
     "plans",
     "---Guides---",
-    "...employee",
-    "...manager",
-    "...admin",
-    "...setup",
-    "...integrations",
-    "...notifications",
+    "employee",
+    "manager",
+    "admin",
+    "setup",
+    "---Resources---",
+    "integrations",
+    "notifications",
     "---Developers---",
-    "...api"
+    "api"
   ]
 }
