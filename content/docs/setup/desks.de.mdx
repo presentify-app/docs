@@ -1,0 +1,48 @@
+---
+title: Schreibtische
+description: "Einrichtungsassistent Schritt 4: Generiere automatisch Gebäude, Etagen und Schreibtische."
+---
+
+Dieser Schritt ermöglicht es dir, schnell ein Desk-Layout für deine Standorte zu generieren. Presentify erstellt Gebäude, Etagen und Schreibtische automatisch basierend auf deiner Eingabe.
+
+> Dieser Schritt wird nur angezeigt, wenn du im vorherigen Schritt mindestens einen Standort hinzugefügt hast.
+
+## Konfiguration
+
+| Feld | Standard | Beschreibung |
+|------|---------|-------------|
+| **Standort** | Erster Standort | Wähle, welcher Standort eingerichtet werden soll (bei mehreren) |
+| **Gebäudename** | "Hauptgebäude" | Name für das Gebäude |
+| **Etagennamen** | "Erdgeschoss" | Ein Etagenname pro Zeile. Mehrere Zeilen für mehrere Etagen. |
+| **Schreibtische pro Etage** | 10 | Anzahl der zu erstellenden Schreibtische pro Etage (max 100) |
+
+## Was erstellt wird
+
+Wenn du auf **Erstellen** klickst, generiert Presentify:
+
+1. Ein **Gebäude** unter dem ausgewählten Standort
+2. Eine **Etage** für jede Zeile im Etagennamen-Feld
+3. Die angegebene Anzahl **Schreibtische** pro Etage, benannt "Schreibtisch 1", "Schreibtisch 2" etc.
+
+Alle Schreibtische werden als **Pool**-Typ (geteilt, buchbar von jedem) im Status **Buchbar** erstellt.
+
+## Beispiel
+
+Mit diesen Eingaben:
+- Gebäude: "Hauptgebäude"
+- Etagen: "Erdgeschoss" und "1. OG"
+- Schreibtische pro Etage: 15
+
+Presentify erstellt: 1 Gebäude, 2 Etagen und 30 Schreibtische gesamt (15 pro Etage).
+
+## Später anpassen
+
+Der Assistent erstellt ein grundlegendes Desk-Layout. Du kannst alles später anpassen:
+
+- Schreibtische umbenennen, Typen ändern (Individuell, Pool, Drop-in)
+- Ausstattungsmerkmale hinzufügen (Monitor, Stehschreibtisch etc.)
+- Zonen und Nachbarschaften erstellen
+- Weitere Gebäude und Etagen hinzufügen
+- Schreibtische per CSV importieren
+
+Siehe [Schreibtischverwaltung](/docs/admin/desks) für alle Details.

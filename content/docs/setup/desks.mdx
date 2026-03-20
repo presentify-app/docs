@@ -1,0 +1,48 @@
+---
+title: Desk Setup
+description: "Setup Wizard Step 4: Auto-generate buildings, floors, and desks for your locations."
+---
+
+This step lets you quickly generate a desk layout for your locations. Presentify creates buildings, floors, and desks automatically based on your input.
+
+> This step is only shown if you added at least one location in the previous step.
+
+## Configuration
+
+| Field | Default | Description |
+|-------|---------|-------------|
+| **Location** | First location | Select which location to set up (if you have multiple) |
+| **Building Name** | "Main Building" | Name for the building |
+| **Floor Names** | "Ground Floor" | One floor name per line. Add multiple lines for multiple floors. |
+| **Desks per Floor** | 10 | Number of desks to create on each floor (max 100) |
+
+## What gets created
+
+When you click **Create**, Presentify generates:
+
+1. A **building** under the selected location
+2. A **floor** for each line in the floor names field
+3. The specified number of **desks** per floor, named "Desk 1", "Desk 2", etc.
+
+All desks are created as **Pool** type (shared, bookable by anyone) in **Reservable** state.
+
+## Example
+
+With these inputs:
+- Building: "Main Building"
+- Floors: "Ground Floor" and "1st Floor"
+- Desks per floor: 15
+
+Presentify creates: 1 building, 2 floors, and 30 desks total (15 per floor).
+
+## Customizing later
+
+The wizard creates a basic desk layout. You can customize everything later:
+
+- Rename desks, change types (Individual, Pool, Drop-in)
+- Add equipment tags (Monitor, Standing Desk, etc.)
+- Create zones and neighborhoods
+- Add more buildings and floors
+- Import desks via CSV
+
+See [Desk Management](/docs/admin/desks) for full details.
