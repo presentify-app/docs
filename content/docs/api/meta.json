@@ -2,15 +2,15 @@
   "title": "API Reference",
   "pages": [
     "index",
-    "member.list",
-    "member.getById",
-    "location.list",
-    "location.getById",
-    "presence.list",
-    "presence.upsert",
-    "presence.delete",
-    "booking.list",
-    "booking.getById",
-    "booking.cancel"
+    "member-list",
+    "member-getById",
+    "location-list",
+    "location-getById",
+    "presence-list",
+    "presence-upsert",
+    "presence-delete",
+    "booking-list",
+    "booking-getById",
+    "booking-cancel"
   ]
 }
