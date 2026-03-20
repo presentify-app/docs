@@ -1,0 +1,63 @@
+---
+title: Analytics
+description: Track office attendance, identify trends, and export data — for Managers and above.
+---
+
+The Analytics dashboard gives you insights into how your workspace uses office space. Track attendance patterns, compare locations, and measure adoption.
+
+> Analytics requires a **Pro** plan and the **Manager**, **Office Admin**, **Admin**, or **Owner** role.
+
+## KPI cards
+
+Four headline metrics at the top of the dashboard:
+
+| KPI | Description |
+|-----|-------------|
+| **Total Attendance** | Total in-office days during the selected period. Compares to the previous period of equal length. |
+| **In-Office Rate** | Average daily percentage of members in the office. |
+| **Peak Day** | The date with the highest in-office attendance and the count. |
+| **Active Users** | Distinct members who set at least one presence entry, shown as "X of Y total members." |
+
+## Charts
+
+### Attendance by Weekday
+
+A horizontal bar chart showing average in-office and remote attendance per weekday (Monday through Friday). Helps identify which days are most popular for office work.
+
+### Attendance Trend
+
+A line chart tracking in-office and remote counts over time. Displays daily data points for ranges up to 30 days, and weekly aggregates for longer ranges.
+
+### Location Breakdown
+
+A horizontal bar chart showing average daily in-office attendance per location. This chart always shows all locations regardless of the location filter.
+
+### Team Breakdown
+
+A horizontal bar chart showing the in-office rate percentage per team. For privacy, only teams with **3 or more members** are included.
+
+## Adoption metrics
+
+Below the charts, four adoption stats are displayed:
+
+- **Total Members** — Active workspace members
+- **Weekly Active Users (WAU)** — Members with at least one entry in the last 7 days
+- **Monthly Active Users (MAU)** — Members with at least one entry in the last 30 days
+- **Avg. Entries per User** — Average number of presence entries per member in the period
+
+## Filters
+
+- **Date Range** — Presets: Last 7 days, Last 30 days, Last 90 days. Custom range with a maximum of 90 days.
+- **Location** — Filter by a specific location or view all locations.
+
+## CSV Export
+
+Export data for further analysis. Three export types are available:
+
+| Export | Columns |
+|--------|---------|
+| **Attendance Data** | Date, In Office, Remote, Total |
+| **Location Data** | Location, Total In Office, Days with Data, Avg Daily In Office |
+| **Team Data** | Team, Members, In Office Days, Total Days, In Office Rate % |
+
+Files are named `{type}_{startDate}_{endDate}.csv` and include a BOM for Excel compatibility.

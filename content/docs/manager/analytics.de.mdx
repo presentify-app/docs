@@ -1,0 +1,63 @@
+---
+title: Analytics
+description: Verfolge Büro-Anwesenheit, erkenne Trends und exportiere Daten — für Manager und höher.
+---
+
+Das Analytics-Dashboard gibt dir Einblicke, wie dein Workspace Büroflächen nutzt. Verfolge Anwesenheitsmuster, vergleiche Standorte und messe die Akzeptanz.
+
+> Analytics erfordert einen **Pro**-Plan und die Rolle **Manager**, **Office Admin**, **Admin** oder **Owner**.
+
+## KPI-Karten
+
+Vier Kernkennzahlen oben auf dem Dashboard:
+
+| KPI | Beschreibung |
+|-----|-------------|
+| **Gesamtanwesenheit** | Gesamtzahl der Bürotage im ausgewählten Zeitraum. Vergleicht mit dem vorherigen Zeitraum gleicher Länge. |
+| **Büro-Quote** | Durchschnittlicher täglicher Prozentsatz der Mitglieder im Büro. |
+| **Spitzentag** | Das Datum mit der höchsten Büro-Anwesenheit und die Anzahl. |
+| **Aktive Nutzer** | Verschiedene Mitglieder, die mindestens einen Anwesenheitseintrag gesetzt haben, angezeigt als "X von Y Mitgliedern." |
+
+## Diagramme
+
+### Anwesenheit nach Wochentag
+
+Ein horizontales Balkendiagramm mit durchschnittlicher Büro- und Remote-Anwesenheit pro Wochentag (Montag bis Freitag). Hilft zu erkennen, welche Tage am beliebtesten für Büroarbeit sind.
+
+### Anwesenheitstrend
+
+Ein Liniendiagramm, das Büro- und Remote-Zahlen über die Zeit verfolgt. Zeigt tägliche Datenpunkte für Zeiträume bis 30 Tage und wöchentliche Aggregate für längere Zeiträume.
+
+### Standort-Aufschlüsselung
+
+Ein horizontales Balkendiagramm mit der durchschnittlichen täglichen Büro-Anwesenheit pro Standort. Dieses Diagramm zeigt immer alle Standorte unabhängig vom Standortfilter.
+
+### Team-Aufschlüsselung
+
+Ein horizontales Balkendiagramm mit der Büro-Quote in Prozent pro Team. Aus Datenschutzgründen werden nur Teams mit **3 oder mehr Mitgliedern** aufgeführt.
+
+## Akzeptanz-Metriken
+
+Unter den Diagrammen werden vier Akzeptanz-Statistiken angezeigt:
+
+- **Mitglieder gesamt** — Aktive Workspace-Mitglieder
+- **Wöchentlich aktive Nutzer (WAU)** — Mitglieder mit mindestens einem Eintrag in den letzten 7 Tagen
+- **Monatlich aktive Nutzer (MAU)** — Mitglieder mit mindestens einem Eintrag in den letzten 30 Tagen
+- **Durchschn. Einträge pro Nutzer** — Durchschnittliche Anzahl der Anwesenheitseinträge pro Mitglied im Zeitraum
+
+## Filter
+
+- **Zeitraum** — Voreinstellungen: Letzte 7 Tage, Letzte 30 Tage, Letzte 90 Tage. Benutzerdefinierter Zeitraum mit maximal 90 Tagen.
+- **Standort** — Nach einem bestimmten Standort filtern oder alle Standorte anzeigen.
+
+## CSV-Export
+
+Exportiere Daten für weitere Analyse. Drei Exporttypen sind verfügbar:
+
+| Export | Spalten |
+|--------|---------|
+| **Anwesenheitsdaten** | Datum, Im Büro, Remote, Gesamt |
+| **Standortdaten** | Standort, Gesamt Im Büro, Tage mit Daten, Durchschn. Tägliche Anwesenheit |
+| **Teamdaten** | Team, Mitglieder, Bürotage, Gesamttage, Büro-Quote % |
+
+Dateien werden als `{typ}_{startdatum}_{enddatum}.csv` benannt und enthalten eine BOM für Excel-Kompatibilität.
