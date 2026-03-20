@@ -1,0 +1,83 @@
+---
+title: API-Schlüssel
+description: Erstelle API-Schlüssel für den Zugriff auf die Presentify REST API für programmatische Integrationen.
+---
+
+API-Schlüssel ermöglichen externen Systemen den Zugriff auf die Presentify REST API (v1). Nutze sie für eigene Integrationen, Automatisierung und Datenexport.
+
+> API-Schlüssel erfordern einen **Enterprise**-Plan.
+
+## Einen API-Schlüssel erstellen
+
+1. Gehe zu **Einstellungen** > **API-Schlüssel**
+2. Klicke auf **API-Schlüssel erstellen**
+3. Gib einen **Namen** für den Schlüssel ein (z.B. "HR-System-Integration")
+4. Wähle optional ein **Ausführen-als-Mitglied** — der API-Schlüssel führt Anfragen als dieses Mitglied aus
+5. Klicke auf **Erstellen**
+
+Der vollständige API-Schlüssel wird **einmalig** angezeigt. Kopiere ihn sofort und speichere ihn sicher — er kann später nicht mehr abgerufen werden.
+
+API-Schlüssel nutzen das Format: `pk_` gefolgt von einer einzigartigen Kennung (z.B. `pk_clk1a2b3c4d5e6...`).
+
+In der Schlüsselliste werden nur die letzten 8 Zeichen angezeigt (z.B. `••••••••j1k2l3m4`).
+
+## Ausführen-als-Mitglied
+
+Jeder API-Schlüssel operiert im Kontext eines bestimmten Workspace-Mitglieds. Dies bestimmt:
+
+- Auf welchen Workspace der API-Schlüssel zugreift
+- Den Mitgliedskontext für Operationen (z.B. "Buchung erstellt von")
+- Standard: das Mitglied, das den Schlüssel erstellt hat
+
+Du kannst das Ausführen-als-Mitglied beim Erstellen des Schlüssels ändern, um einen Service-Account oder bestimmten Benutzer zu imitieren.
+
+## Die API nutzen
+
+Sende Anfragen an die Presentify REST API v1 mit dem `X-API-KEY`-Header:
+
+```bash
+curl -X GET "https://presentify.org/api/v1/booking.list" \
+  -H "X-API-KEY: pk_dein_api_schluessel_hier" \
+  -H "Content-Type: application/json" \
+  -d '{"startDate": "2026-03-01", "endDate": "2026-03-31"}'
+```
+
+## Verfügbare Endpunkte
+
+Die REST API v1 bietet Zugriff auf:
+
+| Router | Beschreibung |
+|--------|-------------|
+| `member` | Workspace-Mitglieder abfragen |
+| `location` | Standorte und Ressourcen abfragen |
+| `presence` | Anwesenheitseinträge abfragen |
+| `booking` | Schreibtisch- und Parkplatzbuchungen abfragen |
+
+Alle Endpunkte nutzen das tRPC-Protokoll über HTTP. Siehe die [API-Referenz](/docs/api) für detaillierte Endpunkt-Dokumentation.
+
+## Schlüssel verwalten
+
+### Schlüssel anzeigen
+
+Der API-Schlüssel-Tab zeigt alle Schlüssel mit:
+
+- Schlüsselname
+- Maskierter Schlüssel (letzte 8 Zeichen)
+- Ausführen-als-Mitglied Name
+- Zuletzt-verwendet-Zeitstempel
+- Erstellungsdatum
+
+### Einen Schlüssel widerrufen
+
+1. Klicke auf den Widerrufen-Button neben einem Schlüssel
+2. Bestätige den Widerruf
+
+Widerrufene Schlüssel werden dauerhaft gelöscht und funktionieren sofort nicht mehr. Diese Aktion kann nicht rückgängig gemacht werden.
+
+## Sicherheits-Best-Practices
+
+- Speichere API-Schlüssel in Umgebungsvariablen, niemals im Code
+- Nutze einen dedizierten Service-Account als Ausführen-als-Mitglied
+- Rotiere Schlüssel regelmäßig, indem du einen neuen erstellst und den alten widerrufst
+- Überwache den "Zuletzt verwendet"-Zeitstempel, um ungenutzte Schlüssel zu erkennen
+- Widerrufe Schlüssel sofort, wenn sie möglicherweise kompromittiert wurden

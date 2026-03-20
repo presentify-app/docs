@@ -1,0 +1,47 @@
+---
+title: Calendar Sync
+description: Subscribe to your Presentify schedule in Outlook, Google, or Apple Calendar via iCal.
+---
+
+Presentify provides an iCalendar (ICS) feed that you can subscribe to in any calendar app. This gives you a read-only view of your presence and bookings alongside your regular calendar.
+
+For step-by-step setup instructions, see [Calendar Subscription](/docs/employee/calendar-subscription) in the Employee Guide.
+
+## How it works
+
+Each member can generate a unique calendar token in their profile. This token creates a personal URL:
+
+```
+webcal://presentify.org/api/calendar/{token}
+```
+
+Your calendar app polls this URL periodically and displays your Presentify events.
+
+## What's included
+
+The calendar feed contains events for:
+
+- **Presence entries** — Your daily status (In Office, Remote, Away, etc.)
+- **Desk bookings** — With desk name and location details
+- **Parking bookings** — With spot name and location
+
+## Time range
+
+The feed includes:
+
+- **30 days in the past** — Recent history
+- **90 days in the future** — Upcoming schedule
+
+## Limitations
+
+- **Read-only** — Changes must be made in Presentify. Editing or deleting events in your calendar app has no effect.
+- **No write-back** — Presentify does not create events in your Outlook or Google calendar directly. It only provides a subscription feed.
+- **Polling interval** — Calendar apps typically refresh subscriptions every 15–60 minutes. New bookings may take a few minutes to appear.
+- **Rate limited** — 10 requests per 60 seconds per IP address to prevent abuse.
+
+## Security
+
+- Calendar tokens are unique per member and can be [revoked](/docs/employee/calendar-subscription) at any time
+- Revoking a token immediately invalidates the old URL
+- A new token can be generated after revoking
+- Tokens do not expire automatically

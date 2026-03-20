@@ -1,0 +1,46 @@
+---
+title: Microsoft 365
+description: Anmeldung mit Microsoft, automatische Profilsynchronisierung und Entra ID Integration.
+---
+
+Presentify integriert sich mit Microsoft 365 für Authentifizierung und Profilsynchronisierung.
+
+## Microsoft-Anmeldung
+
+Mitglieder können sich mit ihrem Microsoft 365 Konto über OAuth anmelden. Dies ist die empfohlene Methode für Organisationen, die Microsoft 365 verwenden.
+
+Bei der Anmeldung mit Microsoft:
+
+1. Presentify leitet zur Microsoft OAuth-Autorisierungsseite weiter
+2. Das Mitglied authentifiziert sich mit seinen Microsoft 365 Anmeldedaten
+3. Presentify liest das Profil aus Microsoft Graph (Name, E-Mail, Firma)
+4. Ein Presentify-Account wird automatisch erstellt oder verknüpft
+
+Admins können die Anmeldung auf Microsoft-only einschränken über **Einstellungen** > **Allgemein** > **Erlaubte Auth-Methoden**.
+
+## Profilsynchronisierung
+
+Nach der Microsoft-Anmeldung synchronisiert Presentify Folgendes aus Microsoft Graph:
+
+- **Anzeigename** — Aus dem Microsoft 365 Profil
+- **Profilbild** — Synchronisiert vom Microsoft 365 Profilfoto (kann mit einem eigenen Upload überschrieben werden)
+- **Firmenname** — Wird als Workspace-Namensvorschlag für neue Benutzer verwendet
+
+Die Profilsync erfolgt automatisch nach jeder Anmeldung. Manuelle Uploads haben Vorrang — wenn ein Mitglied ein eigenes Profilbild hochlädt, wird das Microsoft-Foto nicht überschrieben.
+
+## Workspace-Namensvorschlag
+
+Wenn ein neuer Benutzer sich zum ersten Mal mit Microsoft anmeldet und einen Workspace erstellt, schlägt Presentify den Workspace-Namen vor aus:
+
+1. Dem **Firmennamen** aus dem Microsoft Graph Profil (wenn vorhanden)
+2. Der **E-Mail-Domain** als Fallback (z.B. "firma" von benutzer@firma.com)
+
+## Was noch nicht enthalten ist
+
+Die folgenden Microsoft 365 Integrationen sind geplant, aber noch nicht verfügbar:
+
+- **Bulk Entra ID Benutzer-/Gruppensync** — Automatischer Import von Benutzern aus deinem Microsoft Entra ID Verzeichnis
+- **Outlook Kalender-Rückschreibung** — Schreibtischbuchungen als Events in die Outlook-Kalender der Mitglieder schreiben
+- **Teams Anwesenheitsstatus-Sync** — Presentify-Anwesenheit mit Microsoft Teams Anwesenheit synchronisieren
+
+Derzeit müssen Benutzer [manuell eingeladen](/docs/admin/members) werden oder sich über SSO anmelden, um einem Workspace beizutreten.

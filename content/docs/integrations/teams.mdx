@@ -1,0 +1,33 @@
+---
+title: Microsoft Teams
+description: Use Presentify within Microsoft Teams with automatic single sign-on.
+---
+
+Presentify works within Microsoft Teams with automatic single sign-on (SSO). Members signed in to Teams are authenticated in Presentify without entering additional credentials.
+
+## Teams SSO
+
+When accessing Presentify from Microsoft Teams:
+
+1. Teams provides an SSO token automatically
+2. Presentify exchanges this token via Microsoft's On-Behalf-Of (OBO) flow
+3. The member is signed in without seeing a login page
+4. If silent SSO fails, a Microsoft sign-in button is shown as fallback
+
+Email-based Magic Link sign-in is not available within Teams — only Microsoft authentication is used.
+
+## Multi-workspace support
+
+If a member belongs to multiple workspaces, Presentify remembers their last-used workspace in Teams and auto-selects it on subsequent visits.
+
+## Session handling
+
+Teams sessions use `SameSite=none` cookies to work within the Teams iframe. Sessions are otherwise identical to web sessions (30-day duration, Iron-Session encrypted).
+
+## What's not included (yet)
+
+The following Teams integrations are planned but not yet available:
+
+- **Teams bot** — Chat commands for booking desks or checking presence
+- **Presence status sync** — Syncing Presentify status with Teams presence indicators
+- **Teams notifications** — Sending booking confirmations or reminders via Teams chat

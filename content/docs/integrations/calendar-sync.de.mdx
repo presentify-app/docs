@@ -1,0 +1,47 @@
+---
+title: Kalender-Sync
+description: Abonniere deinen Presentify-Zeitplan in Outlook, Google oder Apple Kalender über iCal.
+---
+
+Presentify bietet einen iCalendar (ICS) Feed, den du in jeder Kalender-App abonnieren kannst. Dies gibt dir eine schreibgeschützte Ansicht deiner Anwesenheit und Buchungen neben deinem regulären Kalender.
+
+Für eine Schritt-für-Schritt-Anleitung siehe [Kalender-Abonnement](/docs/employee/calendar-subscription) im Mitarbeiter-Handbuch.
+
+## Wie es funktioniert
+
+Jedes Mitglied kann ein einzigartiges Kalender-Token in seinem Profil generieren. Dieses Token erstellt eine persönliche URL:
+
+```
+webcal://presentify.org/api/calendar/{token}
+```
+
+Deine Kalender-App ruft diese URL regelmäßig ab und zeigt deine Presentify-Events an.
+
+## Was enthalten ist
+
+Der Kalender-Feed enthält Events für:
+
+- **Anwesenheitseinträge** — Dein täglicher Status (Im Büro, Remote, Abwesend etc.)
+- **Schreibtischbuchungen** — Mit Schreibtischname und Standortdetails
+- **Parkplatzbuchungen** — Mit Platzname und Standort
+
+## Zeitraum
+
+Der Feed enthält:
+
+- **30 Tage in der Vergangenheit** — Aktuelle Historie
+- **90 Tage in der Zukunft** — Kommender Zeitplan
+
+## Einschränkungen
+
+- **Schreibgeschützt** — Änderungen müssen in Presentify vorgenommen werden. Bearbeiten oder Löschen von Events in deiner Kalender-App hat keine Auswirkung.
+- **Keine Rückschreibung** — Presentify erstellt keine Events direkt in deinem Outlook- oder Google-Kalender. Es bietet nur einen Abonnement-Feed.
+- **Abrufintervall** — Kalender-Apps aktualisieren Abonnements typischerweise alle 15–60 Minuten. Neue Buchungen können einige Minuten brauchen, um zu erscheinen.
+- **Rate-limitiert** — 10 Anfragen pro 60 Sekunden pro IP-Adresse zur Missbrauchsprävention.
+
+## Sicherheit
+
+- Kalender-Tokens sind einzigartig pro Mitglied und können jederzeit [widerrufen](/docs/employee/calendar-subscription) werden
+- Das Widerrufen eines Tokens macht die alte URL sofort ungültig
+- Ein neues Token kann nach dem Widerrufen generiert werden
+- Tokens laufen nicht automatisch ab

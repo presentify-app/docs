@@ -1,0 +1,83 @@
+---
+title: API Keys
+description: Create API keys to access the Presentify REST API for programmatic integrations.
+---
+
+API keys allow external systems to access the Presentify REST API (v1). Use them for custom integrations, automation, and data export.
+
+> API keys require an **Enterprise** plan.
+
+## Creating an API key
+
+1. Go to **Settings** > **API Keys**
+2. Click **Create API Key**
+3. Enter a **name** for the key (e.g., "HR System Integration")
+4. Optionally select a **Run-as Member** — the API key will execute requests as this member
+5. Click **Create**
+
+The full API key is shown **once**. Copy it immediately and store it securely — it cannot be retrieved later.
+
+API keys use the format: `pk_` followed by a unique identifier (e.g., `pk_clk1a2b3c4d5e6...`).
+
+In the key list, only the last 8 characters are shown (e.g., `••••••••j1k2l3m4`).
+
+## Run-as Member
+
+Each API key operates in the context of a specific workspace member. This determines:
+
+- Which workspace the API key accesses
+- The member context for operations (e.g., "booking created by")
+- Default: the member who created the key
+
+You can change the run-as member when creating the key to impersonate a service account or specific user.
+
+## Using the API
+
+Send requests to the Presentify REST API v1 with the `X-API-KEY` header:
+
+```bash
+curl -X GET "https://presentify.org/api/v1/booking.list" \
+  -H "X-API-KEY: pk_your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{"startDate": "2026-03-01", "endDate": "2026-03-31"}'
+```
+
+## Available endpoints
+
+The REST API v1 provides access to:
+
+| Router | Description |
+|--------|-------------|
+| `member` | Query workspace members |
+| `location` | Query locations and resources |
+| `presence` | Query presence entries |
+| `booking` | Query desk and parking bookings |
+
+All endpoints use the tRPC protocol over HTTP. See the [API Reference](/docs/api) for detailed endpoint documentation.
+
+## Managing keys
+
+### Viewing keys
+
+The API Keys tab shows all keys with:
+
+- Key name
+- Masked key (last 8 characters)
+- Run-as member name
+- Last used timestamp
+- Creation date
+
+### Revoking a key
+
+1. Click the revoke button next to a key
+2. Confirm the revocation
+
+Revoked keys are permanently deleted and stop working immediately. This action cannot be undone.
+
+## Security best practices
+
+- Store API keys in environment variables, never in code
+- Use a dedicated service account as the run-as member
+- Rotate keys periodically by creating a new key and revoking the old one
+- Monitor the "Last Used" timestamp to detect unused keys
+- Revoke keys immediately if they may have been compromised

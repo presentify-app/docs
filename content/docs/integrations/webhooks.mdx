@@ -1,0 +1,129 @@
+---
+title: Webhooks
+description: Receive real-time event notifications for presence, bookings, and member changes.
+---
+
+Webhooks send HTTP POST requests to your server when events happen in Presentify. Use them to integrate with external systems like Slack, HR tools, or custom dashboards.
+
+> Webhooks require an **Enterprise** plan.
+
+## Creating a webhook endpoint
+
+1. Go to **Settings** > **Webhooks**
+2. Click **Add Endpoint**
+3. Configure:
+   - **URL** (required) — Your HTTPS endpoint
+   - **Description** (optional) — Max 200 characters
+   - **Events** (required) — Select which events to receive
+4. Click **Save**
+
+The webhook **secret** is shown once after creation. Copy it immediately — you'll need it for signature verification.
+
+You can create up to **5 webhook endpoints** per workspace.
+
+## Event types
+
+| Event | Description |
+|-------|-------------|
+| `presence.created` | A member set their presence status |
+| `presence.updated` | A member changed their presence status |
+| `presence.deleted` | A member removed their presence status |
+| `desk_booking.created` | A desk was booked |
+| `desk_booking.cancelled` | A desk booking was cancelled |
+| `desk_booking.checked_in` | A member checked in at their desk |
+| `parking_booking.created` | A parking spot was booked |
+| `parking_booking.cancelled` | A parking booking was cancelled |
+| `parking_booking.checked_in` | A member checked in at their parking spot |
+| `member.created` | A new member was invited to the workspace |
+| `member.updated` | A member's profile or role was updated |
+| `member.deleted` | A member was deactivated |
+
+## Payload format
+
+```json
+{
+  "id": "delivery-uuid",
+  "type": "desk_booking.created",
+  "occurred_at": "2026-03-20T14:30:00.000Z",
+  "data": {
+    "booking_id": "...",
+    "member_id": "...",
+    "desk_id": "...",
+    "date": "2026-03-21",
+    "status": "confirmed"
+  }
+}
+```
+
+## HTTP headers
+
+| Header | Description |
+|--------|-------------|
+| `X-Presentify-Signature` | HMAC-SHA256 hex digest of the payload |
+| `X-Presentify-Event` | Event type (e.g., `desk_booking.created`) |
+| `X-Presentify-Delivery` | Unique delivery ID |
+| `X-Presentify-Retry` | Retry attempt number (only on retries) |
+| `Content-Type` | `application/json` |
+
+## Signature verification
+
+Verify the `X-Presentify-Signature` header to ensure the request came from Presentify:
+
+**Node.js:**
+
+```javascript
+const crypto = require("crypto");
+
+function verifySignature(payload, signature, secret) {
+  const computed = crypto
+    .createHmac("sha256", secret)
+    .update(payload, "utf8")
+    .digest("hex");
+  return computed === signature;
+}
+```
+
+**Python:**
+
+```python
+import hmac
+import hashlib
+
+def verify_signature(payload: str, signature: str, secret: str) -> bool:
+    computed = hmac.new(
+        secret.encode(),
+        payload.encode(),
+        hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(computed, signature)
+```
+
+## Retry behavior
+
+If your endpoint returns a non-2xx status code or times out (10 seconds), Presentify retries the delivery:
+
+| Attempt | Delay |
+|---------|-------|
+| 1st retry | 1 minute |
+| 2nd retry | 5 minutes |
+| 3rd retry | 30 minutes |
+| 4th retry | 2 hours |
+| 5th retry | 12 hours |
+
+After 5 failed retries, the delivery is marked as failed. Each attempt is logged in the delivery history.
+
+## Test delivery
+
+Click **Test** on a webhook endpoint to send a test payload. This verifies your endpoint is reachable and responding correctly.
+
+## Delivery log
+
+Each endpoint shows recent deliveries with:
+
+- Event type and delivery ID
+- Response status code
+- Success/failure status
+- Attempt count
+- Timestamp
+
+Use the delivery log to debug integration issues.

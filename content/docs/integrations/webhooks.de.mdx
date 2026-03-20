@@ -1,0 +1,129 @@
+---
+title: Webhooks
+description: Erhalte Echtzeit-Event-Benachrichtigungen für Anwesenheit, Buchungen und Mitgliederänderungen.
+---
+
+Webhooks senden HTTP-POST-Anfragen an deinen Server, wenn Events in Presentify passieren. Nutze sie zur Integration mit externen Systemen wie Slack, HR-Tools oder eigenen Dashboards.
+
+> Webhooks erfordern einen **Enterprise**-Plan.
+
+## Einen Webhook-Endpoint erstellen
+
+1. Gehe zu **Einstellungen** > **Webhooks**
+2. Klicke auf **Endpoint hinzufügen**
+3. Konfiguriere:
+   - **URL** (erforderlich) — Dein HTTPS-Endpoint
+   - **Beschreibung** (optional) — Max 200 Zeichen
+   - **Events** (erforderlich) — Wähle, welche Events du empfangen möchtest
+4. Klicke auf **Speichern**
+
+Das Webhook-**Secret** wird einmalig nach der Erstellung angezeigt. Kopiere es sofort — du brauchst es für die Signaturverifikation.
+
+Du kannst bis zu **5 Webhook-Endpoints** pro Workspace erstellen.
+
+## Event-Typen
+
+| Event | Beschreibung |
+|-------|-------------|
+| `presence.created` | Ein Mitglied hat seinen Anwesenheitsstatus gesetzt |
+| `presence.updated` | Ein Mitglied hat seinen Anwesenheitsstatus geändert |
+| `presence.deleted` | Ein Mitglied hat seinen Anwesenheitsstatus entfernt |
+| `desk_booking.created` | Ein Schreibtisch wurde gebucht |
+| `desk_booking.cancelled` | Eine Schreibtischbuchung wurde storniert |
+| `desk_booking.checked_in` | Ein Mitglied hat an seinem Schreibtisch eingecheckt |
+| `parking_booking.created` | Ein Parkplatz wurde gebucht |
+| `parking_booking.cancelled` | Eine Parkplatzbuchung wurde storniert |
+| `parking_booking.checked_in` | Ein Mitglied hat an seinem Parkplatz eingecheckt |
+| `member.created` | Ein neues Mitglied wurde zum Workspace eingeladen |
+| `member.updated` | Das Profil oder die Rolle eines Mitglieds wurde aktualisiert |
+| `member.deleted` | Ein Mitglied wurde deaktiviert |
+
+## Payload-Format
+
+```json
+{
+  "id": "delivery-uuid",
+  "type": "desk_booking.created",
+  "occurred_at": "2026-03-20T14:30:00.000Z",
+  "data": {
+    "booking_id": "...",
+    "member_id": "...",
+    "desk_id": "...",
+    "date": "2026-03-21",
+    "status": "confirmed"
+  }
+}
+```
+
+## HTTP-Header
+
+| Header | Beschreibung |
+|--------|-------------|
+| `X-Presentify-Signature` | HMAC-SHA256 Hex-Digest des Payloads |
+| `X-Presentify-Event` | Event-Typ (z.B. `desk_booking.created`) |
+| `X-Presentify-Delivery` | Eindeutige Delivery-ID |
+| `X-Presentify-Retry` | Retry-Versuchsnummer (nur bei Wiederholungen) |
+| `Content-Type` | `application/json` |
+
+## Signaturverifikation
+
+Verifiziere den `X-Presentify-Signature`-Header, um sicherzustellen, dass die Anfrage von Presentify kommt:
+
+**Node.js:**
+
+```javascript
+const crypto = require("crypto");
+
+function verifySignature(payload, signature, secret) {
+  const computed = crypto
+    .createHmac("sha256", secret)
+    .update(payload, "utf8")
+    .digest("hex");
+  return computed === signature;
+}
+```
+
+**Python:**
+
+```python
+import hmac
+import hashlib
+
+def verify_signature(payload: str, signature: str, secret: str) -> bool:
+    computed = hmac.new(
+        secret.encode(),
+        payload.encode(),
+        hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(computed, signature)
+```
+
+## Retry-Verhalten
+
+Wenn dein Endpoint einen Nicht-2xx-Statuscode zurückgibt oder einen Timeout hat (10 Sekunden), wiederholt Presentify die Zustellung:
+
+| Versuch | Verzögerung |
+|---------|------------|
+| 1. Retry | 1 Minute |
+| 2. Retry | 5 Minuten |
+| 3. Retry | 30 Minuten |
+| 4. Retry | 2 Stunden |
+| 5. Retry | 12 Stunden |
+
+Nach 5 fehlgeschlagenen Retries wird die Zustellung als fehlgeschlagen markiert. Jeder Versuch wird im Zustellungsprotokoll protokolliert.
+
+## Test-Zustellung
+
+Klicke auf **Testen** bei einem Webhook-Endpoint, um einen Test-Payload zu senden. Dies verifiziert, dass dein Endpoint erreichbar ist und korrekt antwortet.
+
+## Zustellungsprotokoll
+
+Jeder Endpoint zeigt aktuelle Zustellungen mit:
+
+- Event-Typ und Delivery-ID
+- Antwort-Statuscode
+- Erfolgs-/Fehlerstatus
+- Versuchsanzahl
+- Zeitstempel
+
+Nutze das Zustellungsprotokoll zum Debuggen von Integrationsproblemen.

@@ -1,0 +1,46 @@
+---
+title: Microsoft 365
+description: Sign in with Microsoft, automatic profile sync, and Entra ID integration.
+---
+
+Presentify integrates with Microsoft 365 for authentication and profile synchronization.
+
+## Microsoft Sign-in
+
+Members can sign in using their Microsoft 365 account via OAuth. This is the recommended method for organizations using Microsoft 365.
+
+When signing in with Microsoft:
+
+1. Presentify redirects to Microsoft's OAuth authorization page
+2. The member authenticates with their Microsoft 365 credentials
+3. Presentify reads their profile from Microsoft Graph (name, email, company)
+4. A Presentify account is created or linked automatically
+
+Admins can restrict sign-in to Microsoft-only via **Settings** > **General** > **Allowed Auth Methods**.
+
+## Profile sync
+
+After Microsoft sign-in, Presentify syncs the following from Microsoft Graph:
+
+- **Display name** — From the Microsoft 365 profile
+- **Profile picture** — Synced from the Microsoft 365 profile photo (can be overridden with a custom upload)
+- **Company name** — Used as workspace name suggestion for new users
+
+Profile sync happens automatically after each sign-in. Manual uploads take precedence — if a member uploads a custom profile picture, the Microsoft photo is not overwritten.
+
+## Workspace name suggestion
+
+When a new user signs in with Microsoft for the first time and creates a workspace, Presentify suggests the workspace name from:
+
+1. The **company name** from their Microsoft Graph profile (if available)
+2. The **email domain** as fallback (e.g., "company" from user@company.com)
+
+## What's not included (yet)
+
+The following Microsoft 365 integrations are planned but not yet available:
+
+- **Bulk Entra ID user/group sync** — Automatic import of users from your Microsoft Entra ID directory
+- **Outlook calendar write-back** — Writing desk bookings as events to members' Outlook calendars
+- **Teams presence status sync** — Syncing Presentify presence with Microsoft Teams presence
+
+Currently, users must be [invited manually](/docs/admin/members) or sign in via SSO to join a workspace.
