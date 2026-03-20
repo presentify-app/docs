@@ -2,16 +2,19 @@
 @import 'fumadocs-ui/css/shadcn.css';
 @import 'fumadocs-ui/css/preset.css';
 
-/* Presentify Brand Colors */
+/* Presentify Brand Colors — matching the web app */
 :root {
-  --fd-primary: 245 245 100%;
-  --primary: oklch(0.546 0.245 275.75);
-  --primary-foreground: oklch(0.985 0.002 247.84);
-  --accent: oklch(0.446 0.2 275.75);
+  --primary: oklch(0.852 0.199 91.936);
+  --primary-foreground: oklch(0.421 0.095 57.708);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --ring: oklch(0.852 0.199 91.936);
 }
 
 .dark {
-  --primary: oklch(0.646 0.245 275.75);
-  --primary-foreground: oklch(0.985 0.002 247.84);
-  --accent: oklch(0.546 0.2 275.75);
+  --primary: oklch(0.795 0.184 86.047);
+  --primary-foreground: oklch(0.421 0.095 57.708);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.553 0.135 66.442);
 }
