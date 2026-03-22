@@ -17,6 +17,7 @@
     "office-policy",
     "zone-rules",
     "announcements",
-    "billing"
+    "billing",
+    "integrations"
   ]
 }

@@ -1,0 +1,54 @@
+---
+title: Integrations
+description: Connect external services like Microsoft Teams to your workspace.
+---
+
+Workspace admins and owners can connect external services to enable automated data synchronization. The **Integrations** tab is available under **Settings** > **Integrations**.
+
+Integrations require the **Pro** or **Enterprise** plan.
+
+## Microsoft Teams Presence Sync
+
+Automatically set your team members' Microsoft Teams availability status based on their planned presence in Presentify. See [Microsoft Teams Presence Sync](/docs/integrations/microsoft-teams-presence) for an overview of the feature.
+
+### Connecting a Microsoft 365 tenant
+
+1. Go to **Settings** > **Integrations**
+2. Under **Microsoft 365**, the workspace's active Microsoft tenants are listed with their member counts
+3. Click **Connect with Microsoft** next to an unconnected tenant
+4. A Microsoft admin consent page opens — a Microsoft 365 Global Admin or Privileged Role Admin must sign in and approve the requested permissions
+5. After approval, the tenant appears as **Connected**
+
+Only workspace **Admins** and **Owners** can initiate the consent flow.
+
+### Managing a connection
+
+Once a tenant is connected, the connection card shows the following settings:
+
+- **Enable/Disable** — Toggle the sync on or off per tenant without disconnecting
+- **Set status at** — Configure when Teams status is set each morning (default 07:00, evaluated in each member's local timezone)
+- **Clear status at** — Configure when Teams status is cleared each evening (default 18:00)
+- **Status Mapping** — Expand this section to customize how each Presentify status maps to a Teams availability value (e.g., "In Office" → "Available", "Away" → "Away")
+
+Click **Save** to apply changes.
+
+### Sync log
+
+The **Sync Log** section shows recent Teams presence sync activity, including:
+
+- Member name
+- Action performed (set presence or clear presence)
+- Success or failure status
+- Timestamp
+
+Use this to verify that sync is working correctly or to diagnose issues.
+
+### Verifying consent
+
+Click **Verify consent** on a connection card to check that admin consent is still valid. If consent has been revoked in Microsoft Entra ID, you will see an error and members will not be synced until an admin re-authorizes.
+
+Presentify also runs an automatic daily health check at 06:00 UTC. If consent has expired or been revoked, the connection shows a **Last error** message.
+
+### Disconnecting a tenant
+
+Click **Disconnect** to remove a tenant connection. This stops all Teams presence sync for members on that tenant. This action cannot be undone — you will need to re-authorize if you want to reconnect.

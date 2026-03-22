@@ -1,4 +1,4 @@
 {
   "title": "Integrations",
-  "pages": ["index", "entra-id", "calendar-sync", "teams", "webhooks", "api-keys"]
+  "pages": ["index", "entra-id", "calendar-sync", "teams", "microsoft-teams-presence", "webhooks", "api-keys"]
 }
