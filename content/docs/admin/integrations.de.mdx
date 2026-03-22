@@ -1,0 +1,54 @@
+---
+title: Integrationen
+description: Verbinde externe Dienste wie Microsoft Teams mit deinem Workspace.
+---
+
+Workspace-Admins und -Owner können externe Dienste verbinden, um automatische Datensynchronisation zu ermöglichen. Der Tab **Integrationen** ist verfügbar unter **Einstellungen** > **Integrationen**.
+
+Integrationen erfordern den **Pro**- oder **Enterprise**-Plan.
+
+## Microsoft Teams Anwesenheitssync
+
+Setze automatisch den Microsoft Teams Verfügbarkeitsstatus deiner Teammitglieder basierend auf ihrer geplanten Anwesenheit in Presentify. Siehe [Microsoft Teams Anwesenheitssync](/docs/integrations/microsoft-teams-presence) für einen Überblick über das Feature.
+
+### Microsoft 365 Tenant verbinden
+
+1. Gehe zu **Einstellungen** > **Integrationen**
+2. Unter **Microsoft 365** werden die aktiven Microsoft Tenants des Workspaces mit ihrer Mitgliederzahl angezeigt
+3. Klicke auf **Mit Microsoft verbinden** neben einem nicht verbundenen Tenant
+4. Eine Microsoft-Administratorzustimmungsseite öffnet sich — ein Microsoft 365 Globaler Administrator oder Administrator für privilegierte Rollen muss sich anmelden und die angeforderten Berechtigungen genehmigen
+5. Nach der Genehmigung erscheint der Tenant als **Verbunden**
+
+Nur Workspace-**Admins** und **Owner** können den Zustimmungsfluss starten.
+
+### Verbindung verwalten
+
+Sobald ein Tenant verbunden ist, zeigt die Verbindungskarte folgende Einstellungen:
+
+- **Aktivieren/Deaktivieren** — Schalte die Synchronisation pro Tenant ein oder aus, ohne die Verbindung zu trennen
+- **Status setzen um** — Konfiguriere, wann der Teams-Status jeden Morgen gesetzt wird (Standard 07:00, wird in der lokalen Zeitzone jedes Mitglieds ausgewertet)
+- **Status zurücksetzen um** — Konfiguriere, wann der Teams-Status jeden Abend zurückgesetzt wird (Standard 18:00)
+- **Status-Zuordnung** — Klappe diesen Bereich auf, um anzupassen, wie jeder Presentify-Status einer Teams-Verfügbarkeit zugeordnet wird (z.B. "Im Büro" → "Verfügbar", "Abwesend" → "Abwesend")
+
+Klicke auf **Speichern**, um Änderungen zu übernehmen.
+
+### Sync-Protokoll
+
+Der Bereich **Sync-Protokoll** zeigt die aktuelle Teams-Anwesenheitssync-Aktivität, einschließlich:
+
+- Mitgliedername
+- Durchgeführte Aktion (Anwesenheit gesetzt oder zurückgesetzt)
+- Erfolgs- oder Fehlerstatus
+- Zeitstempel
+
+Nutze dies, um zu überprüfen, ob die Synchronisation korrekt funktioniert, oder um Probleme zu diagnostizieren.
+
+### Zustimmung prüfen
+
+Klicke auf **Zustimmung prüfen** auf einer Verbindungskarte, um zu überprüfen, ob die Administratorzustimmung noch gültig ist. Wenn die Zustimmung in Microsoft Entra ID widerrufen wurde, wird ein Fehler angezeigt und Mitglieder werden nicht synchronisiert, bis ein Admin erneut autorisiert.
+
+Presentify führt außerdem täglich um 06:00 UTC eine automatische Gesundheitsprüfung durch. Wenn die Zustimmung abgelaufen oder widerrufen wurde, zeigt die Verbindung eine **Letzter Fehler**-Nachricht an.
+
+### Tenant trennen
+
+Klicke auf **Trennen**, um eine Tenant-Verbindung zu entfernen. Dies stoppt alle Teams-Anwesenheitssynchronisation für Mitglieder dieses Tenants. Diese Aktion kann nicht rückgängig gemacht werden — du musst erneut autorisieren, wenn du wieder verbinden möchtest.

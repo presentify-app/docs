@@ -1,0 +1,52 @@
+---
+title: Microsoft Teams Anwesenheitssync
+description: Synchronisiere deinen geplanten Anwesenheitsstatus automatisch mit Microsoft Teams.
+---
+
+Presentify kann deinen Microsoft Teams Verfügbarkeitsstatus automatisch basierend auf deiner geplanten Anwesenheit setzen. Dein Teams-Status wird jeden Morgen gesetzt und jeden Abend zurückgesetzt, damit Kollegen auf beiden Plattformen informiert bleiben.
+
+## Voraussetzungen
+
+- Dein Workspace muss im **Pro**- oder **Enterprise**-Plan sein
+- Du musst dich mindestens einmal mit einem **Microsoft-Geschäftskonto** bei Presentify angemeldet haben
+- Ein Workspace-Admin muss deinen [Microsoft 365 Tenant verbunden](/docs/admin/integrations) haben
+
+## So funktioniert es
+
+1. Ein Workspace-Admin verbindet den Microsoft 365 Tenant (einmalige Einrichtung)
+2. Du aktivierst die Synchronisation in deinen **Profileinstellungen** oder über das Banner im **Anwesenheitsplaner**
+3. Jeden Tag zur konfigurierten Sync-Zeit (Standard 07:00 in deiner lokalen Zeitzone) setzt Presentify deinen bevorzugten Teams-Status über die Microsoft Graph API
+4. Zur konfigurierten Rücksetzzeit (Standard 18:00) wird dein bevorzugter Status gelöscht und Teams kehrt zum systemberechneten Status zurück
+5. Wenn du deinen Anwesenheitsstatus für heute nach dem Morgen-Sync aktualisierst, synchronisiert Presentify sofort in Echtzeit nach
+
+## Aktivieren
+
+Es gibt zwei Möglichkeiten, die Teams-Anwesenheitssync zu aktivieren:
+
+- **Anwesenheitsplaner** — Ein blaues Banner erscheint oben im Planer, wenn dein Workspace Teams verbunden hat und du noch nicht aktiviert hast. Klicke auf **Aktivieren**, um die Synchronisation einzuschalten.
+- **Profileinstellungen** — Navigiere zu **Profileinstellungen** und finde die **Microsoft Teams**-Karte. Schalte **Meine Anwesenheit mit Microsoft Teams synchronisieren** ein oder aus.
+
+Du musst dich mindestens einmal mit einem Microsoft-Geschäftskonto angemeldet haben. Falls nicht, wirst du mit einer Nachricht dazu aufgefordert.
+
+## Status-Zuordnung
+
+Jeder Presentify-Status wird einer Microsoft Teams Verfügbarkeit zugeordnet. Dein Admin kann diese Zuordnungen anpassen. Die Standardwerte sind:
+
+| Presentify-Status | Teams-Verfügbarkeit |
+|---|---|
+| **Im Büro** | Verfügbar |
+| **Remote** | Verfügbar |
+| **Unterwegs** | Beschäftigt |
+| **Beim Kunden** | Beschäftigt |
+| **Schulung / Event** | Beschäftigt |
+| **Vor Ort (ohne Schreibtisch)** | Verfügbar |
+| **Abwesend** | Abwesend |
+
+## Halbtag-Behandlung
+
+- **Vormittags-Halbtag** — Der Teams-Status wird zur Morgen-Sync-Zeit gesetzt und um die Mittagszeit (13:00) zurückgesetzt
+- **Nachmittags-Halbtag** — Der Teams-Status wird um die Mittagszeit (13:00) gesetzt und zur Abend-Rücksetzzeit zurückgesetzt
+
+## Synchronisation deaktivieren
+
+Du kannst die Teams-Anwesenheitssync jederzeit unter **Profileinstellungen** > **Microsoft Teams** deaktivieren. Dein Teams-Status kehrt zur nächsten Rücksetzzeit zum systemberechneten Status zurück, oder du kannst ihn manuell in Teams ändern.

@@ -1,0 +1,52 @@
+---
+title: Microsoft Teams Presence Sync
+description: Automatically sync your planned presence status to Microsoft Teams.
+---
+
+Presentify can automatically set your Microsoft Teams availability status based on your planned presence. Your Teams status is set each morning and cleared each evening, keeping colleagues informed across both platforms.
+
+## Prerequisites
+
+- Your workspace must be on the **Pro** or **Enterprise** plan
+- You must have signed in to Presentify with a **Microsoft work account** at least once
+- A workspace admin must have [connected your Microsoft 365 tenant](/docs/admin/integrations)
+
+## How it works
+
+1. A workspace admin connects the Microsoft 365 tenant (one-time setup)
+2. You opt in from your **Profile Settings** or via the banner in the **Presence Planner**
+3. Each day at the configured sync time (default 07:00 in your local timezone), Presentify sets your Teams preferred presence via the Microsoft Graph API
+4. At the configured clear time (default 18:00), your preferred presence is cleared and Teams reverts to its system-calculated status
+5. If you update your presence status for today after the morning sync, Presentify re-syncs immediately in real time
+
+## Opting in
+
+There are two ways to enable Teams presence sync:
+
+- **Presence Planner** — A blue banner appears at the top of the planner if your workspace has Teams connected and you haven't opted in yet. Click **Enable** to turn on sync.
+- **Profile Settings** — Navigate to **Profile Settings** and find the **Microsoft Teams** card. Toggle **Sync my presence to Microsoft Teams** on or off.
+
+You must have signed in with a Microsoft work account at least once. If you haven't, a message will prompt you to do so.
+
+## Status mapping
+
+Each Presentify status maps to a Microsoft Teams availability. Your admin can customize these mappings. The defaults are:
+
+| Presentify Status | Teams Availability |
+|---|---|
+| **In Office** | Available |
+| **Remote** | Available |
+| **On the Road** | Busy |
+| **Customer Site** | Busy |
+| **Training / Event** | Busy |
+| **Onsite (no desk)** | Available |
+| **Away** | Away |
+
+## Half-day handling
+
+- **Morning half-day** — Teams status is set at the morning sync time and cleared at midday (13:00)
+- **Afternoon half-day** — Teams status is set at midday (13:00) and cleared at the evening clear time
+
+## Disabling sync
+
+You can disable Teams presence sync at any time from **Profile Settings** > **Microsoft Teams**. Your Teams status will revert to the system-calculated presence at the next clear time, or you can change it manually in Teams.
