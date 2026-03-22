@@ -1,0 +1,60 @@
+---
+title: Integrationen
+description: Verbinde externe Dienste wie Microsoft Teams für automatische Datensynchronisation.
+---
+
+Der **Integrationen**-Tab in den Workspace-Einstellungen ermöglicht Admins, externe Dienste mit Presentify zu verbinden. Er ist für Workspace-Admins und -Owner mit dem **Pro**- oder **Enterprise**-Plan verfügbar.
+
+Navigiere zu **Einstellungen** > **Integrationen**, um Verbindungen zu verwalten.
+
+## Microsoft 365
+
+Der Microsoft 365-Bereich gruppiert alle Integrationen, die sich mit dem Microsoft-Tenant deiner Organisation verbinden.
+
+### Microsoft Teams Anwesenheitssync
+
+Setze automatisch den Microsoft Teams Verfügbarkeitsstatus deiner Teammitglieder basierend auf ihrer geplanten Anwesenheit in Presentify. Siehe [Microsoft Teams — Anwesenheitssync](/docs/integrations/teams#anwesenheitssync) für die vollständige Funktionsübersicht.
+
+#### Tenant verbinden
+
+1. Navigiere zu **Einstellungen** > **Integrationen**
+2. Unter **Microsoft 365** findest du den Tenant deiner Organisation in der Liste **Microsoft Tenants in diesem Workspace**
+3. Klicke auf **Mit Microsoft verbinden** — dies öffnet den Microsoft Admin-Zustimmungsbildschirm
+4. Ein Microsoft 365 Administrator muss die angeforderten Berechtigungen genehmigen (`Presence.ReadWrite.All`)
+5. Nach der Zustimmung wird der Tenant als **Verbunden** angezeigt
+
+Der Admin, der auf **Mit Microsoft verbinden** klickt, muss sowohl ein Presentify Workspace-Admin/Owner sein als auch berechtigt, App-Berechtigungen in Microsoft 365 zu gewähren (typischerweise ein Globaler Administrator oder Anwendungsadministrator).
+
+Presentify erkennt Tenants automatisch anhand der Microsoft-Geschäftskonten, mit denen sich deine Mitglieder anmelden. Persönliche Microsoft-Konten (outlook.com, hotmail.com, live.com) werden herausgefiltert.
+
+#### Sync konfigurieren
+
+Nach der Verbindung erscheint eine Verbindungskarte mit diesen Einstellungen:
+
+- **Sync aktiviert** — Schalte den Sync für diesen Tenant ein oder aus
+- **Status setzen um** — Uhrzeit, zu der die Anwesenheit an Teams übermittelt wird (Standard 07:00, wird in der lokalen Zeitzone jedes Mitglieds ausgewertet)
+- **Status zurücksetzen um** — Uhrzeit, zu der der Teams-Status zurückgesetzt wird (Standard 18:00)
+- **Status-Zuordnung** — Aufklappen, um anzupassen, welcher Teams-Verfügbarkeitsstatus (Verfügbar, Beschäftigt, Nicht stören, Bin gleich zurück, Abwesend, Offline) jedem Presentify-Status zugeordnet wird
+
+Klicke auf **Speichern** nach Änderungen.
+
+#### Zustimmung prüfen
+
+Klicke auf **Zustimmung prüfen** auf einer Verbindungskarte, um zu überprüfen, ob die Admin-Zustimmung noch gültig ist. Wenn die Zustimmung abgelaufen oder widerrufen wurde, muss der Admin erneut autorisieren.
+
+Eine tägliche Gesundheitsprüfung läuft ebenfalls automatisch und markiert Verbindungen mit Zustimmungsproblemen.
+
+#### Mitglieder-Aktivierungsstatistik
+
+Die Verbindungskarte zeigt **Mitglieder aktiviert** — wie viele aktive Mitglieder den Anwesenheitssync aktiviert haben im Verhältnis zur Gesamtzahl.
+
+#### Sync-Protokoll
+
+Der Bereich **Sync-Protokoll** am Ende des Integrationen-Tabs zeigt die aktuelle Teams-Anwesenheitssync-Aktivität, einschließlich welches Mitglied synchronisiert wurde, die durchgeführte Aktion (setzen oder zurücksetzen) und ob sie erfolgreich war. Klicke auf **Mehr anzeigen**, um weitere Einträge zu laden.
+
+#### Tenant trennen
+
+1. Klicke auf **Trennen** auf der Verbindungskarte
+2. Bestätige im Dialog
+
+Dies entfernt den Teams-Anwesenheitssync für alle Mitglieder dieses Tenants. Die Aktion kann nicht rückgängig gemacht werden — um erneut zu verbinden, muss der Microsoft 365 Admin die Zustimmung erneut erteilen.

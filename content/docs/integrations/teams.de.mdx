@@ -1,9 +1,9 @@
 ---
 title: Microsoft Teams
-description: Nutze Presentify in Microsoft Teams mit automatischem Single Sign-On.
+description: Nutze Presentify in Microsoft Teams mit SSO und automatischem Anwesenheitssync.
 ---
 
-Presentify funktioniert in Microsoft Teams mit automatischem Single Sign-On (SSO). Mitglieder, die in Teams angemeldet sind, werden in Presentify authentifiziert, ohne zusätzliche Anmeldedaten eingeben zu müssen.
+Presentify integriert sich auf zwei Arten mit Microsoft Teams: automatisches Single Sign-On (SSO) für die Teams-App und **Anwesenheitssync**, der deinen Teams-Verfügbarkeitsstatus automatisch basierend auf deiner geplanten Anwesenheit in Presentify setzt.
 
 ## Teams SSO
 
@@ -24,10 +24,64 @@ Wenn ein Mitglied mehreren Workspaces angehört, merkt sich Presentify den zulet
 
 Teams-Sessions verwenden `SameSite=none`-Cookies, um im Teams-Iframe zu funktionieren. Sessions sind ansonsten identisch mit Web-Sessions (30 Tage Dauer, Iron-Session verschlüsselt).
 
+## Anwesenheitssync
+
+Der Anwesenheitssync setzt automatisch den Microsoft Teams Verfügbarkeitsstatus jedes Mitglieds basierend auf der geplanten Anwesenheit in Presentify. Der Status wird jeden Morgen gesetzt und jeden Abend zurückgesetzt.
+
+Diese Funktion erfordert einen **Pro**- oder **Enterprise**-Plan. Siehe [Admin-Einrichtung](/docs/admin/integrations) für die Workspace-Konfiguration.
+
+### Voraussetzungen
+
+- **Pro**- oder **Enterprise**-Plan
+- Mitglieder müssen mit einem Microsoft-Geschäftskonto angemeldet sein (persönliche outlook.com-Konten werden nicht unterstützt)
+- Ein Microsoft 365 Administrator muss der Presentify Teams Anwesenheitssync-App zustimmen
+
+### So funktioniert es
+
+1. Ein Workspace-Admin verbindet den Microsoft 365 Tenant über **Einstellungen** > **Integrationen** (siehe [Integrationen-Einstellungen](/docs/admin/integrations))
+2. Einzelne Mitglieder aktivieren den Sync für sich
+3. Jeden Tag zur konfigurierten **Status setzen**-Zeit (Standard 07:00 in der lokalen Zeitzone jedes Mitglieds) setzt Presentify den Teams-Verfügbarkeitsstatus basierend auf dem geplanten Status
+4. Zur konfigurierten **Status zurücksetzen**-Zeit (Standard 18:00) wird der Teams-Status auf den Systemstandard zurückgesetzt
+5. Wenn ein Mitglied den heutigen Anwesenheitsstatus ändert, wird der Teams-Status in Echtzeit aktualisiert
+
+### Halbtag-Behandlung
+
+- **Vormittags-Halbtage** — Status wird morgens gesetzt und mittags zurückgesetzt
+- **Nachmittags-Halbtage** — Status wird mittags gesetzt und abends zurückgesetzt
+
+### Status-Zuordnung
+
+Jeder Presentify-Status wird einem Teams-Verfügbarkeitsstatus zugeordnet. Admins können diese Zuordnung in den Verbindungseinstellungen anpassen. Die Standardwerte sind:
+
+| Presentify-Status | Teams-Verfügbarkeit |
+|---|---|
+| **Im Büro** | Verfügbar |
+| **Remote** | Verfügbar |
+| **Unterwegs** | Beschäftigt |
+| **Beim Kunden** | Beschäftigt |
+| **Schulung / Event** | Beschäftigt |
+| **Vor Ort ohne Schreibtisch** | Verfügbar |
+| **Abwesend** | Abwesend |
+
+### Mitglieder-Aktivierung
+
+Mitglieder müssen den Anwesenheitssync individuell aktivieren:
+
+- Ein Banner erscheint oben im **Anwesenheitsplaner** für berechtigte Mitglieder — klicke auf **Aktivieren**
+- Alternativ gehe zu **Profilneinstellungen** und aktiviere **Meine Anwesenheit mit Microsoft Teams synchronisieren** in der Microsoft-Teams-Karte
+- Mitglieder ohne verknüpftes Microsoft-Geschäftskonto können den Sync nicht aktivieren
+
+### Sync-Protokoll
+
+Admins können die aktuelle Sync-Aktivität im Bereich **Sync-Protokoll** des [Integrationen-Einstellungen](/docs/admin/integrations)-Tabs einsehen.
+
+### Trennen
+
+Admins können einen Tenant unter **Einstellungen** > **Integrationen** trennen. Dies entfernt den Teams-Anwesenheitssync für alle Mitglieder dieses Tenants und kann nicht rückgängig gemacht werden.
+
 ## Was noch nicht enthalten ist
 
 Die folgenden Teams-Integrationen sind geplant, aber noch nicht verfügbar:
 
 - **Teams-Bot** — Chat-Befehle zum Buchen von Schreibtischen oder Prüfen der Anwesenheit
-- **Anwesenheitsstatus-Sync** — Presentify-Status mit Teams-Anwesenheitsindikatoren synchronisieren
 - **Teams-Benachrichtigungen** — Buchungsbestätigungen oder Erinnerungen über Teams-Chat senden

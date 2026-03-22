@@ -1,9 +1,9 @@
 ---
 title: Microsoft Teams
-description: Use Presentify within Microsoft Teams with automatic single sign-on.
+description: Use Presentify within Microsoft Teams with SSO and automatic presence sync.
 ---
 
-Presentify works within Microsoft Teams with automatic single sign-on (SSO). Members signed in to Teams are authenticated in Presentify without entering additional credentials.
+Presentify integrates with Microsoft Teams in two ways: automatic single sign-on (SSO) for the Teams app, and **Presence Sync** to automatically set your Teams availability based on your planned presence in Presentify.
 
 ## Teams SSO
 
@@ -24,10 +24,64 @@ If a member belongs to multiple workspaces, Presentify remembers their last-used
 
 Teams sessions use `SameSite=none` cookies to work within the Teams iframe. Sessions are otherwise identical to web sessions (30-day duration, Iron-Session encrypted).
 
+## Presence Sync
+
+Presence Sync automatically sets each member's Microsoft Teams availability status based on their planned presence in Presentify. The status is set each morning and cleared each evening.
+
+This feature requires a **Pro** or **Enterprise** plan. See [Admin Setup](/docs/admin/integrations) for workspace configuration.
+
+### Requirements
+
+- **Pro** or **Enterprise** plan
+- Members must be signed in with a Microsoft work account (personal outlook.com accounts are not supported)
+- A Microsoft 365 admin must grant consent for the Presentify Teams Presence Sync app
+
+### How it works
+
+1. A workspace admin connects the Microsoft 365 tenant via **Settings** > **Integrations** (see [Integrations settings](/docs/admin/integrations))
+2. Individual members opt in to have their presence synced
+3. Every day at the configured **set status** time (default 07:00 in each member's local timezone), Presentify sets the member's Teams availability based on their planned status
+4. At the configured **clear status** time (default 18:00), the Teams status is reset to the system default
+5. When a member changes today's presence status, their Teams status is updated in real time
+
+### Half-day handling
+
+- **Morning half-days** — Status is set in the morning and cleared at midday
+- **Afternoon half-days** — Status is set at midday and cleared in the evening
+
+### Status mapping
+
+Each Presentify status maps to a Teams availability. Admins can customize this mapping in the connection settings. The defaults are:
+
+| Presentify Status | Teams Availability |
+|---|---|
+| **In Office** | Available |
+| **Remote** | Available |
+| **On the Road** | Busy |
+| **Customer Site** | Busy |
+| **Training / Event** | Busy |
+| **Onsite without Desk** | Available |
+| **Away** | Away |
+
+### Member opt-in
+
+Members must individually opt in to presence sync:
+
+- A banner appears at the top of the **Presence Planner** for eligible members — click **Enable** to activate
+- Alternatively, go to **Profile Settings** and toggle **Sync my presence to Microsoft Teams** in the Microsoft Teams card
+- Members without a linked Microsoft work account cannot opt in
+
+### Sync log
+
+Admins can view recent sync activity in the **Sync Log** section of the [Integrations settings](/docs/admin/integrations) tab.
+
+### Disconnecting
+
+Admins can disconnect a tenant from **Settings** > **Integrations**. This removes Teams presence sync for all members using that tenant and cannot be undone.
+
 ## What's not included (yet)
 
 The following Teams integrations are planned but not yet available:
 
 - **Teams bot** — Chat commands for booking desks or checking presence
-- **Presence status sync** — Syncing Presentify status with Teams presence indicators
 - **Teams notifications** — Sending booking confirmations or reminders via Teams chat
