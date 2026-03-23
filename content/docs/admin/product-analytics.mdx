@@ -1,0 +1,69 @@
+---
+title: Product Analytics (Super-Admin)
+description: Global product analytics dashboards for super-admins — KPIs, conversion funnel, attribution, and workspace health.
+---
+
+Product Analytics is a super-admin area that provides global metrics across all workspaces. Access it at `/admin/analytics`.
+
+> This feature is restricted to **super-admins** — users whose email is listed in the `SUPER_ADMIN_EMAILS` environment variable. Non-admin users are silently redirected to their dashboard.
+
+## Access control
+
+Super-admin access is controlled by a comma-separated list of email addresses in the `SUPER_ADMIN_EMAILS` environment variable. Only authenticated users whose email matches an entry in this list can access the `/admin/analytics` routes. All other users are redirected to their workspace dashboard.
+
+## Dashboard views
+
+The analytics area has four views, accessible via the tab navigation:
+
+### Overview (`/admin/analytics`)
+
+The main dashboard shows key performance indicators (KPIs) for the selected time period:
+
+| KPI | Description |
+|-----|-------------|
+| **Total Users** | All registered users across workspaces |
+| **Total Workspaces** | All created workspaces |
+| **DAU Today** | Unique users who signed in today |
+| **MRR** | Monthly Recurring Revenue from active subscriptions |
+
+Below the KPIs, a **Conversion Funnel** summary shows the pipeline from website visits through to completed setups.
+
+Use the **period selector** (7 days, 30 days, 90 days, All time) to adjust the time range.
+
+### Funnel (`/admin/analytics/funnel`)
+
+A detailed conversion funnel visualization showing each stage as a horizontal bar chart:
+
+1. **Website Visits** — Page views tracked via the website beacon
+2. **CTA Clicks** — Call-to-action clicks on the marketing website
+3. **Registrations** — New user sign-ups
+4. **Workspaces Created** — New workspaces created by users
+5. **Setups Completed** — Workspaces that finished the setup wizard
+
+Each step shows the absolute count and the conversion rate from the previous step.
+
+### Attribution (`/admin/analytics/attribution`)
+
+Breaks down visitor acquisition by traffic source. Group the data by:
+
+- **Source** — e.g. google, linkedin, newsletter
+- **Medium** — e.g. cpc, organic, email
+- **Campaign** — e.g. spring-launch, product-hunt
+
+For each group, the dashboard shows the number of **visitors**, **conversions** (visitors who signed up), and the **conversion rate**. Data is displayed both as a bar chart (top 10) and a full table.
+
+### Workspace Health (`/admin/analytics/workspaces`)
+
+Lists all workspaces with health metrics to identify at-risk or churning accounts:
+
+| Column | Description |
+|--------|-------------|
+| **Name** | Workspace name |
+| **Plan** | Current subscription plan |
+| **Members** | Active member count |
+| **Sign-ins (30d)** | Total sign-ins in the last 30 days |
+| **Days Since Login** | Days since the most recent sign-in |
+| **Health Score** | Computed score (0–100) based on activity |
+| **Status** | **Healthy** (≥60), **At Risk** (30–59), or **Churning** (<30) |
+
+Workspaces are sorted by health score (highest first).

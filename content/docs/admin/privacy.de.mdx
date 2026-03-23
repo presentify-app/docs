@@ -49,6 +49,17 @@ Konfiguriere, wie lange historische Daten aufbewahrt werden:
 
 Dies unterstützt DSGVO Artikel 17 (Recht auf Löschung). Mitglieder können die Löschung ihrer eigenen Daten auch über ihre Profileinstellungen beantragen.
 
+## Analytics-Tracking & Attributions-Cookie
+
+Presentify verwendet einen First-Party-Cookie (`pfy_attribution`), um Registrierungen Marketing-Kanälen zuzuordnen. Dieser Cookie ist:
+
+- **Wird nur gesetzt**, wenn ein Besucher mit UTM-Parametern (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`), einer Google Click ID (`gclid`) oder einer Besucher-ID (`vid`) ankommt
+- **HttpOnly** und **Secure** (außer auf localhost)
+- **Kurzlebig** — läuft nach 30 Minuten ab (deckt nur den Anmeldevorgang ab)
+- **SameSite: Lax** — wird nicht bei Cross-Site-Anfragen gesendet
+
+Wenn sich ein Benutzer anmeldet, können Attributionsdaten aus diesem Cookie im Anmeldeprotokoll gespeichert werden (UTM-Source, Medium, Kampagne, gclid, Referrer). Diese Daten werden ausschließlich in den [Produkt-Analytics](/docs/admin/product-analytics)-Super-Admin-Dashboards verwendet und nicht mit Workspace-Mitgliedern oder Dritten geteilt.
+
 ## Mitglieder-Überschreibungen
 
 Jedes Mitglied hat persönliche Datenschutz-Toggles, die die Workspace-Einstellungen für seine eigenen Daten überschreiben:

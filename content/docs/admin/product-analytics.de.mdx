@@ -1,0 +1,69 @@
+---
+title: Produkt-Analytics (Super-Admin)
+description: Globale Produkt-Analytics-Dashboards für Super-Admins — KPIs, Conversion Funnel, Attribution und Workspace-Gesundheit.
+---
+
+Produkt-Analytics ist ein Super-Admin-Bereich, der globale Metriken über alle Workspaces bietet. Greife darauf zu unter `/admin/analytics`.
+
+> Diese Funktion ist auf **Super-Admins** beschränkt — Benutzer, deren E-Mail-Adresse in der Umgebungsvariable `SUPER_ADMIN_EMAILS` hinterlegt ist. Nicht berechtigte Benutzer werden automatisch auf ihr Dashboard weitergeleitet.
+
+## Zugriffskontrolle
+
+Der Super-Admin-Zugriff wird über eine kommagetrennte Liste von E-Mail-Adressen in der Umgebungsvariable `SUPER_ADMIN_EMAILS` gesteuert. Nur authentifizierte Benutzer, deren E-Mail einem Eintrag in dieser Liste entspricht, können die `/admin/analytics`-Routen aufrufen. Alle anderen Benutzer werden auf ihr Workspace-Dashboard weitergeleitet.
+
+## Dashboard-Ansichten
+
+Der Analytics-Bereich hat vier Ansichten, erreichbar über die Tab-Navigation:
+
+### Übersicht (`/admin/analytics`)
+
+Das Haupt-Dashboard zeigt zentrale Leistungskennzahlen (KPIs) für den gewählten Zeitraum:
+
+| KPI | Beschreibung |
+|-----|-------------|
+| **Benutzer gesamt** | Alle registrierten Benutzer über alle Workspaces |
+| **Workspaces gesamt** | Alle erstellten Workspaces |
+| **DAU heute** | Eindeutige Benutzer, die sich heute angemeldet haben |
+| **MRR** | Monatlich wiederkehrender Umsatz aus aktiven Abonnements |
+
+Unter den KPIs zeigt eine **Conversion-Funnel**-Übersicht die Pipeline von Website-Besuchen bis zu abgeschlossenen Setups.
+
+Verwende den **Zeitraumselektor** (7 Tage, 30 Tage, 90 Tage, Gesamt), um den Zeitraum anzupassen.
+
+### Funnel (`/admin/analytics/funnel`)
+
+Eine detaillierte Conversion-Funnel-Visualisierung, die jede Stufe als horizontales Balkendiagramm zeigt:
+
+1. **Website-Besuche** — Seitenaufrufe, die über das Website-Beacon erfasst werden
+2. **CTA-Klicks** — Call-to-Action-Klicks auf der Marketing-Website
+3. **Registrierungen** — Neue Benutzeranmeldungen
+4. **Workspaces erstellt** — Neue Workspaces, die von Benutzern erstellt wurden
+5. **Setups abgeschlossen** — Workspaces, die den Setup-Assistenten abgeschlossen haben
+
+Jede Stufe zeigt die absolute Anzahl und die Conversion-Rate zur vorherigen Stufe.
+
+### Attribution (`/admin/analytics/attribution`)
+
+Schlüsselt die Besucherakquise nach Traffic-Quelle auf. Gruppiere die Daten nach:
+
+- **Quelle** — z.B. google, linkedin, newsletter
+- **Medium** — z.B. cpc, organic, email
+- **Kampagne** — z.B. spring-launch, product-hunt
+
+Für jede Gruppe zeigt das Dashboard die Anzahl der **Besucher**, **Conversions** (Besucher, die sich registriert haben) und die **Conversion-Rate**. Die Daten werden sowohl als Balkendiagramm (Top 10) als auch als vollständige Tabelle angezeigt.
+
+### Workspace-Gesundheit (`/admin/analytics/workspaces`)
+
+Listet alle Workspaces mit Gesundheitsmetriken auf, um gefährdete oder abwandernde Accounts zu identifizieren:
+
+| Spalte | Beschreibung |
+|--------|-------------|
+| **Name** | Workspace-Name |
+| **Plan** | Aktueller Abonnement-Plan |
+| **Mitglieder** | Anzahl aktiver Mitglieder |
+| **Anmeldungen (30T)** | Gesamtzahl der Anmeldungen in den letzten 30 Tagen |
+| **Tage seit Login** | Tage seit der letzten Anmeldung |
+| **Gesundheitswert** | Berechneter Wert (0–100) basierend auf Aktivität |
+| **Status** | **Gesund** (≥60), **Gefährdet** (30–59) oder **Abwandernd** (<30) |
+
+Workspaces werden nach Gesundheitswert sortiert (höchster zuerst).

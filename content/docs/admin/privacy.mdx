@@ -49,6 +49,17 @@ Configure how long historical data is kept:
 
 This supports GDPR Article 17 (Right to Erasure). Members can also request deletion of their own data through their profile settings.
 
+## Analytics tracking & attribution cookie
+
+Presentify uses a first-party cookie (`pfy_attribution`) to attribute sign-ups to marketing channels. This cookie is:
+
+- **Set only** when a visitor arrives with UTM parameters (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`), a Google Click ID (`gclid`), or a visitor ID (`vid`)
+- **HttpOnly** and **Secure** (except on localhost)
+- **Short-lived** — expires after 30 minutes (covers the sign-in flow only)
+- **SameSite: Lax** — not sent on cross-site requests
+
+When a user signs in, attribution data from this cookie may be stored in the sign-in log (UTM source, medium, campaign, gclid, referrer). This data is used exclusively in the [Product Analytics](/docs/admin/product-analytics) super-admin dashboards and is not shared with workspace members or third parties.
+
 ## Member-level overrides
 
 Each member has personal privacy toggles that override workspace settings for their own data:

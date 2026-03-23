@@ -1,0 +1,79 @@
+---
+title: Analytics Ingest
+description: Öffentlicher Endpunkt zur Erfassung von Website-Analytics-Beacons — Seitenaufrufe, CTA-Klicks und Besucher-Attribution.
+---
+
+`POST /api/analytics/ingest`
+
+Öffentlicher Analytics-Erfassungsendpunkt für Website-Beacons. Dieser Endpunkt nimmt Seitenaufruf- und CTA-Klick-Events von der Marketing-Website entgegen und speichert Besucher-Attributionsdaten.
+
+> Dieser Endpunkt erfordert **keine Authentifizierung**. Er ist per IP-Adresse rate-limitiert.
+
+## Anfrage
+
+**Methode:** `POST`
+
+**Content-Type:** `application/json` oder `text/plain` (die Browser-`sendBeacon`-API sendet `text/plain`, um CORS-Preflight zu vermeiden)
+
+### Body-Parameter
+
+| Feld | Typ | Erforderlich | Beschreibung |
+|------|-----|-------------|-------------|
+| `visitorId` | `string` | Ja | Eindeutige Besucher-Kennung (client-generiert) |
+| `visitedPages` | `array` | Nein | Liste von Seitenaufruf-Objekten |
+| `visitedPages[].page` | `string` | Ja | Seitenpfad (z.B. `/pricing`) |
+| `visitedPages[].ts` | `number` | Nein | Zeitstempel des Seitenaufrufs |
+| `utmSource` | `string` | Nein | UTM-Source-Parameter |
+| `utmMedium` | `string` | Nein | UTM-Medium-Parameter |
+| `utmCampaign` | `string` | Nein | UTM-Campaign-Parameter |
+| `utmContent` | `string` | Nein | UTM-Content-Parameter |
+| `gclid` | `string` | Nein | Google Click Identifier |
+| `referrer` | `string` | Nein | Referrer-URL |
+| `pageSource` | `string` | Nein | Quellseite für CTA-Klick-Tracking (wenn gesetzt, wird ein CTA-Klick-Event erfasst) |
+
+### Beispiel-Anfrage
+
+```bash
+curl -X POST https://app.presentify.org/api/analytics/ingest \
+  -H "Content-Type: application/json" \
+  -d '{
+    "visitorId": "abc-123-def",
+    "visitedPages": [
+      { "page": "/", "ts": 1711234567 },
+      { "page": "/pricing", "ts": 1711234590 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "spring-launch"
+  }'
+```
+
+## Antwort
+
+### Erfolg (200)
+
+```json
+{ "ok": true }
+```
+
+### Fehler
+
+| Status | Body | Beschreibung |
+|--------|------|-------------|
+| `400` | `{ "error": "Invalid JSON" }` | Anfrage-Body ist kein gültiges JSON |
+| `400` | `{ "error": "Invalid payload" }` | Body ist kein JSON-Objekt |
+| `400` | `{ "error": "visitorId required" }` | Fehlendes `visitorId`-Feld |
+| `429` | `{ "error": "Rate limit exceeded" }` | IP-Rate-Limit überschritten |
+
+## Rate Limits
+
+- **60 Anfragen** pro 60 Sekunden pro IP-Adresse
+- Gibt `429` zurück bei Überschreitung
+- Maximal **50 Seitenaufruf-Events** pro Anfrage (zusätzliche Einträge werden ignoriert)
+
+## Verhalten
+
+- Jeder Eintrag in `visitedPages` erzeugt ein `website.page_view`-Analytics-Event
+- Wenn `pageSource` gesetzt ist, wird zusätzlich ein `website.cta_click`-Event erfasst
+- Attributionsdaten (UTM-Parameter, gclid, Referrer) werden mit jedem Event gespeichert und zur Erstellung des Besucher-Attributionsprofils verwendet
+- First-Touch-Attribution wird beibehalten; Last-Touch-Attribution wird bei jeder Anfrage aktualisiert

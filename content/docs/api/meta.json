@@ -11,6 +11,7 @@
     "presence-delete",
     "booking-list",
     "booking-getById",
-    "booking-cancel"
+    "booking-cancel",
+    "analytics-ingest"
   ]
 }

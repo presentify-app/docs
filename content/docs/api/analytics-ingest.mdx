@@ -1,0 +1,79 @@
+---
+title: Analytics Ingest
+description: Public endpoint for ingesting website analytics beacons — page views, CTA clicks, and visitor attribution.
+---
+
+`POST /api/analytics/ingest`
+
+Public analytics ingestion endpoint for website beacons. This endpoint accepts page view and CTA click events from the marketing website and stores visitor attribution data.
+
+> This endpoint requires **no authentication**. It is rate-limited by IP address.
+
+## Request
+
+**Method:** `POST`
+
+**Content-Type:** `application/json` or `text/plain` (the browser `sendBeacon` API sends `text/plain` to avoid CORS preflight)
+
+### Body parameters
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `visitorId` | `string` | Yes | Unique visitor identifier (client-generated) |
+| `visitedPages` | `array` | No | List of page view objects |
+| `visitedPages[].page` | `string` | Yes | Page path (e.g. `/pricing`) |
+| `visitedPages[].ts` | `number` | No | Timestamp of the page view |
+| `utmSource` | `string` | No | UTM source parameter |
+| `utmMedium` | `string` | No | UTM medium parameter |
+| `utmCampaign` | `string` | No | UTM campaign parameter |
+| `utmContent` | `string` | No | UTM content parameter |
+| `gclid` | `string` | No | Google Click Identifier |
+| `referrer` | `string` | No | Referrer URL |
+| `pageSource` | `string` | No | Source page for CTA click tracking (when set, a CTA click event is recorded) |
+
+### Example request
+
+```bash
+curl -X POST https://app.presentify.org/api/analytics/ingest \
+  -H "Content-Type: application/json" \
+  -d '{
+    "visitorId": "abc-123-def",
+    "visitedPages": [
+      { "page": "/", "ts": 1711234567 },
+      { "page": "/pricing", "ts": 1711234590 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "spring-launch"
+  }'
+```
+
+## Response
+
+### Success (200)
+
+```json
+{ "ok": true }
+```
+
+### Errors
+
+| Status | Body | Description |
+|--------|------|-------------|
+| `400` | `{ "error": "Invalid JSON" }` | Request body is not valid JSON |
+| `400` | `{ "error": "Invalid payload" }` | Body is not a JSON object |
+| `400` | `{ "error": "visitorId required" }` | Missing `visitorId` field |
+| `429` | `{ "error": "Rate limit exceeded" }` | IP rate limit exceeded |
+
+## Rate limits
+
+- **60 requests** per 60 seconds per IP address
+- Returns `429` when exceeded
+- Maximum **50 page view events** per request (additional entries are ignored)
+
+## Behavior
+
+- Each entry in `visitedPages` generates a `website.page_view` analytics event
+- If `pageSource` is set, an additional `website.cta_click` event is recorded
+- Attribution data (UTM parameters, gclid, referrer) is stored with each event and used to build the visitor attribution profile
+- First-touch attribution is preserved; last-touch attribution is updated on every request
