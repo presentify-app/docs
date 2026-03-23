@@ -33,11 +33,137 @@ You can create up to **5 webhook endpoints** per workspace.
 | `desk_booking.checked_in` | A member checked in at their desk |
 | `parking_booking.created` | A parking spot was booked |
 | `parking_booking.cancelled` | A parking booking was cancelled |
+| `parking_booking.checked_in` | A member checked in at their parking spot |
 | `member.created` | A new member was invited to the workspace |
 | `member.updated` | A member's profile or role was updated |
 | `member.deleted` | A member was deactivated |
 
+## Event type details
+
+### `desk_booking.created`
+
+Fired when a desk is booked.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `bookingId` | `string` | Booking ID |
+| `memberId` | `string` | Member who booked |
+| `resourceType` | `"desk"` | Always `desk` |
+| `resourceId` | `string` | Desk ID |
+| `date` | `string` | ISO date (YYYY-MM-DD) |
+
+### `desk_booking.cancelled`
+
+Fired when a desk booking is cancelled.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `bookingId` | `string` | Booking ID |
+| `memberId` | `string` | Member whose booking was cancelled |
+| `resourceType` | `"desk"` | Always `desk` |
+| `resourceId` | `string` | Desk ID |
+| `date` | `string` | ISO date |
+| `cancelledByMemberId` | `string?` | Who cancelled (if done manually by another member) |
+
+### `desk_booking.checked_in`
+
+Fired when a member checks in to their desk.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `bookingId` | `string` | Booking ID |
+| `memberId` | `string` | Member who checked in |
+| `resourceType` | `"desk"` | Always `desk` |
+| `resourceId` | `string` | Desk ID |
+| `date` | `string` | ISO date |
+| `checkInMethod` | `"button" \| "qr_scan"` | How the member checked in |
+
+### `parking_booking.created`
+
+Fired when a parking spot is booked.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `bookingId` | `string` | Booking ID |
+| `memberId` | `string` | Member who booked |
+| `resourceType` | `"parking_spot"` | Always `parking_spot` |
+| `resourceId` | `string` | Parking spot ID |
+| `date` | `string` | ISO date |
+
+### `parking_booking.cancelled`
+
+Fired when a parking booking is cancelled.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `bookingId` | `string` | Booking ID |
+| `memberId` | `string` | Member whose booking was cancelled |
+| `resourceType` | `"parking_spot"` | Always `parking_spot` |
+| `resourceId` | `string` | Parking spot ID |
+| `date` | `string` | ISO date |
+
+### `parking_booking.checked_in`
+
+Fired when a member checks in to their parking spot.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `bookingId` | `string` | Booking ID |
+| `memberId` | `string` | Member who checked in |
+| `resourceType` | `"parking_spot"` | Always `parking_spot` |
+| `resourceId` | `string` | Parking spot ID |
+| `date` | `string` | ISO date |
+| `checkInMethod` | `"qr_scan"` | Check-in method |
+
+### `presence.created`
+
+Fired when a member sets their presence status.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `memberId` | `string` | Member ID |
+| `date` | `string` | ISO date |
+| `status` | `string` | Presence status (e.g., `in_office`, `remote`) |
+| `locationId` | `string?` | Location ID (`null` if remote) |
+
+### `presence.deleted`
+
+Fired when a member removes their presence status.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `memberId` | `string` | Member ID |
+| `date` | `string` | ISO date |
+
+### `member.created`
+
+Fired when a new member is invited to the workspace.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `memberId` | `string` | New member ID |
+| `email` | `string` | Member email |
+
+### `member.updated`
+
+Fired when a member's profile or role is updated.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `memberId` | `string` | Member ID |
+| `changes` | `object` | Changed fields |
+
+### `member.deleted`
+
+Fired when a member is deactivated.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `memberId` | `string` | Deactivated member ID |
+
 ## Payload format
+
+Every webhook delivery wraps the event data in a standard envelope:
 
 ```json
 {
@@ -54,6 +180,13 @@ You can create up to **5 webhook endpoints** per workspace.
 }
 ```
 
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique delivery ID |
+| `type` | `string` | Event type (e.g., `desk_booking.created`) |
+| `occurred_at` | `string` | ISO 8601 timestamp of when the event occurred |
+| `data` | `object` | Event-specific payload (see [Event type details](#event-type-details)) |
+
 ## HTTP headers
 
 | Header | Description |
@@ -66,20 +199,30 @@ You can create up to **5 webhook endpoints** per workspace.
 
 ## Signature verification
 
-Verify the `X-Presentify-Signature` header to ensure the request came from Presentify:
+Each webhook request is signed with your workspace's webhook secret using HMAC-SHA256. Verify the `X-Presentify-Signature` header to ensure the request is authentic.
 
 **Node.js:**
 
 ```javascript
 const crypto = require("crypto");
 
-function verifySignature(payload, signature, secret) {
+function verifySignature(secret, payload, signature) {
   const computed = crypto
     .createHmac("sha256", secret)
     .update(payload, "utf8")
     .digest("hex");
   return computed === signature;
 }
+
+// Usage in Express:
+app.post("/webhook", (req, res) => {
+  const sig = req.headers["x-presentify-signature"];
+  if (!verifySignature(WEBHOOK_SECRET, req.rawBody, sig)) {
+    return res.status(401).send("Invalid signature");
+  }
+  // Process event...
+  res.status(200).send("OK");
+});
 ```
 
 **Python:**
@@ -88,13 +231,22 @@ function verifySignature(payload, signature, secret) {
 import hmac
 import hashlib
 
-def verify_signature(payload: str, signature: str, secret: str) -> bool:
+def verify_signature(secret: str, payload: str, signature: str) -> bool:
     computed = hmac.new(
-        secret.encode(),
-        payload.encode(),
-        hashlib.sha256
+        secret.encode("utf-8"),
+        payload.encode("utf-8"),
+        hashlib.sha256,
     ).hexdigest()
     return hmac.compare_digest(computed, signature)
+
+# Usage in Flask:
+@app.route("/webhook", methods=["POST"])
+def webhook():
+    sig = request.headers.get("X-Presentify-Signature")
+    if not verify_signature(WEBHOOK_SECRET, request.data.decode(), sig):
+        return "Invalid signature", 401
+    # Process event...
+    return "OK", 200
 ```
 
 ## Retry behavior
@@ -126,3 +278,9 @@ Each endpoint shows recent deliveries with:
 - Timestamp
 
 Use the delivery log to debug integration issues.
+
+## Best practices
+
+- **Respond quickly** — Return `200 OK` immediately, then process the event asynchronously.
+- **Handle idempotency** — Use the `X-Presentify-Delivery` header to deduplicate events. You may receive the same event more than once.
+- **Always verify signatures** — Verify the signature before processing the payload to ensure the request is authentic.
