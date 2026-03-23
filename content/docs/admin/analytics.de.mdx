@@ -1,0 +1,48 @@
+---
+title: Produkt-Analytics
+description: Plattformweite Analytics für Super-Admins — Retention-Kohorten, Funnels, Attribution und Workspace-Einblicke.
+---
+
+Produkt-Analytics gibt Super-Admins einen Gesamtüberblick über den Zustand der Plattform und das Nutzerverhalten. Greife darauf über **Admin** > **Analytics** in der Seitenleiste zu.
+
+> Produkt-Analytics ist nur für **Super-Admin**-Benutzer verfügbar. Es ist getrennt von den [Workspace-Analytics](/docs/manager/analytics), die für Manager und höher zugänglich sind.
+
+## Navigation
+
+Das Analytics-Dashboard ist in Tabs organisiert:
+
+- **Übersicht** — Übergeordnete Plattform-Metriken
+- **Funnel** — Conversion-Schritte von Registrierung bis Aktivierung
+- **Attribution** — Besucher- und Registrierungs-Attribution
+- **Workspaces** — Aktivität pro Workspace
+- **Kohorten** — Retention-Kohorten-Matrix
+- **Benutzer** — Einzelne Benutzersuche
+
+## Retention-Kohorten
+
+Der Tab **Kohorten** (`/admin/analytics/cohorts`) zeigt eine Kohorten-Retention-Matrix, die dir hilft zu verstehen, wie gut Workspaces über die Zeit gehalten werden.
+
+### So funktioniert es
+
+Workspaces werden nach ihrem Erstellungsmonat in **Kohorten** gruppiert. Für jede Kohorte zeigt die Matrix die Retention über die folgenden Monate — den Prozentsatz der Workspaces, die im jeweiligen Messmonat aktiv geblieben sind.
+
+Ein Workspace gilt in einem bestimmten Monat als **aktiv**, wenn er mindestens eine Anmeldung in diesem Monat hatte.
+
+### Die Matrix lesen
+
+| Spalte | Beschreibung |
+|--------|-------------|
+| **Kohorte** | Der Monat, in dem die Workspaces erstellt wurden (z. B. `2025-06`). |
+| **Größe** | Die Anzahl der Workspaces in der Kohorte. |
+| **Monatsspalten** | Jede weitere Spalte zeigt den Retention-Prozentsatz für den jeweiligen Messmonat. |
+
+Retention-Zellen sind farblich codiert für schnelle Übersicht:
+
+- **Grün** — 80 % oder höhere Retention
+- **Gelb** — 50–79 % Retention
+- **Orange** — 20–49 % Retention
+- **Rot** — Unter 20 % Retention
+
+### Datenberechnung
+
+Kohortendaten werden **monatlich berechnet** durch einen geplanten Hintergrundjob (läuft am 3. jedes Monats). Wenn du den Kohorten-Tab öffnest, bevor Daten berechnet wurden, siehst du einen leeren Zustand: _„Noch keine Kohortendaten. Daten werden monatlich berechnet."_

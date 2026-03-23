@@ -1,0 +1,48 @@
+---
+title: Product Analytics
+description: Platform-wide analytics for super admins — retention cohorts, funnels, attribution, and workspace insights.
+---
+
+Product Analytics gives super admins a bird's-eye view of platform health and user behavior. Access it via **Admin** > **Analytics** in the sidebar.
+
+> Product Analytics is only available to **Super Admin** users. It is separate from the [workspace-level Analytics](/docs/manager/analytics) available to Managers and above.
+
+## Navigation
+
+The analytics dashboard is organized into tabs:
+
+- **Overview** — High-level platform metrics
+- **Funnel** — Signup-to-activation conversion steps
+- **Attribution** — Visitor and signup attribution
+- **Workspaces** — Per-workspace activity
+- **Cohorts** — Retention cohort matrix
+- **Users** — Individual user lookup
+
+## Retention Cohorts
+
+The **Cohorts** tab (`/admin/analytics/cohorts`) displays a cohort retention matrix that helps you understand how well workspaces are retained over time.
+
+### How it works
+
+Workspaces are grouped into **cohorts** by their creation month. For each cohort, the matrix shows retention across subsequent months — the percentage of workspaces that remained active in each measurement month.
+
+A workspace counts as **active** in a given month if it had at least one sign-in during that month.
+
+### Reading the matrix
+
+| Column | Description |
+|--------|-------------|
+| **Cohort** | The month the workspaces were created (e.g. `2025-06`). |
+| **Size** | The number of workspaces in the cohort. |
+| **Month columns** | Each subsequent column shows the retention percentage for that measurement month. |
+
+Retention cells are color-coded for quick scanning:
+
+- **Green** — 80 % or higher retention
+- **Yellow** — 50–79 % retention
+- **Orange** — 20–49 % retention
+- **Red** — Below 20 % retention
+
+### Data calculation
+
+Cohort data is **calculated monthly** by a scheduled background job (runs on the 3rd of each month). If you open the Cohorts tab before any data has been calculated, you will see an empty state: _"No cohort data yet. Data is calculated monthly."_
