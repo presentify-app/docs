@@ -1,0 +1,26 @@
+---
+title: Product Analytics
+description: Platform-level analytics dashboard for super admins — track product usage, NPS scores, and workspace health.
+---
+
+Product Analytics is a platform-level dashboard available exclusively to **super admins**. It provides cross-workspace insights into product usage, NPS survey results, and workspace health.
+
+> Product Analytics is **not** the same as workspace [Analytics](/docs/manager/analytics). Workspace analytics shows office attendance for Managers and above. Product Analytics shows platform-wide metrics for operators.
+
+## Who can access it?
+
+Only users whose email address is listed in the `NEXT_PUBLIC_SUPER_ADMIN_EMAILS` environment variable can see and access Product Analytics. This is independent of workspace roles — a user can be a regular Member in a workspace but still have super admin access if their email is configured.
+
+## Accessing Product Analytics
+
+Super admins see a **Product Analytics** entry in the sidebar (below **Feedback**). Click it to open the dashboard at `/admin/analytics`.
+
+## Configuring super admin access
+
+The deploying operator controls who has super admin access by setting the `NEXT_PUBLIC_SUPER_ADMIN_EMAILS` environment variable. This is a comma-separated list of email addresses:
+
+```bash
+NEXT_PUBLIC_SUPER_ADMIN_EMAILS="alice@example.com, bob@example.com"
+```
+
+Only exact email matches (case-insensitive) are granted access. Changes take effect after the next deployment.

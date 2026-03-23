@@ -1,0 +1,26 @@
+---
+title: Produkt-Analytics
+description: Plattform-Analytics-Dashboard für Super-Admins — verfolge Produktnutzung, NPS-Ergebnisse und Workspace-Gesundheit.
+---
+
+Produkt-Analytics ist ein plattformweites Dashboard, das ausschließlich **Super-Admins** zur Verfügung steht. Es bietet workspace-übergreifende Einblicke in Produktnutzung, NPS-Umfrageergebnisse und Workspace-Gesundheit.
+
+> Produkt-Analytics ist **nicht** dasselbe wie die Workspace-[Analytics](/docs/manager/analytics). Workspace-Analytics zeigt Büro-Anwesenheit für Manager und höher. Produkt-Analytics zeigt plattformweite Metriken für Betreiber.
+
+## Wer hat Zugriff?
+
+Nur Benutzer, deren E-Mail-Adresse in der Umgebungsvariable `NEXT_PUBLIC_SUPER_ADMIN_EMAILS` aufgeführt ist, können Produkt-Analytics sehen und darauf zugreifen. Dies ist unabhängig von Workspace-Rollen — ein Benutzer kann ein reguläres Mitglied in einem Workspace sein und trotzdem Super-Admin-Zugriff haben, wenn seine E-Mail konfiguriert ist.
+
+## Zugriff auf Produkt-Analytics
+
+Super-Admins sehen einen Eintrag **Produkt-Analytics** in der Seitenleiste (unterhalb von **Feedback**). Klicke darauf, um das Dashboard unter `/admin/analytics` zu öffnen.
+
+## Super-Admin-Zugriff konfigurieren
+
+Der Betreiber steuert den Super-Admin-Zugriff über die Umgebungsvariable `NEXT_PUBLIC_SUPER_ADMIN_EMAILS`. Diese enthält eine kommagetrennte Liste von E-Mail-Adressen:
+
+```bash
+NEXT_PUBLIC_SUPER_ADMIN_EMAILS="alice@example.com, bob@example.com"
+```
+
+Nur exakte E-Mail-Übereinstimmungen (ohne Berücksichtigung der Groß-/Kleinschreibung) erhalten Zugriff. Änderungen werden nach dem nächsten Deployment wirksam.
