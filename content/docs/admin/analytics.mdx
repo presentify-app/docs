@@ -1,0 +1,89 @@
+---
+title: Product Analytics
+description: Monitor sign-up funnels, time-to-value, attribution, workspace health, and individual user journeys.
+---
+
+Product Analytics gives platform administrators a bird's-eye view of how users discover, sign up for, and adopt Presentify. Access it via **Admin** > **Analytics**.
+
+> Product Analytics is only available to **Super Admins**. For workspace-level attendance analytics, see [Manager Analytics](/docs/manager/analytics).
+
+## Navigation
+
+The analytics area has five tabs:
+
+| Tab | What it shows |
+|-----|---------------|
+| **Overview** | High-level KPIs, sign-up funnel, and Time-to-Value metrics |
+| **Funnel** | Step-by-step conversion from visit to active usage |
+| **Attribution** | Traffic sources, UTM parameters, and campaign performance |
+| **Workspaces** | Workspace health scores and adoption metrics |
+| **Users** | Searchable user list with links to individual user journeys |
+
+All tabs share a **period filter** (7 days, 30 days, 90 days, or all time).
+
+## Overview
+
+The overview dashboard displays KPI cards, a sign-up funnel, and a **Time-to-Value** section.
+
+### Time-to-Value (TTV)
+
+The TTV block measures how quickly new users reach key milestones. Four cards are displayed:
+
+| Metric | Description |
+|--------|-------------|
+| **Signup → Workspace** | Time from user registration to creating their first workspace |
+| **Signup → Setup Done** | Time from registration to completing the workspace setup wizard |
+| **Signup → First Presence** | Time from registration to the first presence entry logged in any workspace |
+| **Signup → First Booking** | Time from registration to the first desk or resource booking |
+
+Each card shows:
+
+- **Median** — the typical time (50th percentile)
+- **P90** — the 90th-percentile time, highlighting slower adopters
+- **n** — number of data points in the selected period
+
+Values are displayed in minutes, hours, or days depending on magnitude.
+
+## Users
+
+The **Users** tab shows a table of all platform users. Use the search field to filter by email or name.
+
+| Column | Description |
+|--------|-------------|
+| **Email** | The user's email address — click to open their journey |
+| **Name** | Display name |
+| **Source** | Sign-up source tag, if available |
+| **Created** | Account creation date |
+
+### User journey
+
+Click a user's email to open their individual journey page. The journey view is divided into four sections:
+
+#### Attribution
+
+Shows how the user arrived at Presentify:
+
+- **First Touch** — initial UTM source / medium and landing page
+- **Last Touch** — most recent UTM source / medium before sign-up
+- **Total Visits** — number of pre-sign-up page visits
+
+#### Memberships
+
+Lists every workspace the user belongs to, including:
+
+- Workspace name
+- Role (Owner, Admin, Manager, Member, etc.)
+- Status badge (**active**, **invited**, or **removed**)
+
+#### Sign-ins
+
+A chronological log of the user's sign-in events, showing timestamp, app type, and device.
+
+#### Events
+
+A scrollable timeline of all tracked analytics events for the user. Each row shows:
+
+- Timestamp
+- Event category (**funnel**, **feature**, or other)
+- Event name
+- Event properties (if any)

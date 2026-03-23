@@ -1,0 +1,89 @@
+---
+title: Produkt-Analytics
+description: Überwache Anmelde-Funnels, Time-to-Value, Attribution, Workspace-Gesundheit und individuelle User Journeys.
+---
+
+Produkt-Analytics gibt Plattform-Administratoren einen Überblick darüber, wie Nutzer Presentify entdecken, sich anmelden und die Plattform annehmen. Zugriff über **Admin** > **Analytics**.
+
+> Produkt-Analytics ist nur für **Super-Admins** verfügbar. Für arbeitsplatzbezogene Anwesenheits-Analytics siehe [Manager Analytics](/docs/manager/analytics).
+
+## Navigation
+
+Der Analytics-Bereich hat fünf Tabs:
+
+| Tab | Was er zeigt |
+|-----|-------------|
+| **Übersicht** | Übergeordnete KPIs, Anmelde-Funnel und Time-to-Value-Metriken |
+| **Funnel** | Schrittweise Konvertierung vom Besuch zur aktiven Nutzung |
+| **Attribution** | Traffic-Quellen, UTM-Parameter und Kampagnen-Performance |
+| **Workspaces** | Workspace-Gesundheitsbewertungen und Akzeptanz-Metriken |
+| **Benutzer** | Durchsuchbare Benutzerliste mit Links zu individuellen User Journeys |
+
+Alle Tabs teilen sich einen **Zeitraum-Filter** (7 Tage, 30 Tage, 90 Tage oder gesamter Zeitraum).
+
+## Übersicht
+
+Das Übersichts-Dashboard zeigt KPI-Karten, einen Anmelde-Funnel und einen **Time-to-Value**-Abschnitt.
+
+### Time-to-Value (TTV)
+
+Der TTV-Block misst, wie schnell neue Nutzer wichtige Meilensteine erreichen. Vier Karten werden angezeigt:
+
+| Metrik | Beschreibung |
+|--------|-------------|
+| **Signup → Workspace** | Zeit von der Registrierung bis zur Erstellung des ersten Workspaces |
+| **Signup → Setup fertig** | Zeit von der Registrierung bis zum Abschluss des Einrichtungsassistenten |
+| **Signup → Erste Anwesenheit** | Zeit von der Registrierung bis zum ersten Anwesenheitseintrag in einem Workspace |
+| **Signup → Erste Buchung** | Zeit von der Registrierung bis zur ersten Schreibtisch- oder Ressourcenbuchung |
+
+Jede Karte zeigt:
+
+- **Median** — die typische Zeit (50. Perzentil)
+- **P90** — die Zeit im 90. Perzentil, die langsamere Nutzer hervorhebt
+- **n** — Anzahl der Datenpunkte im ausgewählten Zeitraum
+
+Werte werden je nach Größenordnung in Minuten, Stunden oder Tagen angezeigt.
+
+## Benutzer
+
+Der **Benutzer**-Tab zeigt eine Tabelle aller Plattformnutzer. Nutze das Suchfeld, um nach E-Mail oder Name zu filtern.
+
+| Spalte | Beschreibung |
+|--------|-------------|
+| **E-Mail** | Die E-Mail-Adresse des Nutzers — klicke darauf, um die Journey zu öffnen |
+| **Name** | Anzeigename |
+| **Quelle** | Anmeldequellen-Tag, falls verfügbar |
+| **Erstellt** | Erstellungsdatum des Kontos |
+
+### User Journey
+
+Klicke auf die E-Mail eines Nutzers, um die individuelle Journey-Seite zu öffnen. Die Journey-Ansicht ist in vier Bereiche unterteilt:
+
+#### Attribution
+
+Zeigt, wie der Nutzer zu Presentify gefunden hat:
+
+- **Erster Kontakt** — initialer UTM-Source / -Medium und Landing Page
+- **Letzter Kontakt** — letzter UTM-Source / -Medium vor der Anmeldung
+- **Besuche gesamt** — Anzahl der Seitenbesuche vor der Anmeldung
+
+#### Mitgliedschaften
+
+Listet jeden Workspace auf, dem der Nutzer angehört, einschließlich:
+
+- Workspace-Name
+- Rolle (Owner, Admin, Manager, Member usw.)
+- Status-Badge (**aktiv**, **eingeladen** oder **entfernt**)
+
+#### Anmeldungen
+
+Ein chronologisches Protokoll der Anmeldeereignisse des Nutzers mit Zeitstempel, App-Typ und Gerät.
+
+#### Events
+
+Eine scrollbare Timeline aller erfassten Analytics-Events des Nutzers. Jede Zeile zeigt:
+
+- Zeitstempel
+- Event-Kategorie (**funnel**, **feature** oder andere)
+- Event-Name
+- Event-Properties (falls vorhanden)
