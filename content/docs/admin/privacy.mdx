@@ -49,6 +49,26 @@ Configure how long historical data is kept:
 
 This supports GDPR Article 17 (Right to Erasure). Members can also request deletion of their own data through their profile settings.
 
+### Product analytics data retention
+
+In addition to the workspace-level retention period above, Presentify applies the following **global** retention policies to product analytics data automatically:
+
+| Data type | Retention | Action |
+|-----------|-----------|--------|
+| **Analytics events** (visitor ID, IP address, user agent) | 24 months | Personal identifiers are anonymized — event records are kept for aggregate reporting |
+| **Visitor attributions** (unlinked to a user account) | 6 months | Deleted entirely if the visitor record was never linked to a registered user |
+
+These policies run system-wide and are not configurable per workspace.
+
+## In-app satisfaction survey
+
+Presentify may display an optional **satisfaction survey** (NPS) inside the app. The survey:
+
+- Appears **at most once every 90 days** per user
+- Can be **dismissed** at any time without submitting
+- Stores a cooldown timestamp in the browser's local storage (`pfy_nps_last_shown`) — no cookie is set
+- Submitted responses (score and optional free-text feedback) are sent to the analytics endpoint and subject to the retention policies described above
+
 ## Member-level overrides
 
 Each member has personal privacy toggles that override workspace settings for their own data:
