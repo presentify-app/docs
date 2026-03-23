@@ -49,6 +49,26 @@ Konfiguriere, wie lange historische Daten aufbewahrt werden:
 
 Dies unterstützt DSGVO Artikel 17 (Recht auf Löschung). Mitglieder können die Löschung ihrer eigenen Daten auch über ihre Profileinstellungen beantragen.
 
+### Aufbewahrung von Produktanalysedaten
+
+Zusätzlich zum workspace-spezifischen Aufbewahrungszeitraum oben wendet Presentify die folgenden **globalen** Aufbewahrungsrichtlinien auf Produktanalysedaten automatisch an:
+
+| Datentyp | Aufbewahrung | Aktion |
+|----------|-------------|--------|
+| **Analytics-Ereignisse** (Besucher-ID, IP-Adresse, User-Agent) | 24 Monate | Persönliche Kennungen werden anonymisiert — Ereignisdaten bleiben für aggregierte Auswertungen erhalten |
+| **Besucher-Zuordnungen** (nicht mit einem Benutzerkonto verknüpft) | 6 Monate | Vollständig gelöscht, wenn der Besucherdatensatz nie mit einem registrierten Benutzer verknüpft wurde |
+
+Diese Richtlinien gelten systemweit und sind nicht pro Workspace konfigurierbar.
+
+## In-App-Zufriedenheitsumfrage
+
+Presentify kann eine optionale **Zufriedenheitsumfrage** (NPS) in der App anzeigen. Die Umfrage:
+
+- Wird **höchstens alle 90 Tage** pro Benutzer angezeigt
+- Kann jederzeit **geschlossen** werden, ohne abzuschicken
+- Speichert einen Cooldown-Zeitstempel im Local Storage des Browsers (`pfy_nps_last_shown`) — es wird kein Cookie gesetzt
+- Eingereichte Antworten (Bewertung und optionales Freitext-Feedback) werden an den Analytics-Endpunkt gesendet und unterliegen den oben beschriebenen Aufbewahrungsrichtlinien
+
 ## Mitglieder-Überschreibungen
 
 Jedes Mitglied hat persönliche Datenschutz-Toggles, die die Workspace-Einstellungen für seine eigenen Daten überschreiben:
